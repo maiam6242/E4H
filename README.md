@@ -1,2 +1,3 @@
 # E4H
-Beacon and App System for MWRTA
+This is a beacon and iOS app system for visually impaired users of the MWRTA. 
+
