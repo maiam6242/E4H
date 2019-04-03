@@ -16,6 +16,8 @@
 		FC8CA017225524C200C5BB97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC8CA015225524C200C5BB97 /* LaunchScreen.storyboard */; };
 		FC8CA022225524C200C5BB97 /* Joe_KnowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA021225524C200C5BB97 /* Joe_KnowsTests.swift */; };
 		FC8CA02D225524C200C5BB97 /* Joe_KnowsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA02C225524C200C5BB97 /* Joe_KnowsUITests.swift */; };
+		FC8CA03B225535EE00C5BB97 /* olinMap.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8CA03A225535ED00C5BB97 /* olinMap.png */; };
+		FC8CA03D2255375900C5BB97 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		FC8CA028225524C200C5BB97 /* Joe KnowsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Joe KnowsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8CA02C225524C200C5BB97 /* Joe_KnowsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joe_KnowsUITests.swift; sourceTree = "<group>"; };
 		FC8CA02E225524C200C5BB97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC8CA03A225535ED00C5BB97 /* olinMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = olinMap.png; path = Assets.xcassets/olinMap.png; sourceTree = "<group>"; };
+		FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,8 @@
 				FC8CA00E225524C100C5BB97 /* ViewController.swift */,
 				1E23CB69225529BC006203E7 /* MapKitController.swift */,
 				FC8CA010225524C100C5BB97 /* Main.storyboard */,
+				FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */,
+				FC8CA03A225535ED00C5BB97 /* olinMap.png */,
 				FC8CA013225524C200C5BB97 /* Assets.xcassets */,
 				FC8CA015225524C200C5BB97 /* LaunchScreen.storyboard */,
 				FC8CA018225524C200C5BB97 /* Info.plist */,
@@ -251,6 +257,7 @@
 			files = (
 				FC8CA017225524C200C5BB97 /* LaunchScreen.storyboard in Resources */,
 				FC8CA014225524C200C5BB97 /* Assets.xcassets in Resources */,
+				FC8CA03B225535EE00C5BB97 /* olinMap.png in Resources */,
 				FC8CA012225524C100C5BB97 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC8CA00F225524C100C5BB97 /* ViewController.swift in Sources */,
+				FC8CA03D2255375900C5BB97 /* CurrentLocationViewController.swift in Sources */,
 				FC8CA00D225524C100C5BB97 /* AppDelegate.swift in Sources */,
 				1E23CB6A225529BC006203E7 /* MapKitController.swift in Sources */,
 			);
