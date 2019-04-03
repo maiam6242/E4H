@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E23CB6822552977006203E7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E23CB6722552977006203E7 /* MapKit.framework */; };
+		1E23CB6A225529BC006203E7 /* MapKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E23CB69225529BC006203E7 /* MapKitController.swift */; };
 		FC8CA00D225524C100C5BB97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA00C225524C100C5BB97 /* AppDelegate.swift */; };
 		FC8CA00F225524C100C5BB97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA00E225524C100C5BB97 /* ViewController.swift */; };
 		FC8CA012225524C100C5BB97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC8CA010225524C100C5BB97 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E23CB6722552977006203E7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1E23CB69225529BC006203E7 /* MapKitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitController.swift; sourceTree = "<group>"; };
 		FC8CA009225524C100C5BB97 /* Joe Knows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Joe Knows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8CA00C225524C100C5BB97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC8CA00E225524C100C5BB97 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E23CB6822552977006203E7 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E23CB6622552977006203E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E23CB6722552977006203E7 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FC8CA000225524C100C5BB97 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +94,7 @@
 				FC8CA020225524C200C5BB97 /* Joe KnowsTests */,
 				FC8CA02B225524C200C5BB97 /* Joe KnowsUITests */,
 				FC8CA00A225524C100C5BB97 /* Products */,
+				1E23CB6622552977006203E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +113,7 @@
 			children = (
 				FC8CA00C225524C100C5BB97 /* AppDelegate.swift */,
 				FC8CA00E225524C100C5BB97 /* ViewController.swift */,
+				1E23CB69225529BC006203E7 /* MapKitController.swift */,
 				FC8CA010225524C100C5BB97 /* Main.storyboard */,
 				FC8CA013225524C200C5BB97 /* Assets.xcassets */,
 				FC8CA015225524C200C5BB97 /* LaunchScreen.storyboard */,
@@ -193,6 +208,11 @@
 				TargetAttributes = {
 					FC8CA008225524C100C5BB97 = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					FC8CA01C225524C200C5BB97 = {
 						CreatedOnToolsVersion = 10.2;
@@ -258,6 +278,7 @@
 			files = (
 				FC8CA00F225524C100C5BB97 /* ViewController.swift in Sources */,
 				FC8CA00D225524C100C5BB97 /* AppDelegate.swift in Sources */,
+				1E23CB6A225529BC006203E7 /* MapKitController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +454,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 787TUDMR8Q;
+				DEVELOPMENT_TEAM = 6FF86SZGQ9;
 				INFOPLIST_FILE = "Joe Knows/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -451,7 +472,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 787TUDMR8Q;
+				DEVELOPMENT_TEAM = 6FF86SZGQ9;
 				INFOPLIST_FILE = "Joe Knows/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
