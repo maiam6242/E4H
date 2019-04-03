@@ -11,9 +11,11 @@ import MapKit
 
 class MapKitController: UIViewController, CLLocationManagerDelegate
 {
-    @IBOutlet weak var mapView: MKMapView!
+
     var locationManager = CLLocationManager()
-    @IBAction func userLocation(){
+    
+    func userLocation(){
+        // If the user has authorized the location to be used, starts finding that location, if not asks the user for authorization
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse
         {
             locationManager.startUpdatingLocation()
@@ -23,6 +25,7 @@ class MapKitController: UIViewController, CLLocationManagerDelegate
             locationManager.requestWhenInUseAuthorization()
         }
     }
+    
     func locationManager(_ _manager:CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         let location = locations.first!
