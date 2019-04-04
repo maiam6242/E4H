@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1E23CB6822552977006203E7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E23CB6722552977006203E7 /* MapKit.framework */; };
-		1E23CB6A225529BC006203E7 /* MapKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E23CB69225529BC006203E7 /* MapKitController.swift */; };
 		FC8CA00D225524C100C5BB97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA00C225524C100C5BB97 /* AppDelegate.swift */; };
 		FC8CA00F225524C100C5BB97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA00E225524C100C5BB97 /* ViewController.swift */; };
 		FC8CA012225524C100C5BB97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC8CA010225524C100C5BB97 /* Main.storyboard */; };
@@ -39,7 +38,6 @@
 
 /* Begin PBXFileReference section */
 		1E23CB6722552977006203E7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		1E23CB69225529BC006203E7 /* MapKitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitController.swift; sourceTree = "<group>"; };
 		FC8CA009225524C100C5BB97 /* Joe Knows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Joe Knows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8CA00C225524C100C5BB97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC8CA00E225524C100C5BB97 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,9 +115,8 @@
 			children = (
 				FC8CA00C225524C100C5BB97 /* AppDelegate.swift */,
 				FC8CA00E225524C100C5BB97 /* ViewController.swift */,
-				1E23CB69225529BC006203E7 /* MapKitController.swift */,
-				FC8CA010225524C100C5BB97 /* Main.storyboard */,
 				FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */,
+				FC8CA010225524C100C5BB97 /* Main.storyboard */,
 				FC8CA03A225535ED00C5BB97 /* olinMap.png */,
 				FC8CA013225524C200C5BB97 /* Assets.xcassets */,
 				FC8CA015225524C200C5BB97 /* LaunchScreen.storyboard */,
@@ -286,7 +283,6 @@
 				FC8CA00F225524C100C5BB97 /* ViewController.swift in Sources */,
 				FC8CA03D2255375900C5BB97 /* CurrentLocationViewController.swift in Sources */,
 				FC8CA00D225524C100C5BB97 /* AppDelegate.swift in Sources */,
-				1E23CB6A225529BC006203E7 /* MapKitController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

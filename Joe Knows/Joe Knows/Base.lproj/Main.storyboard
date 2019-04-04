@@ -83,17 +83,22 @@
                                     <action selector="MainToLoading:" destination="OLX-X9-h0U" eventType="touchUpInside" id="SZT-47-xhz"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2Qf-38-g1u">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fgP-oa-Nod"/>
                     </view>
                     <connections>
+                        <outlet property="mapView" destination="2Qf-38-g1u" id="FNX-rl-PZ0"/>
                         <segue destination="BYZ-38-t0r" kind="showDetail" identifier="MainToLoading" id="9qF-LE-AdR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSE-O0-xFt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="797" y="101"/>
+            <point key="canvasLocation" x="796.875" y="100.35211267605634"/>
         </scene>
     </scenes>
 </document>

@@ -18,16 +18,19 @@ class ViewController: UIViewController {
     }
  */
 
-<<<<<<< HEAD
-=======
-    @IBOutlet weak var mapView: MKMapView!
->>>>>>> 3372ad505e5c2f35b1c49d2230a046a398b123fa
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         print("view loaded")
+        let locationManager = CLLocationManager()
+        func checkLocationAuthorizationStatus()
+        {
+            if CLLocationManager.authorizationStatus() != .authorizedWhenInUse || CLLocationManager.authorizationStatus() != .authorizedAlways {
+                locationManager.requestWhenInUseAuthorization()
+            }
+        }
     }
     
     @IBAction func LoadingToMain(_ sender: Any) {
