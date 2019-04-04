@@ -5,8 +5,9 @@
 //  Created by Annie Tor on 4/3/19.
 //  Copyright © 2019 Annie Tor. All rights reserved.
 //
-
+import MapKit
 import UIKit
+
 
 class ViewController: UIViewController {
     
@@ -17,6 +18,10 @@ class ViewController: UIViewController {
     }
  */
 
+<<<<<<< HEAD
+=======
+    @IBOutlet weak var mapView: MKMapView!
+>>>>>>> 3372ad505e5c2f35b1c49d2230a046a398b123fa
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,4 +36,5 @@ class ViewController: UIViewController {
     }
     
 }
+
 
