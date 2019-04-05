@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class CurrentLocationViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-
+    
     @IBOutlet var mapView: MKMapView!
     var locationManager : CLLocationManager!
     
@@ -28,6 +28,7 @@ class CurrentLocationViewController: UIViewController, MKMapViewDelegate, CLLoca
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         determineCurrentLocation()
+        
     }
     
     func createMapView(){
@@ -63,6 +64,8 @@ class CurrentLocationViewController: UIViewController, MKMapViewDelegate, CLLoca
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
+        var currentLocationLabel: UILabel!
+        currentLocationLabel.text = "coordinates: \(userLocation.coordinate.longitude)"
         
         // Call stopUpdatingLocation() to stop listening for location updates,
         // other wise this function will be called every time when user location changes.
@@ -76,9 +79,12 @@ class CurrentLocationViewController: UIViewController, MKMapViewDelegate, CLLoca
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+    
+        
         myAnnotation.title = "Current location"
         mapView.addAnnotation(myAnnotation)
     }
+    
     
     private func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
     {
@@ -88,16 +94,8 @@ class CurrentLocationViewController: UIViewController, MKMapViewDelegate, CLLoca
 
     // MARK: - Navigation
 
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destination.
-//        // Pass the selected object to the new view controller.
-//    }
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
 
 
-func MainToLoading(_ sender: Any) {
-    
-        print("button pressed")
-        //self.performSegue(withIdentifier: "MainToLoading", sender: self)
-    }
+
 
