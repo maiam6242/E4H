@@ -12,16 +12,22 @@ import MapKit
 class CurrentLocationViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    var locationManager : CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let initialLocation = MKUserLocation()
-        centerMapOnLocation(location: initialLocation)
+        
+        mapView.showsUserLocation = true;
+        
         // Do any additional setup after loading the view.
     }
     let regionRadius: CLLocationDistance = 1000
-    func centerMapOnLocation(location:CLLocation){
-        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,latitudinalMeters: regionRadius,longitudinalMeters: regionRadius)
-        mapView.setRegion(coordinateRegion,animated:true)
+    func centerMapOnLocation(_ location: CLLocation, mapView: MKMapView) {
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
+                                                  latitudinalMeters: regionRadius * 2.0, longitudinalMeters: regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+    
     }
 
     /*
