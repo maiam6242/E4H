@@ -53,6 +53,7 @@
 		FC8CA02E225524C200C5BB97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC8CA03A225535ED00C5BB97 /* olinMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = olinMap.png; path = Assets.xcassets/olinMap.png; sourceTree = "<group>"; };
 		FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
+		FCC46F66225805B4008B0248 /* whiteRectangle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = whiteRectangle.jpg; path = "/Users/annietor/Documents/GitHub/E4H/Joe Knows/Joe Knows/whiteRectangle.jpg"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +118,7 @@
 				FC8CA00E225524C100C5BB97 /* ViewController.swift */,
 				FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */,
 				FC8CA010225524C100C5BB97 /* Main.storyboard */,
+				FCC46F66225805B4008B0248 /* whiteRectangle.jpg */,
 				FC8CA03A225535ED00C5BB97 /* olinMap.png */,
 				FC8CA013225524C200C5BB97 /* Assets.xcassets */,
 				FC8CA015225524C200C5BB97 /* LaunchScreen.storyboard */,
