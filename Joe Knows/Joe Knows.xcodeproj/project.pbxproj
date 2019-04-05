@@ -17,6 +17,7 @@
 		FC8CA02D225524C200C5BB97 /* Joe_KnowsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA02C225524C200C5BB97 /* Joe_KnowsUITests.swift */; };
 		FC8CA03B225535EE00C5BB97 /* olinMap.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8CA03A225535ED00C5BB97 /* olinMap.png */; };
 		FC8CA03D2255375900C5BB97 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */; };
+		FCC46F6822581469008B0248 /* app_icons in Resources */ = {isa = PBXBuildFile; fileRef = FCC46F6722581469008B0248 /* app_icons */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +53,9 @@
 		FC8CA02C225524C200C5BB97 /* Joe_KnowsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joe_KnowsUITests.swift; sourceTree = "<group>"; };
 		FC8CA02E225524C200C5BB97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC8CA03A225535ED00C5BB97 /* olinMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = olinMap.png; path = Assets.xcassets/olinMap.png; sourceTree = "<group>"; };
-		FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
+		FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrentLocationViewController.swift; path = "Joe Knows/CurrentLocationViewController.swift"; sourceTree = "<group>"; };
 		FCC46F66225805B4008B0248 /* whiteRectangle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = whiteRectangle.jpg; path = "/Users/annietor/Documents/GitHub/E4H/Joe Knows/Joe Knows/whiteRectangle.jpg"; sourceTree = "<absolute>"; };
+		FCC46F6722581469008B0248 /* app_icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = app_icons; path = Assets.xcassets/app_icons; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		FC8CA000225524C100C5BB97 = {
 			isa = PBXGroup;
 			children = (
+				FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */,
 				FC8CA00B225524C100C5BB97 /* Joe Knows */,
 				FC8CA020225524C200C5BB97 /* Joe KnowsTests */,
 				FC8CA02B225524C200C5BB97 /* Joe KnowsUITests */,
@@ -116,8 +119,8 @@
 			children = (
 				FC8CA00C225524C100C5BB97 /* AppDelegate.swift */,
 				FC8CA00E225524C100C5BB97 /* ViewController.swift */,
-				FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */,
 				FC8CA010225524C100C5BB97 /* Main.storyboard */,
+				FCC46F6722581469008B0248 /* app_icons */,
 				FCC46F66225805B4008B0248 /* whiteRectangle.jpg */,
 				FC8CA03A225535ED00C5BB97 /* olinMap.png */,
 				FC8CA013225524C200C5BB97 /* Assets.xcassets */,
@@ -256,6 +259,7 @@
 			files = (
 				FC8CA017225524C200C5BB97 /* LaunchScreen.storyboard in Resources */,
 				FC8CA014225524C200C5BB97 /* Assets.xcassets in Resources */,
+				FCC46F6822581469008B0248 /* app_icons in Resources */,
 				FC8CA03B225535EE00C5BB97 /* olinMap.png in Resources */,
 				FC8CA012225524C100C5BB97 /* Main.storyboard in Resources */,
 			);
