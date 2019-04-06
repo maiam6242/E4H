@@ -11,7 +11,7 @@ import MapKit
 
 class CurrentLocationViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    var mapView: MKMapView!
+    @IBOutlet var mapView: MKMapView!
     var locationManager : CLLocationManager!
     
     override func viewDidLoad() {
@@ -64,9 +64,8 @@ class CurrentLocationViewController: UIViewController, MKMapViewDelegate, CLLoca
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
-//
-        //       let currentLocationLabel: UILabel!
-//        currentLocationLabel.text = "coordinates: and \(userLocation.coordinate.latitude)"
+        var currentLocationLabel: UILabel!
+        currentLocationLabel.text = "coordinates: \(userLocation.coordinate.longitude)"
         
         // Call stopUpdatingLocation() to stop listening for location updates,
         // other wise this function will be called every time when user location changes.
