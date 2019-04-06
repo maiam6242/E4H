@@ -16,7 +16,10 @@ class MainNavigationPage: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func AddAStop(_ sender: Any) {
+        performSegue(withIdentifier: "AddAStop", sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 
