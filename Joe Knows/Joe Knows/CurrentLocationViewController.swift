@@ -64,8 +64,8 @@ class CurrentLocationViewController: UIViewController, MKMapViewDelegate, CLLoca
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
-//        var currentLocationLabel: UILabel!
-//        currentLocationLabel.text = "coordinates: \(userLocation.coordinate.longitude)"
+        var currentLocationLabel: UILabel!
+        currentLocationLabel.text = "coordinates: \(userLocation.coordinate.longitude)"
         
         // Call stopUpdatingLocation() to stop listening for location updates,
         // other wise this function will be called every time when user location changes.

@@ -11,9 +11,6 @@ import MapKit
 
 class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
 
-    @IBOutlet weak var AddStopYes: UIButton!
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,7 +20,6 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
     var locationManager : CLLocationManager!
     
     @IBAction func AddStopBack(_ sender: Any) {
-        
         performSegue(withIdentifier: "AddStopBack", sender: self)
     }
     
