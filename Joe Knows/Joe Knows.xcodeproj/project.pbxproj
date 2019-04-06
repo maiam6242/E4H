@@ -21,6 +21,12 @@
 		FCC46F6A22592BF3008B0248 /* MainNavigationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC46F6922592BF3008B0248 /* MainNavigationPage.swift */; };
 		FCC46F7D22593AB7008B0248 /* AddStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC46F7C22593AB7008B0248 /* AddStop.swift */; };
 		FCC46F8222593E58008B0248 /* ic_arrow_back_24px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FCC46F8122593E58008B0248 /* ic_arrow_back_24px@3x.png */; };
+		FCC46F84225945D1008B0248 /* TypeOfStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC46F83225945D1008B0248 /* TypeOfStop.swift */; };
+		FCC46F8622595135008B0248 /* TransitNearYou.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC46F8522595135008B0248 /* TransitNearYou.swift */; };
+		FCC46F88225951AA008B0248 /* TransitNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC46F87225951AA008B0248 /* TransitNavigation.swift */; };
+		FCC46F8A22595226008B0248 /* BeaconNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC46F8922595226008B0248 /* BeaconNavigation.swift */; };
+		FCC46F8C225952BA008B0248 /* ArrivalConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC46F8B225952BA008B0248 /* ArrivalConfirmation.swift */; };
+		FCC46F8E2259531F008B0248 /* DirectionsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC46F8D2259531F008B0248 /* DirectionsExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +76,12 @@
 		FCC46F7C22593AB7008B0248 /* AddStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStop.swift; sourceTree = "<group>"; };
 		FCC46F8022593DA1008B0248 /* Ellipse 187@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ellipse 187@3x.png"; sourceTree = "<group>"; };
 		FCC46F8122593E58008B0248 /* ic_arrow_back_24px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_arrow_back_24px@3x.png"; sourceTree = "<group>"; };
+		FCC46F83225945D1008B0248 /* TypeOfStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfStop.swift; sourceTree = "<group>"; };
+		FCC46F8522595135008B0248 /* TransitNearYou.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitNearYou.swift; sourceTree = "<group>"; };
+		FCC46F87225951AA008B0248 /* TransitNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitNavigation.swift; sourceTree = "<group>"; };
+		FCC46F8922595226008B0248 /* BeaconNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconNavigation.swift; sourceTree = "<group>"; };
+		FCC46F8B225952BA008B0248 /* ArrivalConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalConfirmation.swift; sourceTree = "<group>"; };
+		FCC46F8D2259531F008B0248 /* DirectionsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +163,12 @@
 				FC8CA018225524C200C5BB97 /* Info.plist */,
 				FCC46F6922592BF3008B0248 /* MainNavigationPage.swift */,
 				FCC46F7C22593AB7008B0248 /* AddStop.swift */,
+				FCC46F83225945D1008B0248 /* TypeOfStop.swift */,
+				FCC46F8522595135008B0248 /* TransitNearYou.swift */,
+				FCC46F87225951AA008B0248 /* TransitNavigation.swift */,
+				FCC46F8922595226008B0248 /* BeaconNavigation.swift */,
+				FCC46F8B225952BA008B0248 /* ArrivalConfirmation.swift */,
+				FCC46F8D2259531F008B0248 /* DirectionsExtension.swift */,
 			);
 			path = "Joe Knows";
 			sourceTree = "<group>";
@@ -312,11 +330,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCC46F8622595135008B0248 /* TransitNearYou.swift in Sources */,
+				FCC46F84225945D1008B0248 /* TypeOfStop.swift in Sources */,
 				FC8CA00F225524C100C5BB97 /* ViewController.swift in Sources */,
 				FCC46F6A22592BF3008B0248 /* MainNavigationPage.swift in Sources */,
+				FCC46F8E2259531F008B0248 /* DirectionsExtension.swift in Sources */,
 				FC8CA03D2255375900C5BB97 /* CurrentLocationViewController.swift in Sources */,
 				FCC46F7D22593AB7008B0248 /* AddStop.swift in Sources */,
+				FCC46F8A22595226008B0248 /* BeaconNavigation.swift in Sources */,
 				FC8CA00D225524C100C5BB97 /* AppDelegate.swift in Sources */,
+				FCC46F8C225952BA008B0248 /* ArrivalConfirmation.swift in Sources */,
+				FCC46F88225951AA008B0248 /* TransitNavigation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

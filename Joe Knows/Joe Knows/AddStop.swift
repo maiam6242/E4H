@@ -23,6 +23,7 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
         performSegue(withIdentifier: "AddStopBack", sender: self)
     }
     
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -93,6 +94,7 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
     }
     
     
+
     /*
     // MARK: - Navigation
 
