@@ -11,35 +11,26 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    /*
-    @IBAction func goToMainPage(sender: Any) {
-            print("click")
-        //self.performSegue(withIdentifier: "LoadingToMain", sender: self)
-    }
- */
-
+    @IBOutlet weak var LoadingToMain: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
         print("view loaded")
-        let locationManager = CLLocationManager()
-        func checkLocationAuthorizationStatus()
+    }
+    
+    @IBAction func LoadingToMain(_ sender: Any) {
+        print("button pressed")
+        performSegue(withIdentifier: "LoadingToMain", sender: self)
+    }
+    let locationManager = CLLocationManager()
+    func checkLocationAuthorizationStatus()
         {
             if CLLocationManager.authorizationStatus() != .authorizedWhenInUse || CLLocationManager.authorizationStatus() != .authorizedAlways {
                 locationManager.requestWhenInUseAuthorization()
             }
         }
     }
-    
-    
-    
-    @IBAction func LoadingToMain(_ sender: Any) {
-        print("button pressed")
-        self.performSegue(withIdentifier: "LoadingToMain", sender: self)
-    }
-    
-}
+
 
 

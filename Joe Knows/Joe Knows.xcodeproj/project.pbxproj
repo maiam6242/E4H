@@ -18,6 +18,9 @@
 		FC8CA03B225535EE00C5BB97 /* olinMap.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8CA03A225535ED00C5BB97 /* olinMap.png */; };
 		FC8CA03D2255375900C5BB97 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */; };
 		FCC46F6822581469008B0248 /* app_icons in Resources */ = {isa = PBXBuildFile; fileRef = FCC46F6722581469008B0248 /* app_icons */; };
+		FCC46F6A22592BF3008B0248 /* MainNavigationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC46F6922592BF3008B0248 /* MainNavigationPage.swift */; };
+		FCC46F7D22593AB7008B0248 /* AddStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC46F7C22593AB7008B0248 /* AddStop.swift */; };
+		FCC46F8222593E58008B0248 /* ic_arrow_back_24px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FCC46F8122593E58008B0248 /* ic_arrow_back_24px@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,9 +56,20 @@
 		FC8CA02C225524C200C5BB97 /* Joe_KnowsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joe_KnowsUITests.swift; sourceTree = "<group>"; };
 		FC8CA02E225524C200C5BB97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC8CA03A225535ED00C5BB97 /* olinMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = olinMap.png; path = Assets.xcassets/olinMap.png; sourceTree = "<group>"; };
-		FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrentLocationViewController.swift; path = "Joe Knows/CurrentLocationViewController.swift"; sourceTree = "<group>"; };
+		FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
 		FCC46F66225805B4008B0248 /* whiteRectangle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = whiteRectangle.jpg; path = "/Users/annietor/Documents/GitHub/E4H/Joe Knows/Joe Knows/whiteRectangle.jpg"; sourceTree = "<absolute>"; };
 		FCC46F6722581469008B0248 /* app_icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = app_icons; path = Assets.xcassets/app_icons; sourceTree = "<group>"; };
+		FCC46F6922592BF3008B0248 /* MainNavigationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationPage.swift; sourceTree = "<group>"; };
+		FCC46F6D22593676008B0248 /* Ellipse 189@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ellipse 189@3x.png"; sourceTree = "<group>"; };
+		FCC46F6E22593678008B0248 /* ic_add_circle_24px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_add_circle_24px@3x.png"; sourceTree = "<group>"; };
+		FCC46F7222593687008B0248 /* ic_directions_run_24px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_directions_run_24px@3x.png"; sourceTree = "<group>"; };
+		FCC46F7322593694008B0248 /* ic_done_24px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_done_24px@3x.png"; sourceTree = "<group>"; };
+		FCC46F762259369E008B0248 /* ic_place_24px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_place_24px@3x.png"; sourceTree = "<group>"; };
+		FCC46F79225936A5008B0248 /* Rectangle 849@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle 849@3x.png"; sourceTree = "<group>"; };
+		FCC46F7B225936A8008B0248 /* Rectangle 852@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle 852@3x.png"; sourceTree = "<group>"; };
+		FCC46F7C22593AB7008B0248 /* AddStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStop.swift; sourceTree = "<group>"; };
+		FCC46F8022593DA1008B0248 /* Ellipse 187@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ellipse 187@3x.png"; sourceTree = "<group>"; };
+		FCC46F8122593E58008B0248 /* ic_arrow_back_24px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_arrow_back_24px@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +109,6 @@
 		FC8CA000225524C100C5BB97 = {
 			isa = PBXGroup;
 			children = (
-				FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */,
 				FC8CA00B225524C100C5BB97 /* Joe Knows */,
 				FC8CA020225524C200C5BB97 /* Joe KnowsTests */,
 				FC8CA02B225524C200C5BB97 /* Joe KnowsUITests */,
@@ -117,15 +130,27 @@
 		FC8CA00B225524C100C5BB97 /* Joe Knows */ = {
 			isa = PBXGroup;
 			children = (
+				FC8CA03C2255375900C5BB97 /* CurrentLocationViewController.swift */,
 				FC8CA00C225524C100C5BB97 /* AppDelegate.swift */,
 				FC8CA00E225524C100C5BB97 /* ViewController.swift */,
 				FC8CA010225524C100C5BB97 /* Main.storyboard */,
+				FCC46F8122593E58008B0248 /* ic_arrow_back_24px@3x.png */,
 				FCC46F6722581469008B0248 /* app_icons */,
+				FCC46F7222593687008B0248 /* ic_directions_run_24px@3x.png */,
+				FCC46F8022593DA1008B0248 /* Ellipse 187@3x.png */,
+				FCC46F762259369E008B0248 /* ic_place_24px@3x.png */,
+				FCC46F79225936A5008B0248 /* Rectangle 849@3x.png */,
+				FCC46F7B225936A8008B0248 /* Rectangle 852@3x.png */,
+				FCC46F7322593694008B0248 /* ic_done_24px@3x.png */,
 				FCC46F66225805B4008B0248 /* whiteRectangle.jpg */,
+				FCC46F6E22593678008B0248 /* ic_add_circle_24px@3x.png */,
+				FCC46F6D22593676008B0248 /* Ellipse 189@3x.png */,
 				FC8CA03A225535ED00C5BB97 /* olinMap.png */,
 				FC8CA013225524C200C5BB97 /* Assets.xcassets */,
 				FC8CA015225524C200C5BB97 /* LaunchScreen.storyboard */,
 				FC8CA018225524C200C5BB97 /* Info.plist */,
+				FCC46F6922592BF3008B0248 /* MainNavigationPage.swift */,
+				FCC46F7C22593AB7008B0248 /* AddStop.swift */,
 			);
 			path = "Joe Knows";
 			sourceTree = "<group>";
@@ -261,6 +286,7 @@
 				FC8CA014225524C200C5BB97 /* Assets.xcassets in Resources */,
 				FCC46F6822581469008B0248 /* app_icons in Resources */,
 				FC8CA03B225535EE00C5BB97 /* olinMap.png in Resources */,
+				FCC46F8222593E58008B0248 /* ic_arrow_back_24px@3x.png in Resources */,
 				FC8CA012225524C100C5BB97 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,7 +313,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC8CA00F225524C100C5BB97 /* ViewController.swift in Sources */,
+				FCC46F6A22592BF3008B0248 /* MainNavigationPage.swift in Sources */,
 				FC8CA03D2255375900C5BB97 /* CurrentLocationViewController.swift in Sources */,
+				FCC46F7D22593AB7008B0248 /* AddStop.swift in Sources */,
 				FC8CA00D225524C100C5BB97 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
