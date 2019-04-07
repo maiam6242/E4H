@@ -11,6 +11,7 @@ import MapKit
 
 class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    @IBOutlet weak var AddAStop: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +22,7 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
     var locationManager : CLLocationManager!
     
     @IBAction func AddAStop(_ sender: Any) {
-        performSegue(withIdentifier: "AddAStop", sender: self)
+       // performSegue(withIdentifier: "AddAStop", sender: self)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

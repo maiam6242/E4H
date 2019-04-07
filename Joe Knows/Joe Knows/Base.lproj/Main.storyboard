@@ -140,6 +140,7 @@
                         <viewLayoutGuide key="safeArea" id="bGg-EP-SSC"/>
                     </view>
                     <connections>
+                        <outlet property="AddAStop" destination="OCD-96-WiG" id="G7L-Qb-6Bd"/>
                         <segue destination="HEq-oV-fqr" kind="showDetail" identifier="AddAStop" id="Fwe-vl-hih"/>
                     </connections>
                 </viewController>
@@ -563,6 +564,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Fwe-vl-hih"/>
-        <segue reference="cwT-EP-8nV"/>
+        <segue reference="Tkw-s8-XfA"/>
     </inferredMetricsTieBreakers>
 </document>
