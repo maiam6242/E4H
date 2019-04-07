@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/annietor/Documents/GitHub/E4H/Joe Knows/Joe Knows/whiteRectangle.jpg">
-   </FileRef>
-   <FileRef
       location = "self:Joe Knows.xcodeproj">
    </FileRef>
 </Workspace>

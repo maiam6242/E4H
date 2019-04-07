@@ -1,14 +1,14 @@
 //
-//  TransitNearYou.swift
+//  AddStopNew.swift
 //  Joe Knows
 //
-//  Created by Annie Tor on 4/6/19.
+//  Created by Annie Tor on 4/7/19.
 //  Copyright © 2019 Annie Tor. All rights reserved.
 //
 
 import UIKit
 
-class TransitNearYou: UIViewController {
+class AddStopNew: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,10 +16,16 @@ class TransitNearYou: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func BackToMainNav(_ sender: Any) {
-        performSegue(withIdentifier: "BackToMainNav", sender: self)
+    @IBAction func AddStopNewBack(_ sender: Any) {
+        performSegue(withIdentifier: "AddStopNo", sender: self)
     }
     
+    @IBAction func AddStopNewNo(_ sender: Any) {
+        performSegue(withIdentifier: "AddStopNo", sender: self)
+    }
+    @IBAction func AddStopNewYes(_ sender: Any) {
+        performSegue(withIdentifier: "YesAddStop", sender: self)
+    }
     /*
     // MARK: - Navigation
 
