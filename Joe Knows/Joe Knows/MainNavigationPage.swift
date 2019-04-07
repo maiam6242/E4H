@@ -17,12 +17,23 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func AddAStop(_ sender: Any) {
+        print("hello")
+        performSegue(withIdentifier: "AddStop", sender: self)
+    }
+    
+    @IBAction func Navigate(_ sender: Any) {
+        performSegue(withIdentifier: "Navigate", sender: self)
+    }
+    
+    @IBAction func NextPage(_ sender: Any) {
+        performSegue(withIdentifier: "Test", sender: self)
+    }
+    
     @IBOutlet var mapView: MKMapView!
     var locationManager : CLLocationManager!
     
-    @IBAction func AddAStop(_ sender: Any) {
-        performSegue(withIdentifier: "AddAStop", sender: self)
-    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -108,3 +119,4 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
     */
 
 }
+
