@@ -252,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="djk-us-kxE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1665" y="-564"/>
+            <point key="canvasLocation" x="1421" y="-681"/>
         </scene>
         <!--Type Of Stop-->
         <scene sceneID="zo2-ng-vLM">
@@ -455,7 +455,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="TransitDirections:" destination="MoA-gP-I0c" eventType="touchUpInside" id="xld-TT-ir2"/>
+                                    <action selector="TransitDirections:" destination="MoA-gP-I0c" eventType="touchUpInside" id="cq2-NX-sgT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quA-m5-HKX">
@@ -527,7 +527,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 OLIN WAY, NEEDHAM MA 02492" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmT-Yw-ExU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmT-Yw-ExU">
                                 <rect key="frame" x="27" y="353" width="267" height="88"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="26"/>
@@ -585,6 +585,7 @@
                         <viewLayoutGuide key="safeArea" id="fkx-LJ-Df7"/>
                     </view>
                     <connections>
+                        <outlet property="currentLocationLabel" destination="qmT-Yw-ExU" id="B1N-j4-Kaa"/>
                         <segue destination="fxy-Xt-YWi" kind="showDetail" identifier="AddStopNo" id="kaM-T2-AtY"/>
                         <segue destination="P9D-hp-Icg" kind="showDetail" identifier="YesAddStop" id="rf5-Y5-tsJ"/>
                     </connections>
@@ -924,11 +925,9 @@
         <image name="ic_place_24px.png" width="46.333332061767578" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fwz-fe-B46"/>
-        <segue reference="rf5-Y5-tsJ"/>
-        <segue reference="LGc-hK-92f"/>
+        <segue reference="2Ty-KO-cme"/>
         <segue reference="dLq-b8-5eT"/>
         <segue reference="xPS-4D-yPf"/>
-        <segue reference="kaM-T2-AtY"/>
+        <segue reference="yZN-Qw-P74"/>
     </inferredMetricsTieBreakers>
 </document>

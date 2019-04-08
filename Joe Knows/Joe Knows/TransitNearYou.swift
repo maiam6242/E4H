@@ -21,6 +21,10 @@ class TransitNearYou: UIViewController {
     @IBAction func BackToMainNav(_ sender: Any) {
         performSegue(withIdentifier: "BackToMainNav", sender: self)
     }
+    
+    @IBAction func TransitDirections(_ sender: Any) {
+        performSegue(withIdentifier: "TransitDirections", sender: self)
+    }
     @IBOutlet var mapView: MKMapView!
     var locationManager : CLLocationManager!
     
@@ -60,11 +64,7 @@ class TransitNearYou: UIViewController {
     
     func determineCurrentLocation(){
         locationManager = CLLocationManager()
-<<<<<<< HEAD
 //        locationManager.delegate = self as! CLLocationManagerDelegate 
-=======
-        locationManager.delegate = self
->>>>>>> parent of ba27789... 20 HOT secs
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         

@@ -11,6 +11,7 @@ import MapKit
 
 class AddStopNew: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+ 
     @IBOutlet weak var currentLocationLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
