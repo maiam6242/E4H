@@ -14,15 +14,16 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     @IBOutlet weak var mapView: MKMapView!
     var locationManager : CLLocationManager!
-    var userLocation: CLLocation
+    //var userLocation: CLLocation
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         let request = MKDirections.Request()
-        let uL = MainNavigationPage.init()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate:uL?.coordinate ?? nil))
+        let uL = MKUserLocation.init()
+        print(uL)
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate:uL.coordinate))
         if request.source == nil
         {
             

@@ -61,6 +61,15 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
         mapView.mapType = MKMapType.standard
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
+        mapView.showsCompass = false
+        //creating and placing a compass
+        let compassButton = MKCompassButton(mapView: mapView)
+        compassButton.compassVisibility = .visible
+        mapView.addSubview(compassButton)
+        view.bringSubviewToFront(compassButton)
+        compassButton.translatesAutoresizingMaskIntoConstraints = false
+        compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
+        compassButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 12).isActive = true
         
         mapView.center = view.center
         
