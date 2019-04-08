@@ -9,14 +9,15 @@
 import UIKit
 import MapKit
 
+
 class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
 
     @IBOutlet weak var AddStopYes: UIButton!
     
-    
+   // var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        locationTuples = [(sourceField, nil), (destinationField1, nil), (destinationField2, nil)]
         // Do any additional setup after loading the view.
     }
     var mapView: MKMapView!
@@ -96,6 +97,12 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+        CLGeocoder().reverseGeocodeLocation(userLocation,
+                                            completionHandler: {(placemarks:[CLPlacemark]?, error:NSError?) -> Void in
+                                                if let placemarks = placemarks {
+                                                    let placemark = placemarks[0]
+                                                }
+                                                } as! CLGeocodeCompletionHandler)
         
         
         myAnnotation.title = "Current location"
