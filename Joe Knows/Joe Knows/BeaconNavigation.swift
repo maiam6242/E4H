@@ -16,7 +16,10 @@ class BeaconNavigation: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func BeaconNavBack(_ sender: Any) {
+        performSegue(withIdentifier: "BeaconNavBack", sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 

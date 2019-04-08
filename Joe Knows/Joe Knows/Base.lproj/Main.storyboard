@@ -634,6 +634,10 @@
                                 <state key="normal" title="BACK">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="DirectionsExtBack:" destination="CFw-qP-441" eventType="touchUpInside" id="myZ-nM-jvt"/>
+                                    <action selector="DirectionsExtBackBack:" destination="CFw-qP-441" eventType="touchUpInside" id="vkY-Pc-Odk"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ELIOT MBTA GREEN LINE STOP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Z7-J0-R8K">
                                 <rect key="frame" x="48" y="357" width="224" height="20"/>
@@ -680,12 +684,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHM-Bo-YGC">
+                                <rect key="frame" x="222" y="498" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="SECRET">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="SecretButton:" destination="CFw-qP-441" eventType="touchUpInside" id="XjY-Cv-be3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="A8D-E2-Bu9"/>
                     </view>
                     <connections>
-                        <segue destination="h0n-FN-BTh" kind="showDetail" identifier="DirectionsExtBack" id="LGc-hK-92f"/>
+                        <segue destination="h0n-FN-BTh" kind="showDetail" identifier="DirectionsExtPrevious" id="LGc-hK-92f"/>
+                        <segue destination="MoA-gP-I0c" kind="showDetail" identifier="DirectionsExtBack" id="7bC-hH-r0b"/>
+                        <segue destination="uts-Vz-lVT" kind="showDetail" identifier="SecretLinkToBeacon" id="yAM-yi-5eq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p7u-tX-SHo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -734,7 +750,7 @@
                                 </state>
                                 <connections>
                                     <action selector="TransitDirectionsBack:" destination="h0n-FN-BTh" eventType="touchUpInside" id="ZV1-4o-s3k"/>
-                                    <segue destination="CFw-qP-441" kind="showDetail" identifier="DirectionsExt" id="fwz-fe-B46"/>
+                                    <segue destination="CFw-qP-441" kind="showDetail" identifier="DirectionsExtNext" id="fwz-fe-B46"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAVIGATING TO:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYK-DA-gBl">
@@ -795,7 +811,6 @@
                     </view>
                     <connections>
                         <segue destination="MoA-gP-I0c" kind="showDetail" identifier="DirectionsToNav" id="xPS-4D-yPf"/>
-                        <segue destination="uts-Vz-lVT" kind="showDetail" identifier="DirectionsToBeacon" animates="NO" id="M7a-SE-ofl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Arn-2X-rIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -818,22 +833,56 @@
                                 <rect key="frame" x="18" y="290" width="283" height="253"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZsO-gJ-vTl">
-                                <rect key="frame" x="80" y="309" width="240" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ellipse 189.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZsO-gJ-vTl">
+                                <rect key="frame" x="127" y="237" width="67" height="89"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ellipse 189.png" translatesAutoresizingMaskIntoConstraints="NO" id="PDA-vI-wD0">
-                                <rect key="frame" x="64" y="273" width="240" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_directions_run_24px.png" translatesAutoresizingMaskIntoConstraints="NO" id="PDA-vI-wD0">
+                                <rect key="frame" x="134" y="256" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LKC-Vo-5ow">
-                                <rect key="frame" x="16" y="35" width="240" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Rectangle 852.png" translatesAutoresizingMaskIntoConstraints="NO" id="LKC-Vo-5ow">
+                                <rect key="frame" x="25" y="30" width="120" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xti-yB-eSf">
-                                <rect key="frame" x="40" y="20" width="240" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_arrow_back_24px.png" translatesAutoresizingMaskIntoConstraints="NO" id="xti-yB-eSf">
+                                <rect key="frame" x="35" y="46" width="33" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEN-D4-HZl">
+                                <rect key="frame" x="25" y="35" width="120" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="26"/>
+                                <inset key="titleEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="BACK">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="BeaconNavBack:" destination="uts-Vz-lVT" eventType="touchUpInside" id="Xme-Ql-WTW"/>
+                                    <segue destination="MoA-gP-I0c" kind="showDetail" identifier="BeaconNavBack" id="5gA-hz-odJ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAVIGATING TO:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOQ-rI-ufo">
+                                <rect key="frame" x="53" y="323" width="212" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ELIOT MBTA GREEN LINE STOP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lk-n3-Jja">
+                                <rect key="frame" x="48" y="357" width="224" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOU'RE ALMOST THERE! FOLLOW THE VIBRATIONS TO GET TO THE FINAL DESTINATION." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXk-46-2pY">
+                                <rect key="frame" x="47" y="385" width="225" height="127"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="rEO-bC-8Xm"/>
@@ -851,13 +900,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="you've arrived! wow!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yes-Jf-VhF">
-                                <rect key="frame" x="175" y="274" width="156" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RAi-gB-f89">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -925,9 +967,10 @@
         <image name="ic_place_24px.png" width="46.333332061767578" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2Ty-KO-cme"/>
+        <segue reference="rf5-Y5-tsJ"/>
+        <segue reference="LGc-hK-92f"/>
         <segue reference="dLq-b8-5eT"/>
-        <segue reference="xPS-4D-yPf"/>
-        <segue reference="yZN-Qw-P74"/>
+        <segue reference="7bC-hH-r0b"/>
+        <segue reference="kaM-T2-AtY"/>
     </inferredMetricsTieBreakers>
 </document>
