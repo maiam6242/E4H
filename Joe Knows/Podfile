@@ -8,15 +8,17 @@ target 'Joe Knows' do
   # Pods for Joe Knows
 
 	source 'https://github.com/CocoaPods/Specs.git'
-	target 'Joe KnowsFrameworks' do
+	
 	  pod 'GoogleMaps'
 	  pod 'GooglePlaces'
-	end
+end
 
-
+source 'https://github.com/CocoaPods/Specs.git'
   target 'Joe KnowsTests' do
     inherit! :search_paths
     # Pods for testing
+
+
   end
 
   target 'Joe KnowsUITests' do

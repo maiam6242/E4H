@@ -1019,9 +1019,11 @@
         <image name="ic_place_24px.png" width="46.333332061767578" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LGc-hK-92f"/>
-        <segue reference="dLq-b8-5eT"/>
-        <segue reference="7bC-hH-r0b"/>
-        <segue reference="cwT-EP-8nV"/>
+
+        <segue reference="2Ty-KO-cme"/>
+        <segue reference="7UG-yU-hMj"/>
+        <segue reference="SSS-9m-KWq"/>
+        <segue reference="yZN-Qw-P74"/>
+
     </inferredMetricsTieBreakers>
 </document>

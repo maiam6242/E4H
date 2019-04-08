@@ -11,14 +11,16 @@ import MapKit
 
 
 class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-
+    var mapView: MKMapView!
+    var locationManager : CLLocationManager!
+    var annotations = [MKPointAnnotation]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
     }
-    var mapView: MKMapView!
-    var locationManager : CLLocationManager!
+    
     
     @IBAction func BackToMainNav(_ sender: Any) {
         performSegue(withIdentifier: "BackToMainNav", sender: self)
@@ -37,9 +39,42 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(!animated)
         determineCurrentLocation()
+        showTransit()
         
     }
     
+    func showTransit(){
+        let request2 = MKLocalSearch.Request()
+        
+        request2.naturalLanguageQuery = "Metro West Transit Authority"
+        request2.region = mapView.region
+        
+        
+        let search = MKLocalSearch(request: request2)
+        search.start{(response, error) in guard let response = response else{
+            print("Search error: \(error)")
+            return
+            }
+            for item in response.mapItems{
+                print(item)
+                let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+                myAnnotation.coordinate = self.getCoordinate(item: item)
+                myAnnotation.title = item.name
+                self.mapView.addAnnotation(myAnnotation)
+                self.annotations.append(myAnnotation)
+            }
+            
+            self.mapView.showAnnotations(self.annotations, animated: false)
+        }
+        
+    }
+    
+    func getCoordinate(item: MKMapItem) -> CLLocationCoordinate2D{
+        let lat = item.placemark.coordinate.latitude
+        let lon = item.placemark.coordinate.longitude
+        
+        return CLLocationCoordinate2D(latitude: lat, longitude: lon)
+    }
     
     func createMapView(){
         mapView = MKMapView()
@@ -54,6 +89,16 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.mapType = MKMapType.standard
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
+        mapView.showsCompass = false
+        
+        //creating and placing a compass
+        let compassButton = MKCompassButton(mapView: mapView)
+        compassButton.compassVisibility = .visible
+        mapView.addSubview(compassButton)
+        view.bringSubviewToFront(compassButton)
+        compassButton.translatesAutoresizingMaskIntoConstraints = false
+        compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
+        compassButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 12).isActive = true
         
         mapView.center = view.center
         
@@ -62,6 +107,9 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         view.addSubview(mapView)
         view.sendSubviewToBack(mapView)
     }
+    
+    
+    
     
     func determineCurrentLocation(){
         locationManager = CLLocationManager()
@@ -90,12 +138,16 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.setRegion(region, animated: false)
         
         // Drop a pin at user's Current Location
-        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
-        myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+        let myAnnotation2: MKPointAnnotation = MKPointAnnotation()
+        myAnnotation2.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
         
-        
-        myAnnotation.title = "Current location"
-        mapView.addAnnotation(myAnnotation)
+        myAnnotation2.title = "Current location"
+//        let pin = MKPinAnnotationView(annotation: myAnnotation2, reuseIdentifier: myAnnotation2.title)
+        print(myAnnotation2)
+//        pin.pinTintColor = UIColor.blue
+        mapView.addAnnotation(myAnnotation2)
+        annotations.append(myAnnotation2)
+        self.mapView.showsTraffic = true
         
     }
 
