@@ -60,7 +60,11 @@ class TransitNearYou: UIViewController {
     
     func determineCurrentLocation(){
         locationManager = CLLocationManager()
+<<<<<<< HEAD
 //        locationManager.delegate = self as! CLLocationManagerDelegate 
+=======
+        locationManager.delegate = self
+>>>>>>> parent of ba27789... 20 HOT secs
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         
