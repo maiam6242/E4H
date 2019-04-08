@@ -16,7 +16,15 @@ class DirectionsExtension: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
     @IBAction func DirectionsExtBack(_ sender: Any) {
+        performSegue(withIdentifier: "DirectionsExtPrevious", sender: self)
+    }
+    
+    @IBAction func SecretButton(_ sender: Any) {
+        performSegue(withIdentifier: "SecretLinkToBeacon", sender: self)
+    }
+    @IBAction func DirectionsExtBackBack(_ sender: Any) {
         performSegue(withIdentifier: "DirectionsExtBack", sender: self)
     }
     

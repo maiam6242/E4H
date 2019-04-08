@@ -21,7 +21,7 @@ class TransitNavigation: UIViewController {
     }
     
     @IBAction func DirectionsExt(_ sender: Any) {
-        performSegue(withIdentifier: "DirectionsExt", sender: self)
+        performSegue(withIdentifier: "DirectionsExtNext", sender: self)
         
     }
     /*
