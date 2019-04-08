@@ -16,7 +16,14 @@ class TransitNavigation: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func TransitDirectionsBack(_ sender: Any) {
+        performSegue(withIdentifier: "DirectionsToNav", sender: self)
+    }
+    
+    @IBAction func DirectionsExt(_ sender: Any) {
+        performSegue(withIdentifier: "DirectionsExt", sender: self)
+        
+    }
     /*
     // MARK: - Navigation
 
