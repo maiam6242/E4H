@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MapKit
 
-class TransitNavigation: UIViewController {
+
+class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
