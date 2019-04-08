@@ -11,6 +11,7 @@ import MapKit
 
 class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    @IBOutlet weak var currentLocationLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -95,7 +96,7 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-        
+        currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
         
         myAnnotation.title = "Current location"
         mapView.addAnnotation(myAnnotation)
