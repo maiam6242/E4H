@@ -38,6 +38,8 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     }
     @IBAction func SecretArrival(_ sender: Any) {
         performSegue(withIdentifier: "SecretArrival", sender: self)
+        
+    }
 
     func createMapView(){
         mapView = MKMapView()
@@ -66,7 +68,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled(){
-            locationManager.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
         }
     }
     
@@ -104,5 +106,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         // Pass the selected object to the new view controller.
     }
     */
+
+
 
 }

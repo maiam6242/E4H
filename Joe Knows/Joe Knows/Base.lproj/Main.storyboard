@@ -29,18 +29,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1J-Es-R8W">
-                                <rect key="frame" x="230" y="335" width="74" height="59"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="50"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="y6e-Gt-7P9">
-                                <rect key="frame" x="189" y="347" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G24-z7-X5S">
                                 <rect key="frame" x="46" y="424" width="228" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -900,7 +888,6 @@
                     <view key="view" contentMode="scaleToFill" id="iq8-LJ-Ju0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Rectangle 849.png" translatesAutoresizingMaskIntoConstraints="NO" id="qIg-bq-a0C">
                                 <rect key="frame" x="16" y="290" width="283" height="253"/>
@@ -966,7 +953,6 @@
                                 </connections>
                             </button>
                         </subviews>
-
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="yge-a8-gvC"/>
                     </view>
@@ -1035,7 +1021,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="LGc-hK-92f"/>
         <segue reference="dLq-b8-5eT"/>
-        <segue reference="1yf-bV-jQR"/>
-        <segue reference="a8S-HG-I11"/>
+        <segue reference="5gA-hz-odJ"/>
+        <segue reference="cwT-EP-8nV"/>
     </inferredMetricsTieBreakers>
 </document>
