@@ -20,6 +20,9 @@ class BeaconNavigation: UIViewController {
         performSegue(withIdentifier: "BeaconNavBack", sender: self)
     }
     
+    @IBAction func SecretArrival(_ sender: Any) {
+        performSegue(withIdentifier: "SecretArrival", sender: self)
+    }
     /*
     // MARK: - Navigation
 

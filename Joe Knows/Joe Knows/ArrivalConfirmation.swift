@@ -16,7 +16,13 @@ class ArrivalConfirmation: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func ArrivalDone(_ sender: Any) {
+        performSegue(withIdentifier: "ArrivalBack", sender: self)
+    }
+    
+    @IBAction func ArrivalBack(_ sender: Any) {
+        performSegue(withIdentifier: "ArrivalBack", sender: self)
+    }
     /*
     // MARK: - Navigation
 
