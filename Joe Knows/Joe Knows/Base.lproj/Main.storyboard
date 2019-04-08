@@ -97,7 +97,7 @@
                                 <rect key="frame" x="75" y="247" width="170" height="67"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 OLIN WAY NEEDHAM, MA 02492" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtW-KY-g4r">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtW-KY-g4r">
                                 <rect key="frame" x="27" y="353" width="267" height="88"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="26"/>
@@ -143,6 +143,7 @@
                         <viewLayoutGuide key="safeArea" id="bGg-EP-SSC"/>
                     </view>
                     <connections>
+                        <outlet property="currentLocationLabel" destination="TtW-KY-g4r" id="btv-Fj-zeO"/>
                         <segue destination="MoA-gP-I0c" kind="showDetail" identifier="Navigate" id="SSS-9m-KWq"/>
                         <segue destination="Prf-sb-JiE" kind="showDetail" identifier="AddStop" id="7UG-yU-hMj"/>
                     </connections>
@@ -838,9 +839,8 @@
         <image name="ic_place_24px.png" width="46.333332061767578" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2Ty-KO-cme"/>
-        <segue reference="dLq-b8-5eT"/>
-        <segue reference="xPS-4D-yPf"/>
-        <segue reference="a8S-HG-I11"/>
+        <segue reference="7UG-yU-hMj"/>
+        <segue reference="SSS-9m-KWq"/>
+        <segue reference="kaM-T2-AtY"/>
     </inferredMetricsTieBreakers>
 </document>
