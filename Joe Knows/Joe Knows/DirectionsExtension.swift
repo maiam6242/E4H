@@ -16,7 +16,10 @@ class DirectionsExtension: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func DirectionsExtBack(_ sender: Any) {
+        performSegue(withIdentifier: "DirectionsExtBack", sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 
