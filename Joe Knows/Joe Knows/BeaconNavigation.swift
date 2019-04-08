@@ -36,7 +36,9 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         determineCurrentLocation()
         
     }
-    
+    @IBAction func SecretArrival(_ sender: Any) {
+        performSegue(withIdentifier: "SecretArrival", sender: self)
+
     func createMapView(){
         mapView = MKMapView()
         
@@ -91,6 +93,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         myAnnotation.title = "Current location"
         mapView.addAnnotation(myAnnotation)
         
+
     }
     /*
     // MARK: - Navigation

@@ -15,6 +15,13 @@ class ArrivalConfirmation: UIViewController, MKMapViewDelegate, CLLocationManage
 
         // Do any additional setup after loading the view.
     }
+    @IBAction func ArrivalDone(_ sender: Any) {
+        performSegue(withIdentifier: "ArrivalBack", sender: self)
+    }
+    
+    @IBAction func ArrivalBack(_ sender: Any) {
+        performSegue(withIdentifier: "ArrivalBack", sender: self)
+    }
     var mapView: MKMapView!
     var locationManager : CLLocationManager!
     
@@ -31,6 +38,7 @@ class ArrivalConfirmation: UIViewController, MKMapViewDelegate, CLLocationManage
         
     }
     
+
     func createMapView(){
         mapView = MKMapView()
         
