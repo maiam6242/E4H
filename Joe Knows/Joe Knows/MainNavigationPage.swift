@@ -132,13 +132,13 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
     }
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?, userLocation:CLLocation){
-        if let error = error {
-            //print("Unable to reverse geocode")
-            print(error)
-        
-                currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
-        }
-        else{
+//        if let error = error {
+//            //print("Unable to reverse geocode")
+//            print(error)
+//
+//                currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
+//        }
+//        else{
             if let placemarks = placemarks, let placemark = placemarks.first {
                 currentLocationLabel.text = placemark.compactAddress
             }
@@ -146,7 +146,7 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
                 currentLocationLabel.text = "No matching Addresses Found"
             }
         }
-    }
+    //}
     
     
     private func locationManager(manager: CLLocationManager, didFailWithError error: NSError)

@@ -80,7 +80,7 @@ class AddStopNew: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        var userLocation:CLLocation = locations[0] as CLLocation
+        let userLocation:CLLocation = locations[0] as CLLocation
         //
         //       let currentLocationLabel: UILabel!
         //        currentLocationLabel.text = "coordinates: and \(userLocation.coordinate.latitude)"
