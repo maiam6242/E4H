@@ -134,7 +134,9 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?, userLocation:CLLocation){
         if let error = error {
             //print("Unable to reverse geocode")
-            currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
+            print(error)
+        
+                currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
         }
         else{
             if let placemarks = placemarks, let placemark = placemarks.first {
