@@ -97,18 +97,34 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-        CLGeocoder().reverseGeocodeLocation(userLocation,
-                                            completionHandler: {(placemarks:[CLPlacemark]?, error:NSError?) -> Void in
-                                                if let placemarks = placemarks {
-                                                    let placemark = placemarks[0]
-                                                }
-                                                } as! CLGeocodeCompletionHandler)
-        
         
         myAnnotation.title = "Current location"
         mapView.addAnnotation(myAnnotation)
         
     }
+    
+    func getAddress(userLocation:CLLocation){
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(userLocation) {(placemarks, error) in
+            self.processResponse(withPlacemarks: placemarks, error: error, userLocation: userLocation)
+        }
+    }
+    
+    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?, userLocation:CLLocation){
+        if let error = error {
+            print("Unable to reverse geocode")
+            currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
+        }
+        else{
+            if let placemarks = placemarks, let placemark = placemarks.first {
+                currentLocationLabel.text = placemark.compactAddress
+            }
+            else{
+                currentLocationLabel.text = "No matching Addresses Found"
+            }
+        }
+    }
+    
     
     
 

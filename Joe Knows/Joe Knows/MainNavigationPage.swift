@@ -62,6 +62,7 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
         mapView.showsCompass = false
+        
         //creating and placing a compass
         let compassButton = MKCompassButton(mapView: mapView)
         compassButton.compassVisibility = .visible
@@ -105,10 +106,35 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-        currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
+        
+        //currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
+        getAddress(userLocation: userLocation)
+        
         
         myAnnotation.title = "Current location"
         mapView.addAnnotation(myAnnotation)
+    }
+    
+    func getAddress(userLocation:CLLocation){
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(userLocation) {(placemarks, error) in
+            self.processResponse(withPlacemarks: placemarks, error: error, userLocation: userLocation)
+        }
+    }
+    
+    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?, userLocation:CLLocation){
+        if let error = error {
+            //print("Unable to reverse geocode")
+            currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
+        }
+        else{
+            if let placemarks = placemarks, let placemark = placemarks.first {
+                currentLocationLabel.text = placemark.compactAddress
+            }
+            else{
+                currentLocationLabel.text = "No matching Addresses Found"
+            }
+        }
     }
     
     
@@ -128,5 +154,26 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
     }
     */
 
+}
+
+extension CLPlacemark{
+    var compactAddress: String?{
+        if let name = name{
+            var result = name
+            
+            if let street = thoroughfare{
+                result += ", \(street)"
+            }
+            if let city = locality{
+                result += ", \(city)"
+            }
+            if let country = country{
+                result += ", \(country)"
+            }
+            return result
+        }
+        return nil
+    }
+    
 }
 
