@@ -11,8 +11,9 @@ import MapKit
 
 class AddStopNew: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
- 
+    
     @IBOutlet weak var currentLocationLabel: UILabel!
+        var userLocationOld:CLLocation? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -131,14 +132,43 @@ class AddStopNew: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
         
         
-        currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
-        
+//        currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
+        getAddress(userLocation: userLocation)
         myAnnotation.title = "Current location"
         mapView.addAnnotation(myAnnotation)
             
       
         //return p
     
+    }
+    func getAddress(userLocation:CLLocation){
+        let geocoder = CLGeocoder()
+        
+        if(userLocation == userLocationOld){
+            return
+        }
+        else{
+            userLocationOld = userLocation
+            geocoder.reverseGeocodeLocation(userLocation) {(placemarks, error) in
+                self.processResponse(withPlacemarks: placemarks, error: error, userLocation: userLocation)
+                
+            }
+        }
+    }
+    
+    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?, userLocation:CLLocation){
+        if let error = error {
+            //print("Unable to reverse geocode")
+            currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
+        }
+        else{
+            if let placemarks = placemarks, let placemark = placemarks.first {
+                currentLocationLabel.text = placemark.compactAddress
+            }
+            else{
+                currentLocationLabel.text = "No matching Addresses Found"
+            }
+        }
     }
     /*
     // MARK: - Navigation

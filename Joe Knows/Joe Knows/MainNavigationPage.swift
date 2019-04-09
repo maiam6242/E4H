@@ -12,6 +12,7 @@ import MapKit
 class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var currentLocationLabel: UILabel!
+    var userLocationOld:CLLocation? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -117,8 +118,16 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func getAddress(userLocation:CLLocation){
         let geocoder = CLGeocoder()
+        
+        if(userLocation == userLocationOld){
+            return
+        }
+        else{
+            userLocationOld = userLocation
         geocoder.reverseGeocodeLocation(userLocation) {(placemarks, error) in
             self.processResponse(withPlacemarks: placemarks, error: error, userLocation: userLocation)
+            
+            }
         }
     }
     
@@ -157,7 +166,7 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
 }
 
 extension CLPlacemark{
-    var compactAddress: String?{
+   var compactAddress: String?{
         if let name = name{
             var result = name
             

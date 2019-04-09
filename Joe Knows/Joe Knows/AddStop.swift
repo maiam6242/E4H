@@ -13,6 +13,8 @@ import MapKit
 class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
 
     @IBOutlet weak var AddStopYes: UIButton!
+    @IBOutlet weak var currentLocationLabel: UILabel!
+    var userLocationOld:CLLocation? = nil
     
    // var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
     override func viewDidLoad() {
@@ -98,6 +100,8 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
         
+        getAddress(userLocation: userLocation)
+        
         myAnnotation.title = "Current location"
         mapView.addAnnotation(myAnnotation)
         
@@ -105,14 +109,22 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
     
     func getAddress(userLocation:CLLocation){
         let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(userLocation) {(placemarks, error) in
-            self.processResponse(withPlacemarks: placemarks, error: error, userLocation: userLocation)
+        
+        if(userLocation == userLocationOld){
+            return
+        }
+        else{
+            userLocationOld = userLocation
+            geocoder.reverseGeocodeLocation(userLocation) {(placemarks, error) in
+                self.processResponse(withPlacemarks: placemarks, error: error, userLocation: userLocation)
+                
+            }
         }
     }
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?, userLocation:CLLocation){
         if let error = error {
-            print("Unable to reverse geocode")
+            //print("Unable to reverse geocode")
             currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
         }
         else{
@@ -124,7 +136,6 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
             }
         }
     }
-    
     
     
 
@@ -139,3 +150,25 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
     */
 
 }
+
+//extension CLPlacemark{
+//    var compactAddress: String?{
+//        if let name = name{
+//            var result = name
+//
+//            if let street = thoroughfare{
+//                result += ", \(street)"
+//            }
+//            if let city = locality{
+//                result += ", \(city)"
+//            }
+//            if let country = country{
+//                result += ", \(country)"
+//            }
+//            return result
+//        }
+//        return nil
+//    }
+//
+//}
+//
