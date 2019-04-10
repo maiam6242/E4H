@@ -13,6 +13,7 @@ class AddStopNew: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
 
     
     @IBOutlet weak var currentLocationLabel: UILabel!
+    
         var userLocationOld:CLLocation? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ class AddStopNew: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(!animated)
+        
         createMapView()
     }
     override func viewDidAppear(_ animated: Bool) {

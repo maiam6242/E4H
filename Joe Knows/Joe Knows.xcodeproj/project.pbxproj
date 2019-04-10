@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1E23CB6822552977006203E7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E23CB6722552977006203E7 /* MapKit.framework */; };
+		1E451837225E67E0005E1A77 /* Beacon Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E451836225E67E0005E1A77 /* Beacon Set.swift */; };
+		1E451839225E695A005E1A77 /* BeaconData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E451838225E695A005E1A77 /* BeaconData.swift */; };
 		FC0EEABF225A7F0E009D8562 /* AddStopNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0EEABE225A7F0E009D8562 /* AddStopNew.swift */; };
 		FC8CA00D225524C100C5BB97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA00C225524C100C5BB97 /* AppDelegate.swift */; };
 		FC8CA00F225524C100C5BB97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA00E225524C100C5BB97 /* ViewController.swift */; };
@@ -48,6 +50,8 @@
 
 /* Begin PBXFileReference section */
 		1E23CB6722552977006203E7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1E451836225E67E0005E1A77 /* Beacon Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Beacon Set.swift"; sourceTree = "<group>"; };
+		1E451838225E695A005E1A77 /* BeaconData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconData.swift; sourceTree = "<group>"; };
 		1E6CB82922595BCD00356D7F /* whiteRectangle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = whiteRectangle.jpg; path = "../../../../../../../annietor/Documents/GitHub/E4H/Joe Knows/Joe Knows/whiteRectangle.jpg"; sourceTree = "<group>"; };
 		FC0EEABE225A7F0E009D8562 /* AddStopNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStopNew.swift; sourceTree = "<group>"; };
 		FC8CA009225524C100C5BB97 /* Joe Knows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Joe Knows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +181,8 @@
 				FCC46F8B225952BA008B0248 /* ArrivalConfirmation.swift */,
 				FCC46F8D2259531F008B0248 /* DirectionsExtension.swift */,
 				FC0EEABE225A7F0E009D8562 /* AddStopNew.swift */,
+				1E451836225E67E0005E1A77 /* Beacon Set.swift */,
+				1E451838225E695A005E1A77 /* BeaconData.swift */,
 			);
 			path = "Joe Knows";
 			sourceTree = "<group>";
@@ -341,6 +347,8 @@
 				FCC46F84225945D1008B0248 /* TypeOfStop.swift in Sources */,
 				FC8CA00F225524C100C5BB97 /* ViewController.swift in Sources */,
 				FCC46F6A22592BF3008B0248 /* MainNavigationPage.swift in Sources */,
+				1E451837225E67E0005E1A77 /* Beacon Set.swift in Sources */,
+				1E451839225E695A005E1A77 /* BeaconData.swift in Sources */,
 				FC0EEABF225A7F0E009D8562 /* AddStopNew.swift in Sources */,
 				FCC46F8E2259531F008B0248 /* DirectionsExtension.swift in Sources */,
 				FC8CA03D2255375900C5BB97 /* CurrentLocationViewController.swift in Sources */,
