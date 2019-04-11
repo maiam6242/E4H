@@ -9,9 +9,11 @@
 import Foundation
 
 class BeaconSet: beaconData{
-    var beacon:NSHashTable<beaconData>
-    override init(){
-        beaconData.setLocation()
+    func beaconSet(name : String){
+        
+    var beacon:Dictionary<String,beaconData>
+
+    
     }
     
 }

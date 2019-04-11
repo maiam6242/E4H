@@ -9,10 +9,13 @@
 import Foundation
 
 class beaconData {
-    
+    var location:String?
+    var number:Double?
+    var coordLat:Double?
+    var coordLon:Double?
     
     func setLocation(){
-        
+
     }
     func getLocation(){
         
@@ -23,4 +26,17 @@ class beaconData {
     func getNumber(){
         
     }
+    func setCoordLat(){
+        
+    }
+    func getCoordLat(){
+        
+    }
+    func setCoordLon(){
+        
+    }
+    func getCoordLon(){
+        
+    }
+    
 }
