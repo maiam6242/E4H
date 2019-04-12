@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
+class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate{
 
     @IBOutlet weak var AddStopYes: UIButton!
     @IBOutlet weak var currentLocationLabel: UILabel!
@@ -22,6 +22,12 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
 //        locationTuples = [(sourceField, nil), (destinationField1, nil), (destinationField2, nil)]
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func firstDestinationButton(_ sender: Any) {
+        // calc the distances between the current location and any locations in the list
+        
+    }
+    
     var mapView: MKMapView!
     var locationManager : CLLocationManager!
     

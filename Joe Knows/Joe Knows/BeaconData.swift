@@ -9,32 +9,26 @@
 import Foundation
 
 class beaconData {
-    var location:String?
-    var number:Double?
+    
+    var name:String?
     var coordLat:Double?
     var coordLon:Double?
     
-    func setLocation(){
+    
+init(n:String,c:Double,f:Double){
+        self.name = n
+        self.coordLon = c
+        self.coordLat = f
+        }
 
-    }
-    func getLocation(){
+    func getName(){
         
     }
-    func setNumber(){
-        
-    }
-    func getNumber(){
-        
-    }
-    func setCoordLat(){
-        
-    }
+    
     func getCoordLat(){
         
     }
-    func setCoordLon(){
-        
-    }
+    
     func getCoordLon(){
         
     }
