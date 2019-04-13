@@ -9,11 +9,16 @@
 import Foundation
 import CoreLocation
 
-class BeaconSet: beaconData{
-    func beaconSet(name : String){
+struct BeaconSet{
+    var ID:String = ""
+    var uuid:UUID = UUID(uuidString: "NO UUID HERE")!
+    static var beacon = Dictionary<String,beaconData>()
+    
+    
+    static func beaconSet(ID : String) -> Dictionary<String,beaconData>{
         
-    var beacon:Dictionary<String,beaconData>
-
+        
+        
         func fillMap(){
             beacon["UUID1"] = beaconData(n:"TestName", c:1, f:3)
             beacon["UUID2"] = beaconData(n: "TestName", c: 1, f: 3)
@@ -24,7 +29,10 @@ class BeaconSet: beaconData{
             beacon["UUID7"] = beaconData(n: "TestName", c: 1, f: 3)
             
         }
+        fillMap()
+        return beacon
     }
+    
     
 //    let majorValue: CLBeaconMajorValue
 //    let minorValut: CLBeaconMinorValue

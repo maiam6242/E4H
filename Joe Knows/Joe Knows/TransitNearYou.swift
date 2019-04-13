@@ -11,21 +11,55 @@ import MapKit
 import CoreBluetooth
 import CoreLocation
 
+
 class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
-    var mapView: MKMapView!
-    var locationManager : CLLocationManager!
+    var mapView: MKMapView! = MKMapView.init()
+    var locationManager : CLLocationManager! = CLLocationManager.init()
     var annotations = [MKPointAnnotation]()
 //    var centralManager:CBCentralManager!
 //    var sensorTag:CBPeripheral?
  
     
+    var distanceOrder = [String : Double]()
     func startScanning(){
         //TODO: put in the right uuid string for this beacon!
+        
+        var count = 0
+        let UUIDs : [String] = ["UUID1","UUID2","UUID3","UUID4","UUID5","UUID6","UUID7"]
+        for key in BeaconSet.beacon.values{
+           
+            let u = UUIDs[count]
+            let lat = key.getCoordLat()!
+            let long = key.getCoordLon()!
+            let loc:CLLocation = CLLocation.init(latitude: lat, longitude: long)
+            distanceOrder[u] = userLocation.distance(from: loc)
+            
+            
+            for i in 0...6{
+                
+                if(distanceOrder[UUIDs[i]]! > distanceOrder[UUIDs[i+1]]!){
+                    let hold = distanceOrder[UUIDs[i]]
+                    distanceOrder[UUIDs[i]] = distanceOrder[UUIDs[i+1]]
+                    distanceOrder[UUIDs[i+1]] = hold
+                    print(distanceOrder)
+                }
+            }
+            
+            let uuid = UUID(uuidString: u)!
+            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: key.getName()!)
+            locationManager.startMonitoring(for: beaconRegion)
+            locationManager.startRangingBeacons(in: beaconRegion)
+            count += 1
+        }
+        
     let uuid = UUID(uuidString: "CB01A845-55DC-4551-8FDB-D0318752CC1D")!
     let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "First Beacon")
     locationManager.startMonitoring(for: beaconRegion)
     locationManager.startRangingBeacons(in: beaconRegion)
+        
+        
     }
+    
 //    init(proximityUUID: uuid, identifier: "First Beacon")
 //    var bRegion = CLBeaconRegion
 //    self.locMan.startMonitoringForRegion(beaconRegion)
@@ -75,6 +109,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(!animated)
         determineCurrentLocation()
+        startScanning()
         showTransit()
         
     }
@@ -158,8 +193,10 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
     
+    var userLocation:CLLocation = CLLocation.init()
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation], didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        let userLocation:CLLocation = locations[0] as CLLocation
+        userLocation = locations[0] as CLLocation
         
         //
         //       let currentLocationLabel: UILabel!
@@ -220,4 +257,14 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     */
 
+}
+
+extension BeaconSet{
+   func getBeaconID() -> String{
+    return ID
+    }
+    mutating func setBeaconID(id: String){
+        ID = id
+        uuid = UUID(uuidString:ID) ?? uuid
+    }
 }
