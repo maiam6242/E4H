@@ -45,6 +45,8 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 }
             }
             
+            
+            
             let uuid = UUID(uuidString: u)!
             let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: key.getName()!)
             locationManager.startMonitoring(for: beaconRegion)
@@ -64,6 +66,10 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //    var bRegion = CLBeaconRegion
 //    self.locMan.startMonitoringForRegion(beaconRegion)
 //
+    
+    func orderMap(){
+        //Get the map in the same order as distanceOrder
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
