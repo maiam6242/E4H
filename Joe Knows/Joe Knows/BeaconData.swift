@@ -21,16 +21,16 @@ init(n:String,c:Double,f:Double){
         self.coordLat = f
         }
 
-    func getName(){
-        
+    func getName() -> String? {
+        return name
     }
     
-    func getCoordLat(){
-        
+    func getCoordLat() -> Double? {
+        return coordLat
     }
     
-    func getCoordLon(){
-        
+    func getCoordLon() -> Double? {
+        return coordLon
     }
     
 }
