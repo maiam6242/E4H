@@ -8,20 +8,56 @@
 
 import UIKit
 import MapKit
+import CoreBluetooth
+import CoreLocation
 
-
-class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
     var mapView: MKMapView!
     var locationManager : CLLocationManager!
     var annotations = [MKPointAnnotation]()
+//    var centralManager:CBCentralManager!
+//    var sensorTag:CBPeripheral?
+ 
+    
+    func startScanning(){
+        //TODO: put in the right uuid string for this beacon!
+    let uuid = UUID(uuidString: "CB01A845-55DC-4551-8FDB-D0318752CC1D")!
+    let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "First Beacon")
+    locationManager.startMonitoring(for: beaconRegion)
+    locationManager.startRangingBeacons(in: beaconRegion)
+    }
+//    init(proximityUUID: uuid, identifier: "First Beacon")
+//    var bRegion = CLBeaconRegion
+//    self.locMan.startMonitoringForRegion(beaconRegion)
+//
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        centralManager = CBCentralManager(delegate: self, queue: nil)
         // Do any additional setup after loading the view.
         
     }
     
-    
+//    func centralManagerDidUpdateState(central: CBCentralManager){
+//        switch central.state{
+//        case .poweredOn:
+//            keepScanning = true
+//            _ = Timer(timeInterval: timerScanInterval, targe: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
+//            centralManager.scanForPeripherals(withServices: nil, options: nil)
+//        case .poweredOff:
+//            state = "Bluetooth on this device is currently powered off."
+//        case .unsupported:
+//            state = "This device does not support BLE."
+//        case .unauthorized:
+//            state = "This app is not authorized to use BLE."
+//        case .resetting:
+//            state = "The BLE manager is resetting; a state update is pending"
+//        case .unknown:
+//            state = "The state of the BLE Manager is unknown."
+//        @unknown default:
+//
+//        }
+//   }
     @IBAction func BackToMainNav(_ sender: Any) {
         performSegue(withIdentifier: "BackToMainNav", sender: self)
     }
@@ -122,8 +158,9 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation], didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         let userLocation:CLLocation = locations[0] as CLLocation
+        
         //
         //       let currentLocationLabel: UILabel!
         //        currentLocationLabel.text = "coordinates: and \(userLocation.coordinate.latitude)"
@@ -134,6 +171,13 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        if beacons.count > 0{
+            let beacon = beacons[0]
+            update(distance: beacon.proximity)
+        } else{
+            update(distance: .unknown)
+        }
         
         mapView.setRegion(region, animated: false)
         
@@ -149,6 +193,21 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         annotations.append(myAnnotation2)
         self.mapView.showsTraffic = true
         
+    }
+    
+    func update(distance: CLProximity){
+        switch distance{
+        case .unknown:
+            print("WHO EVEN KNOWS?!")
+        case .far:
+            print("OOF THAT'S REALLY FAR")
+        case .near:
+            print("DUDE, YOU'RE CLOSE")
+        case .immediate:
+            print("WOAH, GET OFF, YOU'RE RIGHT ON TOP OF ME")
+        @unknown default:
+            print("YIKES, YOU SHOULD KNOW THIS")
+        }
     }
 
     /*

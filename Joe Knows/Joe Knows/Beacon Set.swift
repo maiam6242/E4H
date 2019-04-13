@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class BeaconSet: beaconData{
     func beaconSet(name : String){
@@ -24,5 +25,12 @@ class BeaconSet: beaconData{
             
         }
     }
+    
+//    let majorValue: CLBeaconMajorValue
+//    let minorValut: CLBeaconMinorValue
+//    init(name:String, icon: Int, uuid: UUID, majorValue: Int, minorValue: Int){
+//
+    
+  //  }
     
 }
