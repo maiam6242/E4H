@@ -32,6 +32,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             let lat = key.getCoordLat()!
             let long = key.getCoordLon()!
             let loc:CLLocation = CLLocation.init(latitude: lat, longitude: long)
+            print(UUIDs)
             distanceOrder[u] = userLocation.distance(from: loc)
             
             
@@ -137,6 +138,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(!animated)
         createMapView()
+        
         
     }
     override func viewDidAppear(_ animated: Bool) {
