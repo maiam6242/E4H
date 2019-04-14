@@ -35,7 +35,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             distanceOrder[u] = userLocation.distance(from: loc)
             
             
-            for i in 0...6{
+            for i in 0...6 {
                 
                 if(distanceOrder[UUIDs[i]]! > distanceOrder[UUIDs[i+1]]!){
                     let hold = distanceOrder[UUIDs[i]]
@@ -44,8 +44,6 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     print(distanceOrder)
                 }
             }
-            
-            
             
             let uuid = UUID(uuidString: u)!
             let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: key.getName()!)
@@ -66,9 +64,37 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //    var bRegion = CLBeaconRegion
 //    self.locMan.startMonitoringForRegion(beaconRegion)
 //
-    
-    func orderMap(){
-        //Get the map in the same order as distanceOrder
+    @IBOutlet weak var ClosestTransit: UIButton!
+    @IBOutlet weak var SecondClosestTransit: UIButton!
+    @IBOutlet weak var ThirdClosestTransit: UIButton!
+    @IBOutlet weak var FarthestTransit: UIButton!
+    @IBAction func ClosestTransit(_ sender: Any) {
+        
+    }
+    func fillButtons(){
+        var count = 0
+        var dOIterator = distanceOrder.keys.makeIterator()
+        while dOIterator.next() != nil {
+           let keyy = dOIterator.next()
+            print(keyy!)
+            if count == 0{
+                ClosestTransit.setTitle(keyy, for: .normal)
+                count += 1
+            }
+            else if count == 1{
+                SecondClosestTransit.setTitle(keyy, for: .normal)
+                count += 1
+            }
+            else if count == 2{
+                ThirdClosestTransit.setTitle(keyy, for: .normal)
+                count += 1
+            }
+            else if count == 3{
+                FarthestTransit.setTitle(keyy, for: .normal)
+                count += 1
+            }
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -111,12 +137,14 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(!animated)
         createMapView()
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(!animated)
         determineCurrentLocation()
+        fillButtons()
         startScanning()
-        showTransit()
+        //showTransit()
         
     }
     

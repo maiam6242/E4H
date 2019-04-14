@@ -402,11 +402,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67M-ul-htI">
-                                <rect key="frame" x="65" y="365" width="190" height="30"/>
+                                <rect key="frame" x="145" y="368" width="30" height="25"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="11"/>
-                                <state key="normal" title="WELLESLEY HILLS COMMUTER RAIL">
+                                <state key="normal" title=" ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -415,6 +415,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="ClosestTransit:" destination="MoA-gP-I0c" eventType="touchUpInside" id="Wwp-Tg-Rbe"/>
                                     <action selector="firstDestinationButton:" destination="8ag-Cz-6Qb" eventType="touchUpInside" id="Vxx-T0-ph5"/>
                                 </connections>
                             </button>
@@ -423,7 +424,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="11"/>
-                                <state key="normal" title="NEEDHAM HEIGHTS COMMUTER RAIL">
+                                <state key="normal" title=" ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -437,7 +438,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="13"/>
-                                <state key="normal" title="ELIOT MBTA GREEN LINE STOP">
+                                <state key="normal" title=" ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -454,7 +455,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="11"/>
-                                <state key="normal" title="WELLESLEY FARMS COMMUTER RAIL">
+                                <state key="normal" title=" ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -475,6 +476,10 @@
                         <viewLayoutGuide key="safeArea" id="jx5-gb-MqN"/>
                     </view>
                     <connections>
+                        <outlet property="ClosestTransit" destination="67M-ul-htI" id="6Nk-Sl-pfE"/>
+                        <outlet property="FarthestTransit" destination="quA-m5-HKX" id="6Pd-cY-fir"/>
+                        <outlet property="SecondClosestTransit" destination="kfY-KQ-Lcr" id="QJd-QK-bbK"/>
+                        <outlet property="ThirdClosestTransit" destination="8fD-OJ-0rq" id="A2k-aM-7Wj"/>
                         <segue destination="fxy-Xt-YWi" kind="showDetail" identifier="BackToMainNav" id="yZN-Qw-P74"/>
                         <segue destination="h0n-FN-BTh" kind="showDetail" identifier="TransitDirections" id="2Ty-KO-cme"/>
                     </connections>
