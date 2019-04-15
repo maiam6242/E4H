@@ -83,11 +83,11 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.viewDidAppear(!animated)
         determineCurrentLocation()
         print("now am here")
-        startScanning()
+        orderLocs()
         print("got here")
-        
         fillButtons()
         print("here now too!!")
+        showLocations()
         //showTransit()
         
     }
@@ -121,6 +121,12 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func getCoordinate(item: MKMapItem) -> CLLocationCoordinate2D{
         let lat = item.placemark.coordinate.latitude
         let lon = item.placemark.coordinate.longitude
+        
+        return CLLocationCoordinate2D(latitude: lat, longitude: lon)
+    }
+    func getCoordinate(latitude:Double , longitude:Double ) -> CLLocationCoordinate2D{
+        let lat = latitude
+        let lon = longitude
         
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
     }
@@ -187,13 +193,13 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
-        if beacons.count > 0{
-            let beacon = beacons[0]
-            update(distance: beacon.proximity)
-        } else{
-            update(distance: .unknown)
-        }
-        
+//        if beacons.count > 0 {
+//            let beacon = beacons[0]
+//            update(distance: beacon.proximity)
+//        } else{
+//            update(distance: .unknown)
+//        }
+//
         mapView.setRegion(region, animated: false)
         
         // Drop a pin at user's Current Location
@@ -203,13 +209,15 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         myAnnotation2.title = "Current location"
 //        let pin = MKPinAnnotationView(annotation: myAnnotation2, reuseIdentifier: myAnnotation2.title)
         print(myAnnotation2)
+        print("what if you worked?!")
+        print(userLocation)
+        let an = [myAnnotation2]
 //        pin.pinTintColor = UIColor.blue
         mapView.addAnnotation(myAnnotation2)
-        annotations.append(myAnnotation2)
-        self.mapView.showsTraffic = true
+       
         
     }
-    func startScanning(){
+    func orderLocs(){
         //TODO: put in the right uuid string for this beacon!
         
         var count = 0
@@ -313,6 +321,22 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
 
+    func showLocations(){
+        print("hey this might be working, wild!")
+        for key in BeaconSet.beacon.keys{
+            let val = BeaconSet.beacon[key]
+            let lon = val?.getCoordLon()
+            let lat = val?.getCoordLat()
+            
+        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+        myAnnotation.coordinate = self.getCoordinate(latitude: lat!, longitude: lon!)
+        myAnnotation.title = val?.getName()
+        self.mapView.addAnnotation(myAnnotation)
+        self.annotations.append(myAnnotation)
+    }
+        self.mapView.showAnnotations(self.annotations, animated: false)
+    }
+    
     /*
     // MARK: - Navigation
 
