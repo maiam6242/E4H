@@ -15,23 +15,26 @@ struct BeaconSet{
     static var beacon = Dictionary<String,beaconData>()
     
     
-    static func beaconSet(ID : String) -> Dictionary<String,beaconData>{
-        
-        
-        
-        func fillMap(){
-            beacon["UUID1"] = beaconData(n:"TestName", c:1, f:3)
-            beacon["UUID2"] = beaconData(n: "TestName", c: 1, f: 3)
-            beacon["UUID3"] = beaconData(n: "TestName", c: 1, f: 3)
-            beacon["UUID4"] = beaconData(n: "TestName", c: 1, f: 3)
-            beacon["UUID5"] = beaconData(n: "TestName", c: 1, f: 3)
-            beacon["UUID6"] = beaconData(n: "TestName", c: 1, f: 3)
-            beacon["UUID7"] = beaconData(n: "TestName", c: 1, f: 3)
-            
-        }
-        fillMap()
+    static func beaconSet(ID : [String]) -> Dictionary<String,beaconData>{
+        print(ID.count)
+        fillMap(ID: ID)
         return beacon
     }
+        
+        
+    static func fillMap(ID : [String]){
+            BeaconSet.beacon[ID[0]] = beaconData(n: "TestName1", c: 1, f: 3)
+            BeaconSet.beacon[ID[1]] = beaconData(n: "TestName2", c: 5, f: 6)
+            BeaconSet.beacon[ID[2]] = beaconData(n: "TestName3", c: 4, f: 3)
+            BeaconSet.beacon[ID[3]] = beaconData(n: "TestName4", c: 7, f: 2)
+            BeaconSet.beacon[ID[4]] = beaconData(n: "TestName5", c: 1, f: 3)
+            BeaconSet.beacon[ID[5]] = beaconData(n: "TestName6", c: 9, f: 2)
+            BeaconSet.beacon[ID[6]] = beaconData(n: "TestName7", c: 81, f: 3)
+            
+        }
+    
+}
+    
     
     
 //    let majorValue: CLBeaconMajorValue
@@ -41,4 +44,4 @@ struct BeaconSet{
     
   //  }
     
-}
+

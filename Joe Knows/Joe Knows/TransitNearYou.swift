@@ -21,45 +21,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
  
     
     var distanceOrder = [String : Double]()
-    func startScanning(){
-        //TODO: put in the right uuid string for this beacon!
-        
-        var count = 0
-        let UUIDs : [String] = ["UUID1","UUID2","UUID3","UUID4","UUID5","UUID6","UUID7"]
-        for key in BeaconSet.beacon.values{
-           
-            let u = UUIDs[count]
-            let lat = key.getCoordLat()!
-            let long = key.getCoordLon()!
-            let loc:CLLocation = CLLocation.init(latitude: lat, longitude: long)
-            print(UUIDs)
-            distanceOrder[u] = userLocation.distance(from: loc)
-            
-            
-            for i in 0...6 {
-                
-                if(distanceOrder[UUIDs[i]]! > distanceOrder[UUIDs[i+1]]!){
-                    let hold = distanceOrder[UUIDs[i]]
-                    distanceOrder[UUIDs[i]] = distanceOrder[UUIDs[i+1]]
-                    distanceOrder[UUIDs[i+1]] = hold
-                    print(distanceOrder)
-                }
-            }
-            
-            let uuid = UUID(uuidString: u)!
-            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: key.getName()!)
-            locationManager.startMonitoring(for: beaconRegion)
-            locationManager.startRangingBeacons(in: beaconRegion)
-            count += 1
-        }
-        
-    let uuid = UUID(uuidString: "CB01A845-55DC-4551-8FDB-D0318752CC1D")!
-    let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "First Beacon")
-    locationManager.startMonitoring(for: beaconRegion)
-    locationManager.startRangingBeacons(in: beaconRegion)
-        
-        
-    }
+   
     
 //    init(proximityUUID: uuid, identifier: "First Beacon")
 //    var bRegion = CLBeaconRegion
@@ -72,31 +34,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBAction func ClosestTransit(_ sender: Any) {
         
     }
-    func fillButtons(){
-        var count = 0
-        var dOIterator = distanceOrder.keys.makeIterator()
-        while dOIterator.next() != nil {
-           let keyy = dOIterator.next()
-            print(keyy!)
-            if count == 0{
-                ClosestTransit.setTitle(keyy, for: .normal)
-                count += 1
-            }
-            else if count == 1{
-                SecondClosestTransit.setTitle(keyy, for: .normal)
-                count += 1
-            }
-            else if count == 2{
-                ThirdClosestTransit.setTitle(keyy, for: .normal)
-                count += 1
-            }
-            else if count == 3{
-                FarthestTransit.setTitle(keyy, for: .normal)
-                count += 1
-            }
-        }
-        
-    }
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,8 +82,12 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(!animated)
         determineCurrentLocation()
-        fillButtons()
+        print("now am here")
         startScanning()
+        print("got here")
+        
+        fillButtons()
+        print("here now too!!")
         //showTransit()
         
     }
@@ -267,7 +209,93 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.mapView.showsTraffic = true
         
     }
+    func startScanning(){
+        //TODO: put in the right uuid string for this beacon!
+        
+        var count = 0
+        let UUIDs : [String] = ["2EFEC265-F897-48BE-B9F8-3CAE9597294E","90811294-B5FD-454A-BF0A-272650EA7860","29F35B05-084A-4AF4-9F64-A92F411CEA41","73EEB531-EBF8-4495-A9E0-1E5316D2E6CF","FA33023B-E968-43FB-8E79-A2B9E3CA01A9","U72EBB70C-D806-4D40-B742-64D9346D0DD8","76A1827E-4EE5-4CC9-B12E-5ED12963399B"]
+        print("yoooo")
+        print(UUIDs)
+        print(BeaconSet.beacon.values)
+        BeaconSet.beaconSet(ID: UUIDs)
+        print(BeaconSet.beacon)
+        for key in BeaconSet.beacon.values{
+            print("am I in this loop?!")
+            let u = UUIDs[count]
+            let lat = key.getCoordLat()!
+            let long = key.getCoordLon()!
+            let loc:CLLocation = CLLocation.init(latitude: lat, longitude: long)
+            print(UUIDs)
+            distanceOrder[u] = userLocation.distance(from: loc)
+            print(distanceOrder)
+            
+            count += 1
+        }
     
+    for i in 0...5 {
+    
+    if(distanceOrder[UUIDs[i]]! > distanceOrder[UUIDs[i+1]]!){
+    let hold = distanceOrder[UUIDs[i]]
+    distanceOrder[UUIDs[i]] = distanceOrder[UUIDs[i+1]]
+    distanceOrder[UUIDs[i+1]] = hold
+    print(distanceOrder)
+    }
+    }
+//        let uuid = UUID(uuidString: "CB01A845-55DC-4551-8FDB-D0318752CC1D")!
+//        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "First Beacon")
+//        locationManager.startMonitoring(for: beaconRegion)
+//        locationManager.startRangingBeacons(in: beaconRegion)
+//
+//
+    }
+    
+//    func startScan(){
+//        print(u == nil)
+//        var uuid = UUID.init(uuidString: u)
+//        let uuid = NSUUID.init(uuidString: u)
+//        print("wya")
+//        print(uuid?.uuidString)
+//        print(uuid!)
+//
+//        let beaconRegion = CLBeaconRegion(proximityUUID: uuid! as UUID, identifier: key.getName()!)
+//        locationManager.startMonitoring(for: beaconRegion)
+//        locationManager.startRangingBeacons(in: beaconRegion)
+//    }
+    
+    func fillButtons(){
+        var count = 0
+        print("distanceOrder")
+        print(distanceOrder)
+        var dOIterator = distanceOrder.keys.makeIterator()
+        print(distanceOrder.capacity > count)
+        while (count < 4) {
+           let keyy = dOIterator.next()
+            print(keyy)
+            if count == 0 {
+                ClosestTransit.setTitle(keyy, for: .normal)
+                print("hey")
+                count += 1
+            }
+            else if count == 1{
+                SecondClosestTransit.setTitle(keyy, for: .normal)
+                count += 1
+                print("yo")
+            }
+            else if count == 2{
+                ThirdClosestTransit.setTitle(keyy, for: .normal)
+                count += 1
+                print("hello")
+            }
+            else if count == 3{
+                FarthestTransit.setTitle(keyy, for: .normal)
+                count += 1
+                print("ahhhh")
+            }
+        }
+
+        
+        
+    }
     func update(distance: CLProximity){
         switch distance{
         case .unknown:
@@ -295,12 +323,12 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
 }
 
-extension BeaconSet{
-   func getBeaconID() -> String{
-    return ID
-    }
-    mutating func setBeaconID(id: String){
-        ID = id
-        uuid = UUID(uuidString:ID) ?? uuid
-    }
-}
+//extension BeaconSet{
+//   func getBeaconID() -> String{
+//    return ID
+//    }
+//    mutating func setBeaconID(id: String){
+//        ID = id
+//        uuid = UUID(uuidString:ID) ?? uuid
+//    }
+//}
