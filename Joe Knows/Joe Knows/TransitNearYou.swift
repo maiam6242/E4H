@@ -214,6 +214,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let an = [myAnnotation2]
 //        pin.pinTintColor = UIColor.blue
         mapView.addAnnotation(myAnnotation2)
+        mapView.showAnnotations(an, animated: false)
        
         
     }
@@ -324,10 +325,12 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func showLocations(){
         print("hey this might be working, wild!")
         for key in BeaconSet.beacon.keys{
+            
+        
             let val = BeaconSet.beacon[key]
             let lon = val?.getCoordLon()
             let lat = val?.getCoordLat()
-            
+            print(val?.getName())
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = self.getCoordinate(latitude: lat!, longitude: lon!)
         myAnnotation.title = val?.getName()
