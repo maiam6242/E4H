@@ -271,23 +271,25 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         while (count < 4) {
            let keyy = dOIterator.next()
             print(keyy)
+            let name =  BeaconSet.beacon[keyy!]
+            print(name)
             if count == 0 {
-                ClosestTransit.setTitle(keyy, for: .normal)
+            ClosestTransit.setTitle(name?.getName(), for: .normal)
                 print("hey")
                 count += 1
             }
             else if count == 1{
-                SecondClosestTransit.setTitle(keyy, for: .normal)
+                SecondClosestTransit.setTitle(name?.getName(), for: .normal)
                 count += 1
                 print("yo")
             }
             else if count == 2{
-                ThirdClosestTransit.setTitle(keyy, for: .normal)
+                ThirdClosestTransit.setTitle(name?.getName(), for: .normal)
                 count += 1
                 print("hello")
             }
             else if count == 3{
-                FarthestTransit.setTitle(keyy, for: .normal)
+                FarthestTransit.setTitle(name?.getName(), for: .normal)
                 count += 1
                 print("ahhhh")
             }
