@@ -14,11 +14,15 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     @IBOutlet var mapView: MKMapView!
     var locationManager : CLLocationManager!
-    //var userLocation: CLLocation
     
+    
+    @IBOutlet weak var buttonTest: UIButton!
+    //var userLocation: CLLocation
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    
         
 //        let request = MKDirections.Request()
 //        let uL = MKUserLocation.init()
@@ -72,7 +76,102 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         determineCurrentLocation()
+        readButton()
+        findDirection()
         
+    }
+    var latDest:Double? = 0
+    var lonDest:Double? = 0
+    
+    func readButton(){
+        var iter =  BeaconSet.distanceOrder.makeIterator()
+        var count = 0
+        
+        while (count < 2)
+        {
+        iter.next()
+        count += 1
+        }
+        print("are we here")
+        
+        let key = iter.next()?.key
+        let val = BeaconSet.distanceOrder[key!]
+        print(val)
+        print(key)
+        
+        latDest = BeaconSet.beacon[key!]?.getCoordLat()
+        lonDest = BeaconSet.beacon[key!]?.getCoordLon()
+        
+        print(latDest!)
+        print(lonDest!)
+       
+        
+    }
+    
+    func findDirection(){
+        let request = MKDirections.Request()
+        request.source = MKMapItem.forCurrentLocation()
+        let dest = MKPlacemark.init(coordinate: CLLocationCoordinate2D.init(latitude: latDest!, longitude: lonDest!))
+        request.destination = MKMapItem.init(placemark: dest)
+        request.requestsAlternateRoutes = true
+        request.transportType = .walking
+        //request.accessibilityActivate()
+        
+        print(request)
+        let directions = MKDirections(request: request)
+        print(directions)
+        print(directions.debugDescription)
+        print(directions.description)
+        
+//        print(directions.calculate(completionHandler: {_,_ in (self.responds, Error.self);
+//            if(Error?.self == nil){
+//                print(Error.self)
+//            }
+//            else{
+//                print(Error.self)
+//            }
+//        })
+//            )
+       // var travelTime = "Not Available"
+        
+//        directions.calculate {(response, error) in do {
+//            if(error == nil){
+//                print(error)
+//                var route = response?.routes[0]
+//                print(route)
+//                }
+//            }
+//
+//            }
+        
+//        directions.calculate(completionHandler: <#T##MKDirections.DirectionsHandler##MKDirections.DirectionsHandler##(MKDirections.Response?, Error?) -> Void#>)
+        directions.calculate {[unowned self] response, Error in
+            guard let unwrappedResponse = response else {
+                print("this didn't work")
+                print(response)
+                return}
+            for route in unwrappedResponse.routes{
+                print("route")
+                self.mapView.addOverlay(route.polyline)
+                return
+            }
+            if Error != nil{
+                print(Error.debugDescription)
+                print("Error getting directions")
+            } else {
+                self.showRoute(response!)
+            }
+            
+        }
+        
+    }
+    
+    func showRoute(_ response: MKDirections.Response){
+        for route in response.routes {
+            for step in route.steps{
+                print(step.instructions)
+            }
+        }
     }
     
     func createMapView(){
@@ -114,9 +213,9 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.startUpdatingLocation()
         }
     }
-    
+    var userLocation: CLLocation = CLLocation.init()
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation:CLLocation = locations[0] as CLLocation
+        userLocation = locations[0] as CLLocation
         //        var currentLocationLabel: UILabel!
         //        currentLocationLabel.text = "coordinates: \(userLocation.coordinate.longitude)"
         

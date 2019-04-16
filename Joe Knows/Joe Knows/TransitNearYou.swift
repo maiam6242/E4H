@@ -34,7 +34,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBAction func ClosestTransit(_ sender: Any) {
         
     }
- 
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -249,6 +249,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     distanceOrder[UUIDs[i+1]] = hold
     print(distanceOrder)
     }
+      BeaconSet.setDistanceOrder(dO: distanceOrder)
     }
 //        let uuid = UUID(uuidString: "CB01A845-55DC-4551-8FDB-D0318752CC1D")!
 //        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "First Beacon")
@@ -326,7 +327,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("hey this might be working, wild!")
         for key in BeaconSet.beacon.keys{
             
-        
+            //TO DO: Show only locations that are listed?
             let val = BeaconSet.beacon[key]
             let lon = val?.getCoordLon()
             let lat = val?.getCoordLat()

@@ -82,7 +82,7 @@
 		FCC46F8122593E58008B0248 /* ic_arrow_back_24px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_arrow_back_24px@3x.png"; sourceTree = "<group>"; };
 		FCC46F83225945D1008B0248 /* TypeOfStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfStop.swift; sourceTree = "<group>"; };
 		FCC46F8522595135008B0248 /* TransitNearYou.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitNearYou.swift; sourceTree = "<group>"; };
-		FCC46F87225951AA008B0248 /* TransitNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitNavigation.swift; sourceTree = "<group>"; };
+		FCC46F87225951AA008B0248 /* TransitNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitNavigation.swift; sourceTree = "<group>"; usesTabs = 0; };
 		FCC46F8922595226008B0248 /* BeaconNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconNavigation.swift; sourceTree = "<group>"; };
 		FCC46F8B225952BA008B0248 /* ArrivalConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalConfirmation.swift; sourceTree = "<group>"; };
 		FCC46F8D2259531F008B0248 /* DirectionsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsExtension.swift; sourceTree = "<group>"; };
@@ -445,7 +445,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -456,19 +456,26 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				"MTL_ENABLE_DEBUG_INFO[sdk=iphonesimulator*]" = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -511,18 +518,19 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -538,6 +546,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				"MTL_ENABLE_DEBUG_INFO[sdk=iphonesimulator*]" = INCLUDE_SOURCE;
 				PRODUCT_BUNDLE_IDENTIFIER = "E4H.Joe-Knows";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -651,7 +660,7 @@
 				FC8CA030225524C200C5BB97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FC8CA031225524C200C5BB97 /* Build configuration list for PBXNativeTarget "Joe Knows" */ = {
 			isa = XCConfigurationList;
@@ -660,7 +669,7 @@
 				FC8CA033225524C200C5BB97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FC8CA034225524C200C5BB97 /* Build configuration list for PBXNativeTarget "Joe KnowsTests" */ = {
 			isa = XCConfigurationList;
@@ -669,7 +678,7 @@
 				FC8CA036225524C200C5BB97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FC8CA037225524C200C5BB97 /* Build configuration list for PBXNativeTarget "Joe KnowsUITests" */ = {
 			isa = XCConfigurationList;
@@ -678,7 +687,7 @@
 				FC8CA039225524C200C5BB97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
