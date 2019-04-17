@@ -128,11 +128,14 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
             if let response = directions, let route = response.routes.first {
                 print(route.distance)
                 let steps = route.steps
-                print(route.expectedTravelTime/60) //in seconds
+                print(route.expectedTravelTime/60)
+                //in minutes
                 print("hey am I here?!")
                 
                 
-                self.getAddress(userLocation: request.destination!)
+                 let address = self.getAddress(userLocation: request.destination!)
+                
+                self.whereToLabel.text = "\(address). The estimated time to get there is:  \(route.expectedTravelTime/60) minutes"
                 
                 for step in steps{
                     step.instructions
@@ -268,20 +271,22 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.addAnnotation(myAnnotation)
     }
     
-    func getAddress(userLocation:MKMapItem){
+    func getAddress(userLocation:MKMapItem) -> String{
+        var address = ""
         let uLocationLat = userLocation.placemark.coordinate.latitude
         let uLocationLon = userLocation.placemark.coordinate.longitude
         let userLocation = CLLocation.init(latitude:uLocationLat, longitude: uLocationLon)
         
         let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(userLocation) {(placemarks, error) in
-                self.processResponse(withPlacemarks: placemarks, error: error, userLocation: userLocation)
+                 address = self.processResponse(withPlacemarks: placemarks, error: error, userLocation: userLocation)
                 
             }
+        return address
         }
     
     
-    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?, userLocation:CLLocation){
+    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?, userLocation:CLLocation) -> String{
         //        if let error = error {
         //            //print("Unable to reverse geocode")
         //            print(error)
@@ -290,10 +295,10 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
         //        }
         //        else{
         if let placemarks = placemarks, let placemark = placemarks.first {
-            whereToLabel.text = placemark.compactAddress
+            return placemark.compactAddress!
         }
         else{
-            whereToLabel.text = "No matching Addresses Found"
+            return "No matching Addresses Found"
         }
     }
     //}
