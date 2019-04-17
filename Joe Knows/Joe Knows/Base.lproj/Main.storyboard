@@ -749,8 +749,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ELIOT MBTA GREEN LINE STOP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJc-P4-3UL">
-                                <rect key="frame" x="48" y="357" width="224" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJc-P4-3UL">
+                                <rect key="frame" x="41" y="357" width="237" height="20"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -799,6 +799,7 @@
                         <viewLayoutGuide key="safeArea" id="qDD-6F-ySM"/>
                     </view>
                     <connections>
+                        <outlet property="whereToLabel" destination="AJc-P4-3UL" id="k2t-t5-SJP"/>
                         <segue destination="MoA-gP-I0c" kind="showDetail" identifier="DirectionsToNav" id="xPS-4D-yPf"/>
                     </connections>
                 </viewController>

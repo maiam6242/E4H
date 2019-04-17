@@ -12,6 +12,7 @@ import MapKit
 
 class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    @IBOutlet var whereToLabel: UILabel!
     @IBOutlet var mapView: MKMapView!
     var locationManager : CLLocationManager!
     
@@ -129,6 +130,9 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 let steps = route.steps
                 print(route.expectedTravelTime/60) //in seconds
                 print("hey am I here?!")
+                
+                
+                self.getAddress(userLocation: request.destination!)
                 
                 for step in steps{
                     step.instructions
@@ -263,6 +267,36 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
         myAnnotation.title = "Current location"
         mapView.addAnnotation(myAnnotation)
     }
+    
+    func getAddress(userLocation:MKMapItem){
+        let uLocationLat = userLocation.placemark.coordinate.latitude
+        let uLocationLon = userLocation.placemark.coordinate.longitude
+        let userLocation = CLLocation.init(latitude:uLocationLat, longitude: uLocationLon)
+        
+        let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(userLocation) {(placemarks, error) in
+                self.processResponse(withPlacemarks: placemarks, error: error, userLocation: userLocation)
+                
+            }
+        }
+    
+    
+    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?, userLocation:CLLocation){
+        //        if let error = error {
+        //            //print("Unable to reverse geocode")
+        //            print(error)
+        //
+        //                currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
+        //        }
+        //        else{
+        if let placemarks = placemarks, let placemark = placemarks.first {
+            whereToLabel.text = placemark.compactAddress
+        }
+        else{
+            whereToLabel.text = "No matching Addresses Found"
+        }
+    }
+    //}
     
     
     private func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
