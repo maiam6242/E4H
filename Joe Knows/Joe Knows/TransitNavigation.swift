@@ -114,7 +114,7 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let dest = MKPlacemark.init(coordinate: CLLocationCoordinate2D.init(latitude: latDest!, longitude: lonDest!))
         request.destination = MKMapItem.init(placemark: dest)
         request.requestsAlternateRoutes = true
-        request.transportType = .walking
+        request.transportType = MKDirectionsTransportType.walking
         //request.accessibilityActivate()
         
         print(request)
@@ -123,6 +123,32 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print(directions.debugDescription)
         print(directions.description)
         
+        directions.calculate { (directions, error) in
+            if let response = directions, let route = response.routes.first {
+                print(route.distance)
+                let steps = route.steps
+                print(route.expectedTravelTime/60) //in seconds
+                print("hey am I here?!")
+                
+                for step in steps{
+                    step.instructions
+                    print(step.instructions)
+                }
+                
+                // You could have this returned in an async approach
+            }
+        }
+//        directions.calculate { (response, error) in
+//
+//            if var routeResponse = response?.routes {
+//                routeResponse.sort(by: {$0.expectedTravelTime < $1.expectedTravelTime})
+//                let quickestRoute: MKRoute = routeResponse[0]
+//
+//                print(quickestRoute)
+//                distance = Double(quickestRoute.distance)
+//                print(distance)
+//            }
+//        }
 //        print(directions.calculate(completionHandler: {_,_ in (self.responds, Error.self);
 //            if(Error?.self == nil){
 //                print(Error.self)
@@ -145,24 +171,25 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
 //            }
         
 //        directions.calculate(completionHandler: <#T##MKDirections.DirectionsHandler##MKDirections.DirectionsHandler##(MKDirections.Response?, Error?) -> Void#>)
-        directions.calculate {[unowned self] response, Error in
-            guard let unwrappedResponse = response else {
-                print("this didn't work")
-                print(response)
-                return}
-            for route in unwrappedResponse.routes{
-                print("route")
-                self.mapView.addOverlay(route.polyline)
-                return
-            }
-            if Error != nil{
-                print(Error.debugDescription)
-                print("Error getting directions")
-            } else {
-                self.showRoute(response!)
-            }
-            
-        }
+        
+//        directions.calculate {[unowned self] response, Error in
+//            guard let unwrappedResponse = response else {
+//                print("this didn't work")
+//                print(response)
+//                return}
+//            for route in unwrappedResponse.routes{
+//                print("route")
+//                self.mapView.addOverlay(route.polyline)
+//                return
+//            }
+//            if Error != nil{
+//                print(Error.debugDescription)
+//                print("Error getting directions")
+//            } else {
+//                self.showRoute(response!)
+//            }
+//
+       // }
         
     }
     
