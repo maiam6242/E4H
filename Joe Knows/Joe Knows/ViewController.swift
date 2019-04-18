@@ -19,10 +19,15 @@ class ViewController: UIViewController {
         print("view loaded")
     }
     
+    @IBAction func ContinueToMain(_ sender: Any) {
+        performSegue(withIdentifier: "ContinueToMain", sender: self)
+    }
+
     @IBAction func LoadingToMain(_ sender: Any) {
         print("button pressed")
         performSegue(withIdentifier: "LoadingToMain", sender: self)
     }
+}
     let locationManager = CLLocationManager()
     func checkLocationAuthorizationStatus()
         {
@@ -30,7 +35,7 @@ class ViewController: UIViewController {
                 locationManager.requestWhenInUseAuthorization()
             }
         }
-    }
+    
 
 
 

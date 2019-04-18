@@ -286,7 +286,9 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             if count == 0 {
             ClosestTransit.setTitle(name?.getName(), for: .normal)
                 print("hey")
+                print(count)
                 count += 1
+                print(count)
             }
             else if count == 1{
                 SecondClosestTransit.setTitle(name?.getName(), for: .normal)
