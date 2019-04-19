@@ -284,19 +284,23 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //    }
     
     func fillButtons(){
-        var count = 0
         print("distanceOrder")
         print(distanceOrder)
-        print(distanceOrder.capacity > count)
+        let n0 = BeaconSet.beacon[distanceOrder[0].name]?.getName()
+        let n1 = BeaconSet.beacon[distanceOrder[1].name]?.getName()
+        let n2 = BeaconSet.beacon[distanceOrder[2].name]?.getName()
+        let n3 = BeaconSet.beacon[distanceOrder[3].name]?.getName()
         //TODO: Check this logic
+       
         
-ClosestTransit.setTitle(distanceOrder[0].name, for: .normal)
+        
+ClosestTransit.setTitle(n0, for: .normal)
                 print("hey")
-SecondClosestTransit.setTitle(distanceOrder[1].name, for: .normal)
+SecondClosestTransit.setTitle(n1, for: .normal)
                 print("yo")
-ThirdClosestTransit.setTitle(distanceOrder[2].name, for: .normal)
+ThirdClosestTransit.setTitle(n2, for: .normal)
                 print("hello")
-FarthestTransit.setTitle(distanceOrder[3].name, for: .normal)
+FarthestTransit.setTitle(n3, for: .normal)
                 print("ahhhh")
        
     }
