@@ -92,12 +92,6 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
-        //        var currentLocationLabel: UILabel!
-        //        currentLocationLabel.text = "coordinates: \(userLocation.coordinate.longitude)"
-        
-        // Call stopUpdatingLocation() to stop listening for location updates,
-        // other wise this function will be called every time when user location changes.
-        //manager.stopUpdatingLocation()
         
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -108,7 +102,6 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
         
-        //currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
         getAddress(userLocation: userLocation)
         
         
@@ -132,13 +125,7 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
     }
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?, userLocation:CLLocation){
-//        if let error = error {
-//            //print("Unable to reverse geocode")
-//            print(error)
-//
-//                currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
-//        }
-//        else{
+        
             if let placemarks = placemarks, let placemark = placemarks.first {
                 currentLocationLabel.text = placemark.compactAddress
             }
