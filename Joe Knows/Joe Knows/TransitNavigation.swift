@@ -98,8 +98,10 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 for step in steps{
                     step.instructions
+                    
                     print(step.instructions)
-                    directionsString += step.instructions + "\n" + "\n"
+                    print(step.distance)
+                    directionsString += step.instructions + "\n" + "\((step.distance*3.281).rounded()) feet" + "\n"
                     print(directionsString)
                 }
                  self.Directions.text = directionsString
