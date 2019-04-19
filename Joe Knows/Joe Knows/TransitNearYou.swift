@@ -70,9 +70,21 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         performSegue(withIdentifier: "BackToMainNav", sender: self)
     }
     
-    @IBAction func TransitDirections(_ sender: Any) {
+    
+    @IBAction func TransitDirections1(_ sender: Any) {
         performSegue(withIdentifier: "TransitDirections", sender: self)
     }
+    @IBAction func TransitDirections2(_ sender: Any) {
+        performSegue(withIdentifier: "TransitDirections", sender: self)
+    }
+    
+    @IBAction func TransitDirections3(_ sender: Any) {
+        performSegue(withIdentifier: "TransitDirections", sender: self)
+    }
+    @IBAction func TransitDirections4(_ sender: Any) {
+        performSegue(withIdentifier: "TransitDirections", sender: self)
+    }
+  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
