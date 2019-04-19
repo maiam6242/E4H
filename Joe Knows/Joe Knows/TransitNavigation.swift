@@ -12,10 +12,9 @@ import MapKit
 
 class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
-    @IBOutlet var whereToLabel: UILabel!
     @IBOutlet var mapView: MKMapView!
     var locationManager : CLLocationManager!
-    
+    @IBOutlet weak var whereToLabel: UILabel!
     
     @IBOutlet weak var buttonTest: UIButton!
   
@@ -91,7 +90,7 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                  let address = self.getAddress(userLocation: request.destination!)
                 
-                self.whereToLabel.text = "\(address). The estimated time to get there is:  \(route.expectedTravelTime/60) minutes"
+                self.whereToLabel.text = "\(address) The estimated time to get there is:  \(route.expectedTravelTime/60) minutes"
                 
                 for step in steps{
                     step.instructions
