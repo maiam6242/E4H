@@ -16,11 +16,8 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate{
     @IBOutlet weak var currentLocationLabel: UILabel!
     var userLocationOld:CLLocation? = nil
     
-   // var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        locationTuples = [(sourceField, nil), (destinationField1, nil), (destinationField2, nil)]
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func firstDestinationButton(_ sender: Any) {
@@ -89,13 +86,6 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
-        //
-        //       let currentLocationLabel: UILabel!
-        //        currentLocationLabel.text = "coordinates: and \(userLocation.coordinate.latitude)"
-        
-        // Call stopUpdatingLocation() to stop listening for location updates,
-        // other wise this function will be called every time when user location changes.
-        //manager.stopUpdatingLocation()
         
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -157,24 +147,4 @@ class AddStop: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate{
 
 }
 
-//extension CLPlacemark{
-//    var compactAddress: String?{
-//        if let name = name{
-//            var result = name
-//
-//            if let street = thoroughfare{
-//                result += ", \(street)"
-//            }
-//            if let city = locality{
-//                result += ", \(city)"
-//            }
-//            if let country = country{
-//                result += ", \(country)"
-//            }
-//            return result
-//        }
-//        return nil
-//    }
-//
-//}
-//
+

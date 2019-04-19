@@ -83,58 +83,16 @@ class AddStopNew: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
-        //
-        //       let currentLocationLabel: UILabel!
-        //        currentLocationLabel.text = "coordinates: and \(userLocation.coordinate.latitude)"
-        
-        // Call stopUpdatingLocation() to stop listening for location updates,
-        // other wise this function will be called every time when user location changes.
-        //manager.stopUpdatingLocation()
         
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        
-//        //let geocoder = CLGeocoder()
-//        var p:CLPlacemark?
-//        func getPlacemarkFromLocation(location:CLLocation)->CLPlacemark?{
-//            let g = CLGeocoder()
-//
-//            g.reverseGeocodeLocation(location, completionHandler: {
-//                (placemarks, error) in
-//                let pm = placemarks!
-//                if (pm.count > 0){
-//                    p = placemarks![0]
-//
-//                }
-//
-//            })
 
-            
-            
-//        geocoder.reverseGeocodeLocation(userLocation, completionHandler:
-//            {(placemarks: [AnyObject]!, error: NSError!) in
-//            if error == nil && placemarks.count > 0 {
-//                let location = placemarks[0] as CLPlacemark
-//                self.textField.text = "\(location.locality) \(location.thoroughfare) \(location.subThoroughfare)"
-//
-//            }
-//        })
-    
-        
-        // geocoder.reverseGeocodeLocation(userLocation)
-        
-        // Look up the location and pass it to the completion handler
-       
-        
         mapView.setRegion(region, animated: false)
         
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-        
-        
-//        currentLocationLabel.text = "Coordinates: \(userLocation.coordinate.latitude) and \(userLocation.coordinate.longitude)"
+ 
         getAddress(userLocation: userLocation)
         myAnnotation.title = "Current location"
         mapView.addAnnotation(myAnnotation)
