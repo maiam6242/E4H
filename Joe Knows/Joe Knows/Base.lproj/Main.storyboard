@@ -786,11 +786,11 @@
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ellipse 189.png" translatesAutoresizingMaskIntoConstraints="NO" id="7iN-9n-tyh">
                                 <rect key="frame" x="127" y="237" width="67" height="89"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_directions_run_24px.png" translatesAutoresizingMaskIntoConstraints="NO" id="nKH-fI-sY1">
                                 <rect key="frame" x="134" y="256" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Rectangle 852.png" translatesAutoresizingMaskIntoConstraints="NO" id="2K3-jj-uHb">
                                 <rect key="frame" x="25" y="30" width="120" height="54"/>
@@ -813,21 +813,28 @@
                                     <segue destination="CFw-qP-441" kind="showDetail" identifier="DirectionsExtNext" id="fwz-fe-B46"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJc-P4-3UL">
-                                <rect key="frame" x="41" y="357" width="237" height="22"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAVIGATING TO:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYK-DA-gBl">
+                                <rect key="frame" x="54" y="321" width="212" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvw-Oa-1UN">
+                                <rect key="frame" x="47" y="360" width="227" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nr1-Mk-Ggu">
-                                <rect key="frame" x="41" y="419" width="237" height="99"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nr1-Mk-Ggu">
+                                <rect key="frame" x="47" y="419" width="219" height="100"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YEV-dG-lsw">
-                                        <rect key="frame" x="0.0" y="0.0" width="237" height="187.5"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YEV-dG-lsw">
+                                        <rect key="frame" x="0.0" y="0.0" width="219" height="206"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHr-ki-Hcw">
-                                                <rect key="frame" x="0.0" y="0.0" width="237" height="121.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="223" translatesAutoresizingMaskIntoConstraints="NO" id="aHr-ki-Hcw">
+                                                <rect key="frame" x="0.0" y="0.0" width="219" height="139"/>
                                                 <string key="text">TURN LEFT ONTO GREAT PLAIN AVE AND WALK FOR .3 MILES. 
 
 TURN LEFT ONTO GREAT PLAIN AVE AND WALK FOR .3 MILES. 
@@ -848,34 +855,30 @@ TURN LEFT ONTO RESERVOIR STREET AND WALK FOR 477 FEET</string>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="YEV-dG-lsw" secondAttribute="trailing" id="6Hw-eH-PYy"/>
                                     <constraint firstItem="YEV-dG-lsw" firstAttribute="width" secondItem="nr1-Mk-Ggu" secondAttribute="width" id="GIm-Aq-3tG"/>
+                                    <constraint firstAttribute="height" constant="100" id="LB0-zo-eNS"/>
+                                    <constraint firstItem="YEV-dG-lsw" firstAttribute="top" secondItem="nr1-Mk-Ggu" secondAttribute="top" id="VTq-bC-KpL"/>
                                     <constraint firstItem="YEV-dG-lsw" firstAttribute="leading" secondItem="nr1-Mk-Ggu" secondAttribute="leading" id="XWP-zQ-f3o"/>
                                     <constraint firstAttribute="bottom" secondItem="YEV-dG-lsw" secondAttribute="bottom" constant="-79" id="fQV-JK-VNM"/>
                                     <constraint firstItem="YEV-dG-lsw" firstAttribute="height" secondItem="nr1-Mk-Ggu" secondAttribute="height" priority="250" id="yU8-35-cA8"/>
-                                    <constraint firstItem="YEV-dG-lsw" firstAttribute="top" secondItem="nr1-Mk-Ggu" secondAttribute="top" id="zKr-NA-O2b"/>
                                 </constraints>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAVIGATING TO:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYK-DA-gBl">
-                                <rect key="frame" x="54" y="329" width="212" height="37"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="31"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="nr1-Mk-Ggu" firstAttribute="top" secondItem="qDD-6F-ySM" secondAttribute="top" constant="399" id="Xgf-75-YiT"/>
-                            <constraint firstItem="nr1-Mk-Ggu" firstAttribute="leading" secondItem="qDD-6F-ySM" secondAttribute="leading" constant="41" id="dVM-ML-XGj"/>
+                            <constraint firstItem="YEV-dG-lsw" firstAttribute="bottom" secondItem="qDD-6F-ySM" secondAttribute="bottom" constant="38.5" id="DwT-Dh-roN"/>
+                            <constraint firstItem="YEV-dG-lsw" firstAttribute="centerX" secondItem="qDD-6F-ySM" secondAttribute="centerX" id="LJq-oy-1Yo"/>
                             <constraint firstItem="qDD-6F-ySM" firstAttribute="bottom" secondItem="nr1-Mk-Ggu" secondAttribute="bottom" constant="50" id="gWo-NL-hJv"/>
-                            <constraint firstItem="qDD-6F-ySM" firstAttribute="trailing" secondItem="nr1-Mk-Ggu" secondAttribute="trailing" constant="42" id="prn-CG-Z17"/>
+                            <constraint firstItem="aHr-ki-Hcw" firstAttribute="centerX" secondItem="qDD-6F-ySM" secondAttribute="centerX" id="hE2-mg-fa8"/>
+                            <constraint firstItem="qDD-6F-ySM" firstAttribute="bottom" secondItem="aHr-ki-Hcw" secondAttribute="bottom" constant="27.5" id="vBE-Iv-EmM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qDD-6F-ySM"/>
                     </view>
                     <connections>
-                        <outlet property="whereToLabel" destination="AJc-P4-3UL" id="k2t-t5-SJP"/>
+                        <outlet property="whereToLabel" destination="cvw-Oa-1UN" id="heV-Rv-Paz"/>
                         <segue destination="MoA-gP-I0c" kind="showDetail" identifier="DirectionsToNav" id="xPS-4D-yPf"/>
                     </connections>
                 </viewController>
@@ -1109,6 +1112,6 @@ TURN LEFT ONTO RESERVOIR STREET AND WALK FOR 477 FEET</string>
         <segue reference="LGc-hK-92f"/>
         <segue reference="7UG-yU-hMj"/>
         <segue reference="xPS-4D-yPf"/>
-        <segue reference="yZN-Qw-P74"/>
+        <segue reference="kaM-T2-AtY"/>
     </inferredMetricsTieBreakers>
 </document>
