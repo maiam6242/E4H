@@ -454,11 +454,11 @@
                                     <action selector="BackToMainNav:" destination="MoA-gP-I0c" eventType="touchUpInside" id="ko9-ja-7UW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67M-ul-htI">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="67M-ul-htI">
                                 <rect key="frame" x="65" y="368" width="190" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="11"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="10"/>
                                 <state key="normal" title=" ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -469,28 +469,15 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="ClosestTransit:" destination="MoA-gP-I0c" eventType="touchUpInside" id="Wwp-Tg-Rbe"/>
+                                    <action selector="TransitDirections1:" destination="MoA-gP-I0c" eventType="touchUpInside" id="Wvf-km-Ukv"/>
                                     <action selector="firstDestinationButton:" destination="8ag-Cz-6Qb" eventType="touchUpInside" id="Vxx-T0-ph5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfY-KQ-Lcr">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kfY-KQ-Lcr">
                                 <rect key="frame" x="65" y="410" width="190" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="11"/>
-                                <state key="normal" title=" ">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fD-OJ-0rq">
-                                <rect key="frame" x="65" y="455" width="190" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="11"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="10"/>
                                 <state key="normal" title=" ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -500,14 +487,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="TransitDirections:" destination="MoA-gP-I0c" eventType="touchUpInside" id="cq2-NX-sgT"/>
+                                    <action selector="TransitDirections2:" destination="MoA-gP-I0c" eventType="touchUpInside" id="fig-TF-43C"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quA-m5-HKX">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="quA-m5-HKX">
                                 <rect key="frame" x="65" y="500" width="190" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="11"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="10"/>
                                 <state key="normal" title=" ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -516,6 +503,9 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="TransitDirections4:" destination="MoA-gP-I0c" eventType="touchUpInside" id="0Ff-xW-HpQ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TRANSIT NEAR YOU:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5d-o8-C3Y">
                                 <rect key="frame" x="48" y="326" width="225" height="31"/>
@@ -524,6 +514,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4QY-UF-mTV">
+                                <rect key="frame" x="65" y="455" width="190" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="10"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="TransitDirections3:" destination="MoA-gP-I0c" eventType="touchUpInside" id="PtM-gb-KQF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="jx5-gb-MqN"/>
@@ -532,7 +539,7 @@
                         <outlet property="ClosestTransit" destination="67M-ul-htI" id="6Nk-Sl-pfE"/>
                         <outlet property="FarthestTransit" destination="quA-m5-HKX" id="6Pd-cY-fir"/>
                         <outlet property="SecondClosestTransit" destination="kfY-KQ-Lcr" id="QJd-QK-bbK"/>
-                        <outlet property="ThirdClosestTransit" destination="8fD-OJ-0rq" id="A2k-aM-7Wj"/>
+                        <outlet property="ThirdButton" destination="4QY-UF-mTV" id="dfO-ke-DUl"/>
                         <segue destination="fxy-Xt-YWi" kind="showDetail" identifier="BackToMainNav" id="yZN-Qw-P74"/>
                         <segue destination="h0n-FN-BTh" kind="showDetail" identifier="TransitDirections" id="2Ty-KO-cme"/>
                     </connections>
@@ -817,19 +824,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nr1-Mk-Ggu">
-                                <rect key="frame" x="47" y="419" width="219" height="100"/>
+                                <rect key="frame" x="47" y="401" width="219" height="118"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YEV-dG-lsw">
                                         <rect key="frame" x="0.0" y="0.0" width="219" height="206"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="223" translatesAutoresizingMaskIntoConstraints="NO" id="aHr-ki-Hcw">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="223" translatesAutoresizingMaskIntoConstraints="NO" id="aHr-ki-Hcw">
                                                 <rect key="frame" x="0.0" y="0.0" width="219" height="139"/>
-                                                <string key="text">TURN LEFT ONTO GREAT PLAIN AVE AND WALK FOR .3 MILES. 
-
-TURN LEFT ONTO GREAT PLAIN AVE AND WALK FOR .3 MILES. 
-
-TURN LEFT ONTO RESERVOIR STREET AND WALK FOR 477 FEET</string>
-                                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <string key="userLabel">TURN LEFT ONTO GREAT PLAIN AVE AND WALK FOR .3 MILES.   TURN LEFT ONTO GREAT PLAIN AVE AND WALK FOR .3 MILES.   TURN LEFT ONTO RESERVOIR STREET AND WALK FOR 477 FEET</string>
@@ -867,6 +869,7 @@ TURN LEFT ONTO RESERVOIR STREET AND WALK FOR 477 FEET</string>
                         <viewLayoutGuide key="safeArea" id="qDD-6F-ySM"/>
                     </view>
                     <connections>
+                        <outlet property="Directions" destination="aHr-ki-Hcw" id="E1k-6f-oao"/>
                         <outlet property="whereToLabel" destination="cvw-Oa-1UN" id="heV-Rv-Paz"/>
                         <segue destination="MoA-gP-I0c" kind="showDetail" identifier="DirectionsToNav" id="xPS-4D-yPf"/>
                     </connections>

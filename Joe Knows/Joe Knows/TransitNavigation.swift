@@ -15,8 +15,7 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var mapView: MKMapView!
     var locationManager : CLLocationManager!
     @IBOutlet weak var whereToLabel: UILabel!
-    
-    @IBOutlet weak var buttonTest: UIButton!
+    @IBOutlet weak var Directions: UILabel!
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +64,7 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func findDirection(){
+        
         let request = MKDirections.Request()
         request.source = MKMapItem.forCurrentLocation()
         let dest = MKPlacemark.init(coordinate: CLLocationCoordinate2D.init(latitude: latDest!, longitude: lonDest!))
@@ -78,9 +78,11 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print(directions)
         print(directions.debugDescription)
         print(directions.description)
-        
+       
         directions.calculate { (directions, error) in
+            
             if let response = directions, let route = response.routes.first {
+                print("finding directions")
                 print(route.distance)
                 let steps = route.steps
                 print(route.expectedTravelTime/60)
@@ -92,11 +94,15 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 self.whereToLabel.text = "\(address) The estimated time to get there is:  \(route.expectedTravelTime/60) minutes"
                 
+                var directionsString = ""
+                
                 for step in steps{
                     step.instructions
                     print(step.instructions)
+                    directionsString += step.instructions + "\n" + "\n"
+                    print(directionsString)
                 }
-                
+                 self.Directions.text = directionsString
             }
         }
     }
