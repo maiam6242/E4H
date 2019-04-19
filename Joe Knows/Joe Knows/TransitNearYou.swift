@@ -20,7 +20,10 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //    var sensorTag:CBPeripheral?
  
     
-    var distanceOrder = [String : Double]()
+    var distanceOrder = [(name: String, value: Double)]()
+    
+    
+    
    
     
 //    init(proximityUUID: uuid, identifier: "First Beacon")
@@ -91,7 +94,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //showTransit()
         
     }
-    
+
     func showTransit(){
         let request2 = MKLocalSearch.Request()
         
@@ -124,6 +127,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
     }
+    
     func getCoordinate(latitude:Double , longitude:Double ) -> CLLocationCoordinate2D{
         let lat = latitude
         let lon = longitude
@@ -182,42 +186,19 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation], didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         userLocation = locations[0] as CLLocation
         
-        //
-        //       let currentLocationLabel: UILabel!
-        //        currentLocationLabel.text = "coordinates: and \(userLocation.coordinate.latitude)"
-        
-        // Call stopUpdatingLocation() to stop listening for location updates,
-        // other wise this function will be called every time when user location changes.
-        //manager.stopUpdatingLocation()
-        
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
-//        if beacons.count > 0 {
-//            let beacon = beacons[0]
-//            update(distance: beacon.proximity)
-//        } else{
-//            update(distance: .unknown)
-//        }
-//
-        mapView.setRegion(region, animated: false)
+        mapView.setRegion(region, animated: true)
         
         // Drop a pin at user's Current Location
-        let myAnnotation2: MKPointAnnotation = MKPointAnnotation()
-        myAnnotation2.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+        myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
         
-        myAnnotation2.title = "Current location"
-//        let pin = MKPinAnnotationView(annotation: myAnnotation2, reuseIdentifier: myAnnotation2.title)
-        print(myAnnotation2)
-        print("what if you worked?!")
-        print(userLocation)
-        let an = [myAnnotation2]
-//        pin.pinTintColor = UIColor.blue
-        mapView.addAnnotation(myAnnotation2)
-        mapView.showAnnotations(an, animated: false)
-       
-        
+        myAnnotation.title = "Current location"
+        mapView.addAnnotation(myAnnotation)
     }
+
     func orderLocs(){
         //TODO: put in the right uuid string for this beacon!
         
@@ -235,22 +216,52 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             let long = key.getCoordLon()!
             let loc:CLLocation = CLLocation.init(latitude: lat, longitude: long)
             print(UUIDs)
-            distanceOrder[u] = userLocation.distance(from: loc)
+            print(distanceOrder.count)
+            print(distanceOrder.capacity)
+            let dis = userLocation.distance(from: loc)
+            let item:(String,Double)=(u,dis)
+            distanceOrder.append(item)
+            print("screw you")
             print(distanceOrder)
+            print(item)
+            print(distanceOrder.count)
+//            distanceOrder[count] = (u, userLocation.distance(from: loc))
+           // print(distanceOrder)
+            //at this point, distance order is unordered (in same order as was inputted into list)
             
             count += 1
         }
-    
-    for i in 0...5 {
-    
-    if(distanceOrder[UUIDs[i]]! > distanceOrder[UUIDs[i+1]]!){
-    let hold = distanceOrder[UUIDs[i]]
-    distanceOrder[UUIDs[i]] = distanceOrder[UUIDs[i+1]]
-    distanceOrder[UUIDs[i+1]] = hold
+        
+    for i in distanceOrder.indices {
+        print("why can't code just work?!")
+        if(i == 6){
+            break}
+        print(distanceOrder[i])
+        var next = distanceOrder.index(after: i)
+        print(i)
+        print(distanceOrder.index(after: i))
+        print(distanceOrder[next])
+        
+    if(distanceOrder[i] > distanceOrder[next]){
+        
+    print(distanceOrder[i] > distanceOrder[next])
     print(distanceOrder)
+        
+    let hold = distanceOrder[i]
+    
+    
+    distanceOrder[i] = distanceOrder[next]
+    distanceOrder[next] = hold
+    print("check order change")
+    print(distanceOrder)
+    print(distanceOrder[i])
+    print(distanceOrder[next])
+        
+    print(distanceOrder[i] > distanceOrder[next] )
+        
     }
-      BeaconSet.setDistanceOrder(dO: distanceOrder)
     }
+    BeaconSet.setDistanceOrder(dO: distanceOrder)
 //        let uuid = UUID(uuidString: "CB01A845-55DC-4551-8FDB-D0318752CC1D")!
 //        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "First Beacon")
 //        locationManager.startMonitoring(for: beaconRegion)
@@ -276,39 +287,18 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         var count = 0
         print("distanceOrder")
         print(distanceOrder)
-        var dOIterator = distanceOrder.keys.makeIterator()
         print(distanceOrder.capacity > count)
-        while (count < 4) {
-           let keyy = dOIterator.next()
-            print(keyy)
-            let name =  BeaconSet.beacon[keyy!]
-            print(name)
-            if count == 0 {
-            ClosestTransit.setTitle(name?.getName(), for: .normal)
+        //TODO: Check this logic
+        
+ClosestTransit.setTitle(distanceOrder[0].name, for: .normal)
                 print("hey")
-                print(count)
-                count += 1
-                print(count)
-            }
-            else if count == 1{
-                SecondClosestTransit.setTitle(name?.getName(), for: .normal)
-                count += 1
+SecondClosestTransit.setTitle(distanceOrder[1].name, for: .normal)
                 print("yo")
-            }
-            else if count == 2{
-                ThirdClosestTransit.setTitle(name?.getName(), for: .normal)
-                count += 1
+ThirdClosestTransit.setTitle(distanceOrder[2].name, for: .normal)
                 print("hello")
-            }
-            else if count == 3{
-                FarthestTransit.setTitle(name?.getName(), for: .normal)
-                count += 1
+FarthestTransit.setTitle(distanceOrder[3].name, for: .normal)
                 print("ahhhh")
-            }
-        }
-
-        
-        
+       
     }
     func update(distance: CLProximity){
         switch distance{
@@ -341,6 +331,8 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.annotations.append(myAnnotation)
     }
         self.mapView.showAnnotations(self.annotations, animated: false)
+        self.mapView.sizeToFit()
+       
     }
     
     /*

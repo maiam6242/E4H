@@ -1105,8 +1105,7 @@ TURN LEFT ONTO RESERVOIR STREET AND WALK FOR 477 FEET</string>
         <image name="ic_place_24px.png" width="46.333332061767578" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fwz-fe-B46"/>
-        <segue reference="LGc-hK-92f"/>
+        <segue reference="2Ty-KO-cme"/>
         <segue reference="7UG-yU-hMj"/>
         <segue reference="xPS-4D-yPf"/>
         <segue reference="yZN-Qw-P74"/>

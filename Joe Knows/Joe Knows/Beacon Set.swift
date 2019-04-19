@@ -13,7 +13,7 @@ struct BeaconSet{
     var ID:String = ""
     var uuid:UUID = UUID(uuidString: "NO UUID HERE")!
     static var beacon = Dictionary<String,beaconData>()
-    static var distanceOrder = [String:Double]()
+    static var distanceOrder = [(name: String, value :Double)]()
     
     
     static func beaconSet(ID : [String]) -> Dictionary<String,beaconData>{
@@ -22,7 +22,7 @@ struct BeaconSet{
         return beacon
     }
     
-    static func setDistanceOrder(dO: [String: Double] ){
+    static func setDistanceOrder(dO: [(name: String, value : Double)] ){
         distanceOrder = dO;
         print("hey this is a fucntion")
     }

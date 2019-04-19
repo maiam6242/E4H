@@ -50,23 +50,14 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var lonDest:Double? = 0
     
     func readButton(){
-        var iter =  BeaconSet.distanceOrder.makeIterator()
-        var count = 0
-        
-        while (count < 2)
-        {
-        iter.next()
-        count += 1
-        }
         print("are we here")
+        let distance = BeaconSet.distanceOrder[2].value
+        let UUID = BeaconSet.distanceOrder[2].name
+        print(distance)
+        print(UUID)
         
-        let key = iter.next()?.key
-        let val = BeaconSet.distanceOrder[key!]
-        print(val)
-        print(key)
-        
-        latDest = BeaconSet.beacon[key!]?.getCoordLat()
-        lonDest = BeaconSet.beacon[key!]?.getCoordLon()
+        latDest = BeaconSet.beacon[UUID]?.getCoordLat()
+        lonDest = BeaconSet.beacon[UUID]?.getCoordLon()
         
         print(latDest!)
         print(lonDest!)
