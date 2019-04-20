@@ -22,7 +22,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     var distanceOrder = [(name: String, value: Double)]()
     
-    
+    var clicked = 10
     
    
     
@@ -34,6 +34,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var SecondClosestTransit: UIButton!
     @IBOutlet weak var ThirdClosestTransit: UIButton!
     @IBOutlet weak var FarthestTransit: UIButton!
+    
     @IBAction func ClosestTransit(_ sender: Any) {
         
     }
@@ -43,7 +44,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.viewDidLoad()
 //        centralManager = CBCentralManager(delegate: self, queue: nil)
         // Do any additional setup after loading the view.
-        
+    
     }
     
 //    func centralManagerDidUpdateState(central: CBCentralManager){
@@ -66,23 +67,37 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //
 //        }
 //   }
+    
+    
+    
+    
     @IBAction func BackToMainNav(_ sender: Any) {
         performSegue(withIdentifier: "BackToMainNav", sender: self)
+        
     }
     
     
-    @IBAction func TransitDirections1(_ sender: Any) {
+    @IBAction func TransitDirections1(_ sender: UIButton!) {
+        clicked = 0
         performSegue(withIdentifier: "TransitDirections", sender: self)
+        
     }
-    @IBAction func TransitDirections2(_ sender: Any) {
+   
+@IBAction func TransitDirections2(_ sender: UIButton!) {
+        clicked = 1
         performSegue(withIdentifier: "TransitDirections", sender: self)
+    
     }
     
-    @IBAction func TransitDirections3(_ sender: Any) {
+    @IBAction func TransitDirections3(_ sender: UIButton!) {
+        clicked = 2
         performSegue(withIdentifier: "TransitDirections", sender: self)
+        
     }
-    @IBAction func TransitDirections4(_ sender: Any) {
+    @IBAction func TransitDirections4(_ sender: UIButton!) {
+        clicked = 3
         performSegue(withIdentifier: "TransitDirections", sender: self)
+        
     }
   
     override func didReceiveMemoryWarning() {
@@ -294,14 +309,18 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //        locationManager.startMonitoring(for: beaconRegion)
 //        locationManager.startRangingBeacons(in: beaconRegion)
 //    }
+    var n0 = ""
+    var n1 = ""
+    var n2 = ""
+    var n3 = ""
     
     func fillButtons(){
         print("distanceOrder")
         print(distanceOrder)
-        let n0 = BeaconSet.beacon[distanceOrder[0].name]?.getName()
-        let n1 = BeaconSet.beacon[distanceOrder[1].name]?.getName()
-        let n2 = BeaconSet.beacon[distanceOrder[2].name]?.getName()
-        let n3 = BeaconSet.beacon[distanceOrder[3].name]?.getName()
+        n0 = (BeaconSet.beacon[distanceOrder[0].name]?.getName())!
+        n1 = (BeaconSet.beacon[distanceOrder[1].name]?.getName())!
+        n2 = (BeaconSet.beacon[distanceOrder[2].name]?.getName())!
+        n3 = (BeaconSet.beacon[distanceOrder[3].name]?.getName())!
         //TODO: Check this logic
        
         
@@ -351,15 +370,41 @@ FarthestTransit.setTitle(n3, for: .normal)
        
     }
     
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+   //  In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "TransitDirections"){
+            
+//            let (sender as? UIButton)?.segue.
+            let VC = segue.destination as! TransitNavigation
+//            let bT = (sender as? UIButton)?.currentTitle
+//                print("b flipping T")
+//                print(bT)
+//                if(bT == n0){
+//                    VC.buttonIndex = 0
+//                }
+//                else if(bT == n1){
+//                    VC.buttonIndex = 1
+//                }
+//                else if(bT == n2){
+//                    VC.buttonIndex = 2
+//                }
+//                else if(bT == n3){
+//                    VC.buttonIndex = 3
+//                }
+//
+//
+            VC.buttonIndex = clicked
+            print("clicked")
+            print(clicked)
+            print(VC.buttonIndex)
+        }
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
 
