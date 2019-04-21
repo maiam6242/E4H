@@ -26,7 +26,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var timer = Timer()
     var characteristics = [String : CBCharacteristic]()
     var blePeripheral : CBPeripheral?
-    
+    var navTo : CBPeripheral?
     
 
     var distanceOrder = [(name: String, value: Double)]()
@@ -50,10 +50,20 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         centralManager = CBCentralManager(delegate: self, queue: nil)
+        //navTo?.addObserver(self, forKeyPath: "test", options: [.new,.old], context: nil)
 //        centralManager.scanForPeripherals(withServices: nil, options: nil)
         // Do any additional setup after loading the view.
     
     }
+    
+//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        if keyPath == "test" {
+//            if navTo?.name == "Adafruit Bluefruit LE"{
+//                let AV = BeaconNavigation()
+//                navigationController?.pushViewController(AV, animated: true)
+//            }
+//        }
+//    }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == CBManagerState.poweredOn {
@@ -102,7 +112,13 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //        }
 //   }
     
-    
+    func moveScreens(){
+        print("is this going to move?!")
+        let BeNav = storyboard!.instantiateViewController(withIdentifier: "BeaconNavigation") as! BeaconNavigation
+        self.present(BeNav, animated: true, completion: nil)
+       // navigationController?.pushViewController(BeaconNavigation(), animated: true)
+       // navigationController?.popToViewController(BeaconNavigation(), animated: true)
+    }
     
     
     @IBAction func BackToMainNav(_ sender: Any) {
@@ -344,7 +360,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //TODO: put in the right uuid string for this beacon!
         
         var count = 0
-        let UUIDs : [String] = ["B1626FA5-8265-6FF1-4AAA-A84AEDA38077","90811294-B5FD-454A-BF0A-272650EA7860","29F35B05-084A-4AF4-9F64-A92F411CEA41","73EEB531-EBF8-4495-A9E0-1E5316D2E6CF","FA33023B-E968-43FB-8E79-A2B9E3CA01A9","U72EBB70C-D806-4D40-B742-64D9346D0DD8","76A1827E-4EE5-4CC9-B12E-5ED12963399B"]
+        let UUIDs : [String] = ["488D15E5-8EAC-062F-72K5-B0D5EA08AF49","90811294-B5FD-454A-BF0A-272650EA7860","29F35B05-084A-4AF4-9F64-A92F411CEA41","73EEB531-EBF8-4495-A9E0-1E5316D2E6CF","FA33023B-E968-43FB-8E79-A2B9E3CA01A9","U72EBB70C-D806-4D40-B742-64D9346D0DD8","488D15E5-8EAC-062F-72F5-B0D5EA08AF49"]
         print("yoooo")
         print(UUIDs)
         print(BeaconSet.beacon.values)
@@ -460,8 +476,9 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if (peripheral.name == "Adafruit Bluefruit LE"){
             print(peripheral.name)
             centralManager.connect(peripheral, options: nil)
-            
+            navTo = peripheral
             cancelScan()
+            moveScreens()
         }
         if blePeripheral == nil {
             print("Found new pheripheral devices with services")
@@ -537,7 +554,7 @@ FarthestTransit.setTitle(n3, for: .normal)
 
    //  In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "TransitDirections"){
+        if(segue.identifier == "TransitDirections" && navTo == nil){
             
 //            let (sender as? UIButton)?.segue.
             let VC = segue.destination as! TransitNavigation
@@ -546,6 +563,7 @@ FarthestTransit.setTitle(n3, for: .normal)
             print(clicked)
             print(VC.buttonIndex)
         }
+        
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }

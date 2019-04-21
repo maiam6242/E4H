@@ -1053,7 +1053,7 @@
         <!--Beacon Navigation-->
         <scene sceneID="Puf-Fc-xjJ">
             <objects>
-                <viewController id="uts-Vz-lVT" customClass="BeaconNavigation" customModule="Joe_Knows" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BeaconNavigation" id="uts-Vz-lVT" customClass="BeaconNavigation" customModule="Joe_Knows" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uLa-kZ-oAU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1288,7 +1288,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="2Ty-KO-cme"/>
         <segue reference="7UG-yU-hMj"/>
-        <segue reference="xPS-4D-yPf"/>
+        <segue reference="5gA-hz-odJ"/>
         <segue reference="yZN-Qw-P74"/>
     </inferredMetricsTieBreakers>
 </document>

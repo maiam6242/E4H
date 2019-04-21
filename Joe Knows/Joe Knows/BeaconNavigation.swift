@@ -8,13 +8,18 @@
 
 import UIKit
 import MapKit
+import CoreBluetooth
+import CoreLocation
 
 
-class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate {
+    
+    var whereTo:CBPeripheral?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("where flippin to?!")
+        print(whereTo)
         // Do any additional setup after loading the view.
     }
     
