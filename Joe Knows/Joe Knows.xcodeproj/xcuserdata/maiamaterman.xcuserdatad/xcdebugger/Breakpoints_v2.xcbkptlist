@@ -10,13 +10,106 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Joe Knows/TransitNearYou.swift"
-            timestampString = "577512533.516518"
+            timestampString = "577525226.584932"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "orderLocs()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Joe Knows/TransitNearYou.swift"
+            timestampString = "577525226.586293"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Joe_Knows.TransitNearYou.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Joe_Knows.TransitNearYou"
+                  moduleName = "Joe Knows"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maiamaterman/Documents/GitHub/E4H/Joe%20Knows/Joe%20Knows/TransitNearYou.swift"
+                  timestampString = "577515813.5850281"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Joe_Knows.TransitNearYou.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Joe_Knows.TransitNearYou"
+                  moduleName = "Joe Knows"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maiamaterman/Documents/GitHub/E4H/Joe%20Knows/Joe%20Knows/TransitNearYou.swift"
+                  timestampString = "577515813.592465"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "203">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Joe_Knows.TransitNearYou.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Joe_Knows.TransitNearYou&gt;"
+                  moduleName = "Joe Knows"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maiamaterman/Documents/GitHub/E4H/Joe%20Knows/Joe%20Knows/TransitNearYou.swift"
+                  timestampString = "577515813.596814"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Joe_Knows.TransitNearYou.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Joe_Knows.TransitNearYou&gt;"
+                  moduleName = "Joe Knows"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maiamaterman/Documents/GitHub/E4H/Joe%20Knows/Joe%20Knows/TransitNearYou.swift"
+                  timestampString = "577515813.601058"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Joe_Knows.TransitNearYou.__deallocating_deinit"
+                  moduleName = "Joe Knows"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maiamaterman/Documents/GitHub/E4H/Joe%20Knows/Joe%20Knows/TransitNearYou.swift"
+                  timestampString = "577515813.604629"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

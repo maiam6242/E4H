@@ -12,20 +12,27 @@ import CoreBluetooth
 import CoreLocation
 
 
-class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
+class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate, CBCentralManagerDelegate{
     var mapView: MKMapView! = MKMapView.init()
     var locationManager : CLLocationManager! = CLLocationManager.init()
     var annotations = [MKPointAnnotation]()
     var centralManager:CBCentralManager!
-    var sensorTag:CBPeripheral?
- 
+//    var sensorTag:CBPeripheral?
+    var RSSIs = [NSNumber]()
+    var data = NSMutableData()
+    var writeData: String = ""
+    var peripherals: [CBPeripheral] = []
+    var characteristicValue = [CBUUID: NSData]()
+    var timer = Timer()
+    var characteristics = [String : CBCharacteristic]()
+    var blePeripheral : CBPeripheral?
     
+
     var distanceOrder = [(name: String, value: Double)]()
     
     var clicked = 10
     
    
-    
 //    init(proximityUUID: uuid, identifier: "First Beacon")
 //    var bRegion = CLBeaconRegion
 //    self.locMan.startMonitoringForRegion(beaconRegion)
@@ -39,15 +46,40 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  centralManager = CBCentralManager.init(delegate: self, queue: nil)
-        
+        centralManager = CBCentralManager(delegate: self, queue: nil)
+//        centralManager.scanForPeripherals(withServices: nil, options: nil)
         // Do any additional setup after loading the view.
     
     }
     
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        if central.state == CBManagerState.poweredOn {
+            // We will just handle it the easy way here: if Bluetooth is on, proceed...start scan!
+            print("Bluetooth Enabled")
+            startScan()
+            
+        } else {
+            //If Bluetooth is off, display a UI alert message saying "Bluetooth is not enable" and "Make sure that your bluetooth is turned on"
+            print("Bluetooth Disabled- Make sure your Bluetooth is turned on")
+            
+            let alertVC = UIAlertController(title: "Bluetooth is not enabled", message: "Make sure that your bluetooth is turned on", preferredStyle: UIAlertController.Style.alert)
+            let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) -> Void in
+                self.dismiss(animated: true, completion: nil)
+            })
+            alertVC.addAction(action)
+            self.present(alertVC, animated: true, completion: nil)
+        }
+    }
+    
+//    func centralManager(central: CBCentralManager,
+//                        didDiscoverPeripheral peripheral: CBPeripheral,
+//                        advertisementData: [String : AnyObject],
+//                        RSSI: NSNumber!)
+//    {
+//        print(“peripheral: \(peripheral)”)
+//    }
 //    func centralManagerDidUpdateState(central: CBCentralManager){
 //        switch central.state{
 //        case .poweredOn:
@@ -81,7 +113,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         performSegue(withIdentifier: "TransitDirections", sender: self)
     }
    
-@IBAction func TransitDirections2(_ sender: UIButton!) {
+    @IBAction func TransitDirections2(_ sender: UIButton!) {
         clicked = 1
         performSegue(withIdentifier: "TransitDirections", sender: self)
     }
@@ -99,13 +131,77 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(!animated)
         createMapView()
         
-        
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("Stop Scanning")
+        centralManager?.stopScan()
+    }
+    
+    func disconnectFromDevice () {
+        if blePeripheral != nil {
+            // We have a connection to the device but we are not subscribed to the Transfer Characteristic for some reason.
+            // Therefore, we will just disconnect from the peripheral
+            centralManager?.cancelPeripheralConnection(blePeripheral!)
+        }
+    }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        print("*****************************")
+        print("Connection complete")
+        print("Peripheral info: \(blePeripheral)")
+        
+        //Stop Scan- We don't need to scan once we've connected to a peripheral. We got what we came for.
+        centralManager?.stopScan()
+        print("Scan Stopped")
+        
+        //Erase data that we might have
+        data.length = 0
+        
+        //Discovery callback
+        peripheral.delegate = self
+        //Only look for services that matches transmit uuid
+        peripheral.discoverServices([CBUUID(string: "48B3ED5E-7D68-4871-907B-B91D3B52952A")])
+        print("do beacons work?! asking for a friend...")
+        print(peripheral.readRSSI())
+    }
+    
+    func connectToDevice () {
+        centralManager?.connect(blePeripheral!, options: nil)
+    }
+    
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        if error != nil {
+            print("Failed to connect to peripheral")
+            return
+        }
+    }
+    
+    func disconnectAllConnection() {
+        centralManager.cancelPeripheralConnection(blePeripheral!)
+    }
+    
+    func centralManager(central: CBCentralManager,
+                        didConnectPeripheral peripheral: CBPeripheral)
+    {
+        print("connected!")
+    }
+    // Called when it failed
+    private func centralManager(central: CBCentralManager,
+                        didFailToConnectPeripheral peripheral: CBPeripheral,
+                        error: NSError?)
+    {
+        print("failed…")
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
+        disconnectFromDevice()
         super.viewDidAppear(!animated)
         determineCurrentLocation()
         print("now am here")
@@ -115,9 +211,13 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("here now too!!")
         startScan()
         showLocations()
+        print("just kiddin'")
+        print(blePeripheral?.name)
+        print(peripherals.count)
         //showTransit()
         
     }
+
 
     func showTransit(){
         let request2 = MKLocalSearch.Request()
@@ -191,12 +291,17 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         view.sendSubviewToBack(mapView)
     }
     
+    func restoreCentralManager() {
+        //Restores Central Manager delegate if something went wrong
+        centralManager?.delegate = self
+    }
+    
+    
     func determineCurrentLocation(){
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        
         
         if CLLocationManager.locationServicesEnabled(){
             print("services enabled")
@@ -238,7 +343,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //TODO: put in the right uuid string for this beacon!
         
         var count = 0
-        let UUIDs : [String] = ["48B3ED5E-7D68-4871-907B-B91D3B52952A","90811294-B5FD-454A-BF0A-272650EA7860","29F35B05-084A-4AF4-9F64-A92F411CEA41","73EEB531-EBF8-4495-A9E0-1E5316D2E6CF","FA33023B-E968-43FB-8E79-A2B9E3CA01A9","U72EBB70C-D806-4D40-B742-64D9346D0DD8","76A1827E-4EE5-4CC9-B12E-5ED12963399B"]
+        let UUIDs : [String] = ["B1626FA5-8265-6FF1-4AAA-A84AEDA38077","90811294-B5FD-454A-BF0A-272650EA7860","29F35B05-084A-4AF4-9F64-A92F411CEA41","73EEB531-EBF8-4495-A9E0-1E5316D2E6CF","FA33023B-E968-43FB-8E79-A2B9E3CA01A9","U72EBB70C-D806-4D40-B742-64D9346D0DD8","76A1827E-4EE5-4CC9-B12E-5ED12963399B"]
         print("yoooo")
         print(UUIDs)
         print(BeaconSet.beacon.values)
@@ -267,34 +372,39 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             count += 1
         }
         
-    for i in distanceOrder.indices {
-        print("why can't code just work?!")
-        if(i == 6){
-            break}
-        print(distanceOrder[i])
-        var next = distanceOrder.index(after: i)
-        print(i)
-        print(distanceOrder.index(after: i))
-        print(distanceOrder[next])
+        for n in distanceOrder.indices{
+            for i in distanceOrder.indices {
+                print("why can't code just work?!")
+                if(i == 6){
+                    break
+                }
+                print(distanceOrder[i])
+                var next = distanceOrder.index(after: i)
+                print(i)
+                print(distanceOrder.index(after: i))
+                print(distanceOrder[next])
         
-    if(distanceOrder[i] > distanceOrder[next]){
-        
-    print(distanceOrder[i] > distanceOrder[next])
-    print(distanceOrder)
-        
-    let hold = distanceOrder[i]
+                if(distanceOrder[i].value > distanceOrder[next].value){
+                    print(distanceOrder[i] > distanceOrder[next])
+                    print(distanceOrder)
+                    let hold = distanceOrder[i]
     
-    distanceOrder[i] = distanceOrder[next]
-    distanceOrder[next] = hold
-    print("check order change")
-    print(distanceOrder)
-    print(distanceOrder[i])
-    print(distanceOrder[next])
+                    distanceOrder[i] = distanceOrder[next]
+                    distanceOrder[next] = hold
+                    print("check order change")
+                    print(distanceOrder)
+                    print(distanceOrder[i])
+                    print(distanceOrder[next])
+                    print(distanceOrder[i] > distanceOrder[next] )
         
-    print(distanceOrder[i] > distanceOrder[next] )
+                }
+            }
+        }
         
-    }
-    }
+        for x in distanceOrder.indices{
+            print(distanceOrder[x].value)
+        }
+        
     BeaconSet.setDistanceOrder(dO: distanceOrder)
 //        let uuid = UUID(uuidString: "CB01A845-55DC-4551-8FDB-D0318752CC1D")!
 //        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "First Beacon")
@@ -304,24 +414,55 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //
     }
     
-    func startScan(){
+    @objc func cancelScan() {
+        self.centralManager?.stopScan()
+        print("Scan Stopped")
+        print("Number of Peripherals Found: \(peripherals.count)")
+    }
+    
+    func startScan() {
+        print("Now Scanning...")
+        self.timer.invalidate()
+        centralManager?.scanForPeripherals(withServices: [CBUUID(string:"B1626FA5-8265-6FF1-4AAA-A84AEDA38077")] , options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
+        print("what if thiS worked?!")
+        print(centralManager.isScanning)
+        Timer.scheduledTimer(timeInterval: 1700, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)
         
-        let uuid = UUID.init(uuidString: "48b3ed5e-7d68-4871-907b-b91d3b52952a")
-      //  let uuid = NSUUID.init(uuidString: "48b3ed5e-7d68-4871-907b-b91d3b52952a")
-        print("wya")
-        print(uuid!.uuidString)
-        print(uuid)
-        
-        let beaconRegion = CLBeaconRegion(proximityUUID: uuid! as UUID, identifier: "testing things")
-        locationManager.startMonitoring(for: beaconRegion)
-        locationManager.startRangingBeacons(in: beaconRegion)
-        print("fun factoid")
-        print(beaconRegion)
-        print(locationManager.rangedRegions)
-        print(locationManager.monitoredRegions)
-        
+    
+//        let uuid = UUID.init(uuidString: "48b3ed5e-7d68-4871-907b-b91d3b52952a")
+//      //  let uuid = NSUUID.init(uuidString: "48b3ed5e-7d68-4871-907b-b91d3b52952a")
+//        print("wya")
+//        print(uuid!.uuidString)
+//        print(uuid)
+//
+//        let beaconRegion = CLBeaconRegion(proximityUUID: uuid! as UUID, identifier: "testing things")
+//        locationManager.startMonitoring(for: beaconRegion)
+//        locationManager.startRangingBeacons(in: beaconRegion)
+//        print("fun factoid")
+//        print(beaconRegion)
+//        print(locationManager.rangedRegions)
+//        print(locationManager.monitoredRegions)
+//
         
     }
+    
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        
+        blePeripheral = peripheral
+        self.peripherals.append(peripheral)
+        self.RSSIs.append(RSSI)
+        peripheral.delegate = self
+        print("cool cool")
+        print(peripheral.name)
+        
+        if blePeripheral == nil {
+            print("Found new pheripheral devices with services")
+            print("Peripheral name: \(String(describing: peripheral.name))")
+            print("**********************************")
+            print ("Advertisement Data : \(advertisementData)")
+        }
+    }
+    
     var n0 = ""
     var n1 = ""
     var n2 = ""
@@ -336,8 +477,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         n3 = (BeaconSet.beacon[distanceOrder[3].name]?.getName())!
         //TODO: Check this logic
        
-        
-        
+
 ClosestTransit.setTitle(n0, for: .normal)
                 print("hey")
 SecondClosestTransit.setTitle(n1, for: .normal)
