@@ -16,7 +16,30 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var locationManager : CLLocationManager!
     @IBOutlet weak var whereToLabel: UILabel!
     @IBOutlet weak var Directions: UILabel!
-  
+   
+    @IBOutlet weak var Dir1: UILabel!
+    @IBOutlet weak var Dir2: UILabel!
+    @IBOutlet weak var Dir3: UILabel!
+    @IBOutlet weak var Dir4: UILabel!
+    @IBOutlet weak var Dir5: UILabel!
+    @IBOutlet weak var Dir6: UILabel!
+    @IBOutlet weak var Dir7: UILabel!
+    @IBOutlet weak var Dir8: UILabel!
+    @IBOutlet weak var Dir9: UILabel!
+    @IBOutlet weak var Dir10: UILabel!
+    @IBOutlet weak var Dir11: UILabel!
+    @IBOutlet weak var Dir12: UILabel!
+    @IBOutlet weak var Dir13: UILabel!
+    @IBOutlet weak var Dir14: UILabel!
+    @IBOutlet weak var Dir15: UILabel!
+    @IBOutlet weak var Dir16: UILabel!
+    @IBOutlet weak var Dir17: UILabel!
+    @IBOutlet weak var Dir18: UILabel!
+    @IBOutlet weak var Dir19: UILabel!
+    @IBOutlet weak var Dir20: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -82,7 +105,6 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
         directions.calculate { (directions, error) in
             
             if let response = directions, let route = response.routes.first {
-                print("finding directions")
                 print(route.distance)
                 let steps = route.steps
                 print(route.expectedTravelTime/60)
@@ -92,20 +114,132 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                  let address = self.getAddress(userLocation: request.destination!)
                 
-                self.whereToLabel.text = "\(address) The estimated time to get there is:  \(route.expectedTravelTime/60) minutes"
+                print(route.expectedTravelTime/60)
+                print(address)
+                
+                self.whereToLabel.text = "\(address) The estimated time to get there is: \(route.expectedTravelTime/60)  minutes"
                 
                 var directionsString = ""
+                var n = 0
+//                var labelName: UILabel
+                n = steps.count
                 
-                for step in steps{
-                    step.instructions
-                    
-//                    print(step.instructions)
-//                    print(step.distance)
-                    directionsString += step.instructions + "\n" + "In \(Int((step.distance*3.281).rounded())) feet" + "\n"
-                    //print(directionsString)
+//                for step in steps{
+//                    step.instructions
+//
+//                    n += 1
+//
+//                    directionsString += step.instructions + "\n" + "In \(Int((step.distance*3.281).rounded())) feet" + "\n"
+//                }
+//
+                var i = 1
+                
+//                while i < n{
+//                    print(i)
+//                    print(steps[i].instructions)
+//                    self.Dir1.text = steps[i].instructions
+//                    i += 1
+//                    print(i)
+//                    print(steps[i].instructions)
+//                    self.Dir2.text = steps[i].instructions
+//                    i += 1
+//                    print(i)
+//                    print(steps[i].instructions)
+//                    self.Dir3.text = steps[i].instructions
+//                    i += 10
+//                    print (i)
+//                    //print(steps[i].instructions)
+//                    print (n)
+//                    self.Dir4.text = steps[i].instructions
+//                }
+                
+                if i < n{
+                    self.Dir1.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
                 }
-                print(directionsString)
-                self.Directions.text = directionsString
+                i += 1
+                if i < n{
+                    self.Dir2.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir3.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir4.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir5.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir6.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir7.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir8.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir9.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir10.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir11.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir12.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir13.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir14.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir15.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir16.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir17.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir18.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir19.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir20.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                
+                
+               // if != nil{
+               //     self.Dir3.text = steps[20].instructions
+              //  }
+                
+                
+               // self.Directions.text = directionsString
             }
         }
     }
