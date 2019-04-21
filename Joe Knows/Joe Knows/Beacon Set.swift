@@ -29,14 +29,13 @@ struct BeaconSet{
     
        
     static func fillMap(ID : [String]){
-        BeaconSet.beacon[ID[0]] = beaconData(n: "TestName1", c: -71.387, f: 42.302
-)
-            BeaconSet.beacon[ID[1]] = beaconData(n: "TestName2", c: -71.383, f: 42.36)
-            BeaconSet.beacon[ID[2]] = beaconData(n: "TestName3", c: -71.39, f: 42.30)
-            BeaconSet.beacon[ID[3]] = beaconData(n: "TestName4", c: -71.9, f: 42.4)
-            BeaconSet.beacon[ID[4]] = beaconData(n: "TestName5", c: -71.383831, f: 42.300332)
-            BeaconSet.beacon[ID[5]] = beaconData(n: "TestName6", c: -71.388, f: 42.30)
-            BeaconSet.beacon[ID[6]] = beaconData(n: "TestName7", c: -71.567, f: 42.98)
+            BeaconSet.beacon[ID[0]] = beaconData(n: "Kansas Street and Route 27 Bus Stop", c: -71.356469, f: 42.292805)
+            BeaconSet.beacon[ID[1]] = beaconData(n: "Natick Center Commuter Rail", c: -71.347075, f: 42.285806)
+            BeaconSet.beacon[ID[2]] = beaconData(n: "Natick Common Bus Stop", c: -71.347132, f: 42.284214)
+            BeaconSet.beacon[ID[3]] = beaconData(n: "Moran Park/Downtown Bus Stop", c: -71.347826, f: 42.285716)
+            BeaconSet.beacon[ID[4]] = beaconData(n: "Coolidge Gardens Bus Stop", c: -71.347077, f: 42.280864)
+            BeaconSet.beacon[ID[5]] = beaconData(n: "Senior Center Bus Stop", c: -71.337094, f: 42.287485)
+            BeaconSet.beacon[ID[6]] = beaconData(n: "Leonard Morse Hospital Bus Stop", c: -71.334033, f: 42.281315)
             
         }
     
