@@ -191,10 +191,6 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print(peripheral.readRSSI())
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
-        print("didReadRSSI \(RSSI)")
-    }
-    
     func connectToDevice () {
         centralManager?.connect(blePeripheral!, options: nil)
     }
