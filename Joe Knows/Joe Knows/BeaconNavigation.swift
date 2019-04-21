@@ -19,9 +19,16 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         print("where flippin to?!")
-        print(whereTo)
+        print(beaconLoc?.identifier)
+        
+        
+        destination.text = BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName()
+        
+        // destination.text
         // Do any additional setup after loading the view.
     }
+    
+    @IBOutlet weak var destination: UILabel!
     
     @IBAction func BeaconNavBack(_ sender: Any) {
         performSegue(withIdentifier: "BeaconNavBack", sender: self)

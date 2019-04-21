@@ -11,6 +11,7 @@ import MapKit
 import CoreBluetooth
 import CoreLocation
 
+var beaconLoc:CBPeripheral?
 
 class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate, CBCentralManagerDelegate{
     var mapView: MKMapView! = MKMapView.init()
@@ -27,6 +28,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var characteristics = [String : CBCharacteristic]()
     var blePeripheral : CBPeripheral?
     var navTo : CBPeripheral?
+    
     
 
     var distanceOrder = [(name: String, value: Double)]()
@@ -477,6 +479,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print(peripheral.name)
             centralManager.connect(peripheral, options: nil)
             navTo = peripheral
+            beaconLoc = peripheral
             cancelScan()
             moveScreens()
         }

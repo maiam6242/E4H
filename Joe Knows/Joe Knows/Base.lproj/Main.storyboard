@@ -1122,7 +1122,7 @@
                                     <action selector="SecretArrival:" destination="uts-Vz-lVT" eventType="touchUpInside" id="PF7-Hx-jpK"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ELIOT MBTA GREEN LINE STOP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lk-n3-Jja">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lk-n3-Jja">
                                 <rect key="frame" x="48" y="360" width="224" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
@@ -1134,6 +1134,7 @@
                         <viewLayoutGuide key="safeArea" id="rEO-bC-8Xm"/>
                     </view>
                     <connections>
+                        <outlet property="destination" destination="9lk-n3-Jja" id="A8u-bI-Xly"/>
                         <segue destination="JtE-ko-nGi" kind="showDetail" identifier="SecretArrival" id="Htb-74-uLj"/>
                     </connections>
                 </viewController>
