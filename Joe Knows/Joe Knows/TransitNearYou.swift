@@ -27,6 +27,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var characteristics = [String : CBCharacteristic]()
     var blePeripheral : CBPeripheral?
     
+    
 
     var distanceOrder = [(name: String, value: Double)]()
     
@@ -423,10 +424,12 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func startScan() {
         print("Now Scanning...")
         self.timer.invalidate()
-        centralManager?.scanForPeripherals(withServices: [CBUUID(string:"B1626FA5-8265-6FF1-4AAA-A84AEDA38077")] , options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
+        centralManager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
         print("what if thiS worked?!")
         print(centralManager.isScanning)
-        Timer.scheduledTimer(timeInterval: 1700, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)
+        print(centralManager.state)
+        
+        Timer.scheduledTimer(timeInterval: 170, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)
         
     
 //        let uuid = UUID.init(uuidString: "48b3ed5e-7d68-4871-907b-b91d3b52952a")
@@ -454,7 +457,12 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         peripheral.delegate = self
         print("cool cool")
         print(peripheral.name)
-        
+        if (peripheral.name == "Adafruit Bluefruit LE"){
+            print(peripheral.name)
+            centralManager.connect(peripheral, options: nil)
+            
+            cancelScan()
+        }
         if blePeripheral == nil {
             print("Found new pheripheral devices with services")
             print("Peripheral name: \(String(describing: peripheral.name))")
