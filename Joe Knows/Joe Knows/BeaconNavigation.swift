@@ -14,18 +14,35 @@ import CoreLocation
 
 class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate {
     
-    var whereTo:CBPeripheral?
-
+    var centralManager:CBCentralManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("where flippin to?!")
         print(beaconLoc?.identifier)
-        
-        
+//        centralManager = CBCentralManager(delegate: self, queue: nil)
+        centralManager.connect(beaconLoc!, options: nil)
         destination.text = BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName()
         
         // destination.text
         // Do any additional setup after loading the view.
+    }
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        if central.state == CBManagerState.poweredOn {
+            // We will just handle it the easy way here: if Bluetooth is on, proceed...start scan!
+            print("Bluetooth Enabled")
+            
+        } else {
+            //If Bluetooth is off, display a UI alert message saying "Bluetooth is not enable" and "Make sure that your bluetooth is turned on"
+            print("Bluetooth Disabled- Make sure your Bluetooth is turned on")
+            
+            let alertVC = UIAlertController(title: "Bluetooth is not enabled", message: "Make sure that your bluetooth is turned on", preferredStyle: UIAlertController.Style.alert)
+            let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) -> Void in
+                self.dismiss(animated: true, completion: nil)
+            })
+            alertVC.addAction(action)
+            self.present(alertVC, animated: true, completion: nil)
+        }
     }
     
     @IBOutlet weak var destination: UILabel!
@@ -46,11 +63,20 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(!animated)
         determineCurrentLocation()
+        getDistance()
         
     }
     @IBAction func SecretArrival(_ sender: Any) {
         performSegue(withIdentifier: "SecretArrival", sender: self)
         
+    }
+    
+    func getDistance(){
+        beaconLoc?.readRSSI()
+    }
+   
+    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+        print("didReadRSSI \(RSSI)")
     }
 
     func createMapView(){
