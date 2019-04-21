@@ -16,8 +16,8 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var mapView: MKMapView! = MKMapView.init()
     var locationManager : CLLocationManager! = CLLocationManager.init()
     var annotations = [MKPointAnnotation]()
-//    var centralManager:CBCentralManager!
-//    var sensorTag:CBPeripheral?
+    var centralManager:CBCentralManager!
+    var sensorTag:CBPeripheral?
  
     
     var distanceOrder = [(name: String, value: Double)]()
@@ -42,7 +42,8 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        centralManager = CBCentralManager(delegate: self, queue: nil)
+      //  centralManager = CBCentralManager.init(delegate: self, queue: nil)
+        
         // Do any additional setup after loading the view.
     
     }
@@ -73,31 +74,26 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBAction func BackToMainNav(_ sender: Any) {
         performSegue(withIdentifier: "BackToMainNav", sender: self)
-        
     }
-    
     
     @IBAction func TransitDirections1(_ sender: UIButton!) {
         clicked = 0
         performSegue(withIdentifier: "TransitDirections", sender: self)
-        
     }
    
 @IBAction func TransitDirections2(_ sender: UIButton!) {
         clicked = 1
         performSegue(withIdentifier: "TransitDirections", sender: self)
-    
     }
     
     @IBAction func TransitDirections3(_ sender: UIButton!) {
         clicked = 2
         performSegue(withIdentifier: "TransitDirections", sender: self)
-        
     }
+    
     @IBAction func TransitDirections4(_ sender: UIButton!) {
         clicked = 3
         performSegue(withIdentifier: "TransitDirections", sender: self)
-        
     }
   
     override func didReceiveMemoryWarning() {
@@ -117,6 +113,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("got here")
         fillButtons()
         print("here now too!!")
+        startScan()
         showLocations()
         //showTransit()
         
@@ -194,16 +191,15 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         view.sendSubviewToBack(mapView)
     }
     
-    
-    
-    
     func determineCurrentLocation(){
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         
+        
         if CLLocationManager.locationServicesEnabled(){
+            print("services enabled")
             locationManager.startUpdatingLocation()
         }
     }
@@ -212,6 +208,16 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation], didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         userLocation = locations[0] as CLLocation
+        print("beacons are the worst")
+        print(CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self))
+        
+        if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self){
+            print("hey its available!")
+        }
+        else{
+            print("shit, we can't get beacon")
+            
+        }
         
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -224,13 +230,15 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         myAnnotation.title = "Current location"
         mapView.addAnnotation(myAnnotation)
+        
+        update(distance: beacons[0].proximity)
     }
 
     func orderLocs(){
         //TODO: put in the right uuid string for this beacon!
         
         var count = 0
-        let UUIDs : [String] = ["2EFEC265-F897-48BE-B9F8-3CAE9597294E","90811294-B5FD-454A-BF0A-272650EA7860","29F35B05-084A-4AF4-9F64-A92F411CEA41","73EEB531-EBF8-4495-A9E0-1E5316D2E6CF","FA33023B-E968-43FB-8E79-A2B9E3CA01A9","U72EBB70C-D806-4D40-B742-64D9346D0DD8","76A1827E-4EE5-4CC9-B12E-5ED12963399B"]
+        let UUIDs : [String] = ["48B3ED5E-7D68-4871-907B-B91D3B52952A","90811294-B5FD-454A-BF0A-272650EA7860","29F35B05-084A-4AF4-9F64-A92F411CEA41","73EEB531-EBF8-4495-A9E0-1E5316D2E6CF","FA33023B-E968-43FB-8E79-A2B9E3CA01A9","U72EBB70C-D806-4D40-B742-64D9346D0DD8","76A1827E-4EE5-4CC9-B12E-5ED12963399B"]
         print("yoooo")
         print(UUIDs)
         print(BeaconSet.beacon.values)
@@ -276,7 +284,6 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     let hold = distanceOrder[i]
     
-    
     distanceOrder[i] = distanceOrder[next]
     distanceOrder[next] = hold
     print("check order change")
@@ -297,18 +304,24 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //
     }
     
-//    func startScan(){
-//        print(u == nil)
-//        var uuid = UUID.init(uuidString: u)
-//        let uuid = NSUUID.init(uuidString: u)
-//        print("wya")
-//        print(uuid?.uuidString)
-//        print(uuid!)
-//
-//        let beaconRegion = CLBeaconRegion(proximityUUID: uuid! as UUID, identifier: key.getName()!)
-//        locationManager.startMonitoring(for: beaconRegion)
-//        locationManager.startRangingBeacons(in: beaconRegion)
-//    }
+    func startScan(){
+        
+        let uuid = UUID.init(uuidString: "48b3ed5e-7d68-4871-907b-b91d3b52952a")
+      //  let uuid = NSUUID.init(uuidString: "48b3ed5e-7d68-4871-907b-b91d3b52952a")
+        print("wya")
+        print(uuid!.uuidString)
+        print(uuid)
+        
+        let beaconRegion = CLBeaconRegion(proximityUUID: uuid! as UUID, identifier: "testing things")
+        locationManager.startMonitoring(for: beaconRegion)
+        locationManager.startRangingBeacons(in: beaconRegion)
+        print("fun factoid")
+        print(beaconRegion)
+        print(locationManager.rangedRegions)
+        print(locationManager.monitoredRegions)
+        
+        
+    }
     var n0 = ""
     var n1 = ""
     var n2 = ""
@@ -335,6 +348,7 @@ FarthestTransit.setTitle(n3, for: .normal)
                 print("ahhhh")
        
     }
+    
     func update(distance: CLProximity){
         switch distance{
         case .unknown:
@@ -379,23 +393,6 @@ FarthestTransit.setTitle(n3, for: .normal)
             
 //            let (sender as? UIButton)?.segue.
             let VC = segue.destination as! TransitNavigation
-//            let bT = (sender as? UIButton)?.currentTitle
-//                print("b flipping T")
-//                print(bT)
-//                if(bT == n0){
-//                    VC.buttonIndex = 0
-//                }
-//                else if(bT == n1){
-//                    VC.buttonIndex = 1
-//                }
-//                else if(bT == n2){
-//                    VC.buttonIndex = 2
-//                }
-//                else if(bT == n3){
-//                    VC.buttonIndex = 3
-//                }
-//
-//
             VC.buttonIndex = clicked
             print("clicked")
             print(clicked)

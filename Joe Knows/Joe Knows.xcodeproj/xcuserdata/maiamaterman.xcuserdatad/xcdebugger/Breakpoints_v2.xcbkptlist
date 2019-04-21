@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Joe Knows/TransitNearYou.swift"
-            timestampString = "577438099.1969841"
+            timestampString = "577512533.516518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "orderLocs()"
             landmarkType = "7">
          </BreakpointContent>

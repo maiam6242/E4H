@@ -16,6 +16,8 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var locationManager : CLLocationManager!
     @IBOutlet weak var whereToLabel: UILabel!
     @IBOutlet weak var Directions: UILabel!
+    var buttonIndex = 10
+    
    
     @IBOutlet weak var Dir1: UILabel!
     @IBOutlet weak var Dir2: UILabel!
@@ -72,8 +74,8 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func readButton(){
         print("are we here")
-        let distance = BeaconSet.distanceOrder[2].value
-        let UUID = BeaconSet.distanceOrder[2].name
+        let distance = BeaconSet.distanceOrder[buttonIndex].value
+        let UUID = BeaconSet.distanceOrder[buttonIndex].name
         print(distance)
         print(UUID)
         
