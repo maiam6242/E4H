@@ -114,10 +114,10 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                  let address = self.getAddress(userLocation: request.destination!)
                 
-                print(route.expectedTravelTime/60)
+                print((route.expectedTravelTime/60).rounded())
                 print(address)
                 
-                self.whereToLabel.text = "\(address) The estimated time to get there is: \(route.expectedTravelTime/60)  minutes"
+                self.whereToLabel.text = "\(address) The estimated time to get there is: \(Int((route.expectedTravelTime/60).rounded())) minutes"
                 
                 var directionsString = ""
                 var n = 0
