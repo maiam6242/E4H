@@ -35,7 +35,7 @@ struct BeaconSet{
             BeaconSet.beacon[ID[3]] = beaconData(n: "Moran Park/Downtown Bus Stop", c: -71.347826, f: 42.285716)
             BeaconSet.beacon[ID[4]] = beaconData(n: "Coolidge Gardens Bus Stop", c: -71.347077, f: 42.280864)
             BeaconSet.beacon[ID[5]] = beaconData(n: "Senior Center Bus Stop", c: -71.337094, f: 42.287485)
-            BeaconSet.beacon[ID[6]] = beaconData(n: "Leonard Morse Hospital Bus Stop", c: -71.334033, f: 42.281315)
+            BeaconSet.beacon[ID[6]] = beaconData(n: "Joe's House", c: -71.353893, f: 42.282489)
             
         }
     

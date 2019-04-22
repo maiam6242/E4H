@@ -12,12 +12,14 @@ import CoreBluetooth
 import CoreLocation
 
 var beaconLoc:CBPeripheral?
+var centralManager:CBCentralManager!
+
 
 class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate, CBCentralManagerDelegate{
     var mapView: MKMapView! = MKMapView.init()
     var locationManager : CLLocationManager! = CLLocationManager.init()
     var annotations = [MKPointAnnotation]()
-    var centralManager:CBCentralManager!
+//    var centralManager:CBCentralManager!
 //    var sensorTag:CBPeripheral?
     var RSSIs = [NSNumber]()
     var data = NSMutableData()
@@ -434,7 +436,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     @objc func cancelScan() {
-        self.centralManager?.stopScan()
+        centralManager?.stopScan()
         print("Scan Stopped")
         print("Number of Peripherals Found: \(peripherals.count)")
     }
