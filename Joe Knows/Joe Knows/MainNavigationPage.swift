@@ -51,6 +51,7 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func createMapView(){
         mapView = MKMapView()
+        mapView.isAccessibilityElement = false
         
         let leftMargin:CGFloat = 1
         let topMargin:CGFloat = 1
