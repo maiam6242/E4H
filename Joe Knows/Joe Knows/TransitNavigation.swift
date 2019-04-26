@@ -8,9 +8,10 @@
 
 import UIKit
 import MapKit
+import CoreLocation
+import CoreBluetooth
 
-
-class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate {
 
     @IBOutlet var mapView: MKMapView!
     var locationManager : CLLocationManager!
@@ -40,10 +41,20 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var Dir19: UILabel!
     @IBOutlet weak var Dir20: UILabel!
     
-    
+    var centralManager:CBCentralManager!
+    var RSSIs = [NSNumber]()
+    var data = NSMutableData()
+    var writeData: String = ""
+    var peripherals: [CBPeripheral] = []
+    var characteristicValue = [CBUUID: NSData]()
+    var timer = Timer()
+    var characteristics = [String : CBCharacteristic]()
+    var blePeripheral : CBPeripheral?
+    var navTo : CBPeripheral?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
     @IBAction func TransitDirectionsBack(_ sender: Any) {
@@ -67,8 +78,16 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
         determineCurrentLocation()
         readButton()
         findDirection()
+        startScan()
         
     }
+    func moveScreens(){
+        print("is this going to move?!")
+        let BeNav = storyboard!.instantiateViewController(withIdentifier: "BeaconNavigation") as! BeaconNavigation
+        self.present(BeNav, animated: true, completion: nil)
+        
+    }
+    
     var latDest:Double? = 0
     var lonDest:Double? = 0
     
@@ -355,3 +374,65 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
 }
 
+extension TransitNavigation: CBCentralManagerDelegate{
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        
+        blePeripheral = peripheral
+        
+        self.peripherals.append(peripheral)
+        self.RSSIs.append(RSSI)
+        peripheral.delegate = self
+        print("cool cool")
+        print(peripheral.name)
+        
+        if (((peripheral.name?.localizedCaseInsensitiveContains("Adafruit")) ?? false)){
+            print(peripheral.name)
+            centralManager.connect(peripheral, options: nil)
+            navTo = peripheral
+            beaconLoc = peripheral
+            cancelScan()
+            moveScreens()
+        }
+        
+        if blePeripheral == nil {
+            print("Found new pheripheral devices with services")
+            print("Peripheral name: \(String(describing: peripheral.name))")
+            print("**********************************")
+            print ("Advertisement Data : \(advertisementData)")
+        }
+    }
+    func startScan() {
+        print("Now Scanning...")
+        self.timer.invalidate()
+        centralManager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
+        print("what if thiS worked?!")
+        print(centralManager.isScanning)
+        print(centralManager.state)
+        
+        Timer.scheduledTimer(timeInterval: 170, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)}
+    
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+        case .unknown:
+            print("central.state is .unknown")
+        case .poweredOn:
+            print("central.state is .poweredOn")
+        case .poweredOff:
+            print("central.state is .poweredOff")
+        case .unsupported:
+            print("central.state is .unsupported")
+        case .resetting:
+            print("central.state is .resetting")
+        case .unauthorized:
+            print("central.state is .unauthorized")
+        @unknown default:
+            print("central.state is .default")
+        }
+    }
+    
+    @objc func cancelScan() {
+        centralManager?.stopScan()
+        print("Scan Stopped")
+        print("Number of Peripherals Found: \(peripherals.count)")
+    }
+}

@@ -15,6 +15,7 @@ class beaconData {
     var coordLon:Double?
     
     
+    
 init(n:String,c:Double,f:Double){
         self.name = n
         self.coordLon = c

@@ -11,15 +11,17 @@ import MapKit
 import CoreBluetooth
 import CoreLocation
 
+
 var beaconLoc:CBPeripheral?
-var centralManager:CBCentralManager!
+
+//var centralManager:CBCentralManager!
 
 
 class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate, CBCentralManagerDelegate{
     var mapView: MKMapView! = MKMapView.init()
     var locationManager : CLLocationManager! = CLLocationManager.init()
     var annotations = [MKPointAnnotation]()
-//    var centralManager:CBCentralManager!
+    var centralManager:CBCentralManager!
 //    var sensorTag:CBPeripheral?
     var RSSIs = [NSNumber]()
     var data = NSMutableData()
@@ -364,19 +366,28 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //TODO: put in the right uuid string for this beacon!
         
         var count = 0
-        let UUIDs : [String] = ["488D15E5-8EAC-062F-72K5-B0D5EA08AF49","90811294-B5FD-454A-BF0A-272650EA7860","29F35B05-084A-4AF4-9F64-A92F411CEA41","73EEB531-EBF8-4495-A9E0-1E5316D2E6CF","FA33023B-E968-43FB-8E79-A2B9E3CA01A9","U72EBB70C-D806-4D40-B742-64D9346D0DD8","488D15E5-8EAC-062F-72F5-B0D5EA08AF49"]
+//        let UUIDs : [String] = ["488D15E5-8EAC-062F-72K5-B0D5EA08AF49","11B037E9-88CE-46D1-FABB-4D5CA2881B27","29F35B05-084A-4AF4-9F64-A92F411CEA41","73EEB531-EBF8-4495-A9E0-1E5316D2E6CF","FA33023B-E968-43FB-8E79-A2B9E3CA01A9","11B037E9-88CE-46D1-FABB-4D5CA2881B27","488D15E5-8EAC-062F-72F5-B0D5EA08AF49"]
         print("yoooo")
-        print(UUIDs)
-        print(BeaconSet.beacon.values)
-        BeaconSet.beaconSet(ID: UUIDs)
+//        print(UUIDs)
+        BeaconSet.beaconSet()
         print(BeaconSet.beacon)
-        for key in BeaconSet.beacon.values{
+        print("how many values are actually here, dude?!")
+        print(BeaconSet.beacon.values.count)
+        for index in BeaconSet.beacon.indices{
+            print("there are definitely seven values, you're just stupid")
+            for key in BeaconSet.beacon.values{
+                print("hey, what if you just worked? Asking for a friend...")
+                print(key)
+            }
+            
             print("am I in this loop?!")
-            let u = UUIDs[count]
-            let lat = key.getCoordLat()!
-            let long = key.getCoordLon()!
+            
+            let u = BeaconSet.beacon[index].key
+            let value = BeaconSet.beacon[index].value
+            let lat = value.getCoordLat()!
+            let long = value.getCoordLon()!
             let loc:CLLocation = CLLocation.init(latitude: lat, longitude: long)
-            print(UUIDs)
+            //print(UUIDs)
             print(distanceOrder.count)
             print(distanceOrder.capacity)
             let dis = userLocation.distance(from: loc)
@@ -386,19 +397,22 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print(distanceOrder)
             print(item)
             print(distanceOrder.count)
-//            distanceOrder[count] = (u, userLocation.distance(from: loc))
+//            distanceOrder[count] = (u,                   userLocation.distance(from: loc))
            // print(distanceOrder)
             //at this point, distance order is unordered (in same order as was inputted into list)
             
             count += 1
         }
         
-        for n in distanceOrder.indices{
+//        for n in distanceOrder.indices{
             for i in distanceOrder.indices {
                 print("why can't code just work?!")
-                if(i == 6){
+                print(distanceOrder)
+                
+                if (distanceOrder.index(after: i) == distanceOrder.count) {
                     break
                 }
+                
                 print(distanceOrder[i])
                 var next = distanceOrder.index(after: i)
                 print(i)
@@ -420,8 +434,8 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
                 }
             }
-        }
         
+        // }
         for x in distanceOrder.indices{
             print(distanceOrder[x].value)
         }
@@ -472,12 +486,14 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         blePeripheral = peripheral
+        
         self.peripherals.append(peripheral)
         self.RSSIs.append(RSSI)
         peripheral.delegate = self
         print("cool cool")
         print(peripheral.name)
-        if (peripheral.name == "Adafruit Bluefruit LE"){
+        
+        if (((peripheral.name?.localizedCaseInsensitiveContains("Adafruit")) ?? false)){
             print(peripheral.name)
             centralManager.connect(peripheral, options: nil)
             navTo = peripheral
@@ -485,6 +501,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             cancelScan()
             moveScreens()
         }
+        
         if blePeripheral == nil {
             print("Found new pheripheral devices with services")
             print("Peripheral name: \(String(describing: peripheral.name))")

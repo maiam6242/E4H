@@ -15,187 +15,15 @@ import CoreLocation
 class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate {
     
     var whereTo:CBPeripheral?
+    var centralManager:CBCentralManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        centralManager = CBCentralManager(delegate:self,queue: nil)
         print("where flippin to?!")
+        
         print(beaconLoc?.identifier)
-        
-        print(BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName())
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    print(BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName())
         destination.text = BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName()
        
         // destination.text
@@ -288,4 +116,27 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
 
 
 
+}
+
+extension BeaconNavigation: CBCentralManagerDelegate{
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+        case .unknown:
+            print("central.state is .unknown")
+        case .poweredOn:
+            print("central.state is .poweredOn")
+        case .poweredOff:
+            print("central.state is .poweredOff")
+        case .unsupported:
+            print("central.state is .unsupported")
+        case .resetting:
+            print("central.state is .resetting")
+        case .unauthorized:
+            print("central.state is .unauthorized")
+        @unknown default:
+            print("central.state is .default")
+        }
+    }
+    
+    
 }
