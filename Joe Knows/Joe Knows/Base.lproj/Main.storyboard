@@ -1229,7 +1229,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ELIOT MBTA GREEN LINE STOP" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECf-ee-Riu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IN CODE PER BD.value" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECf-ee-Riu">
                                 <rect key="frame" x="46" y="406" width="225" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="21"/>
@@ -1322,7 +1322,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="2Ty-KO-cme"/>
         <segue reference="7UG-yU-hMj"/>
-        <segue reference="5gA-hz-odJ"/>
+        <segue reference="1yf-bV-jQR"/>
         <segue reference="iQK-oq-GKy"/>
     </inferredMetricsTieBreakers>
 </document>

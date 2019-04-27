@@ -10,25 +10,35 @@ import UIKit
 import MapKit
 import CoreBluetooth
 import CoreLocation
+import AudioToolbox
 
 
 class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate {
     
     var whereTo:CBPeripheral?
     var centralManager:CBCentralManager!
+    var currentRSSI:Int = 0
+    var oldVal1:Int = 0
+    var oldVal2:Int = 0
+    var oldVal3:Int = 0
+    var avgVal:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         centralManager = CBCentralManager(delegate:self,queue: nil)
         print("where flippin to?!")
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
         print(beaconLoc?.identifier)
-    print(BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName())
+        print(BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName())
         destination.text = BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName()
        
         // destination.text
         // Do any additional setup after loading the view.
+        //if ()
     }
+    
+
     
     @IBOutlet weak var destination: UILabel!
     
@@ -104,6 +114,38 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         
 
     }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        print("*****************************")
+        print("Connection complete")
+        print("Peripheral info: \(whereTo)")
+        print(whereTo?.readRSSI())
+        
+        //Stop Scan- We don't need to scan once we've connected to a peripheral. We got what we came for.
+        centralManager?.stopScan()
+        print("Scan Stopped")
+        
+        //Erase data that we might have
+        
+        
+        //Discovery callback
+        peripheral.delegate = self
+        //Only look for services that matches transmit uuid
+        
+        print("do beacons work?! asking for a friend...")
+        //print(peripheral.readRSSI())
+        
+        
+    }
+    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+        print("What if the RSSI worked?!")
+        peripheral.readRSSI()
+        print(RSSI.intValue)
+        currentRSSI = RSSI.intValue
+        print(peripheral.readRSSI())
+        
+        determineVib()
+    }
     /*
     // MARK: - Navigation
 
@@ -113,7 +155,28 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         // Pass the selected object to the new view controller.
     }
     */
+    func determineVib(){
+        if(oldVal1 == 0){
+            oldVal1 = currentRSSI
+        }
+        else if(oldVal2 == 0){
+            oldVal2 = currentRSSI
+        }
+        else if(oldVal3 == 0){
+            oldVal3 = currentRSSI
+        }
+        if(oldVal1 != 0 && oldVal2 != 0 && oldVal3 != 0){
+            avgVal = (oldVal1 + oldVal2 + oldVal3)/3
 
+            oldVal3 = oldVal2
+            oldVal2 = oldVal1
+            oldVal1 = currentRSSI
+        }
+        if(avgVal>currentRSSI){
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        }
+        
+    }
 
 
 }
@@ -138,5 +201,24 @@ extension BeaconNavigation: CBCentralManagerDelegate{
         }
     }
     
+    @objc func cancelScan() {
+        centralManager?.stopScan()
+        print("Scan Stopped")
+        
+    }
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,advertisementData: [String : Any], rssi RSSI: NSNumber) {
     
+        peripheral.delegate = self
+        print("cool cool")
+        print(peripheral.name)
+        
+    }
+    func startScan() {
+        print("Now Scanning...")
+        centralManager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
+        print("what if thiS worked?!")
+        print(centralManager.isScanning)
+        print(centralManager.state)
+        
+        Timer.scheduledTimer(timeInterval: 1700, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)}
 }

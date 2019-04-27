@@ -79,7 +79,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
         } else {
             //If Bluetooth is off, display a UI alert message saying "Bluetooth is not enable" and "Make sure that your bluetooth is turned on"
-            print("Bluetooth Disabled- Make sure your Bluetooth is turned on")
+            print("Bluetooth Disabled-- Make sure your Bluetooth is turned on")
             
             let alertVC = UIAlertController(title: "Bluetooth is not enabled", message: "Make sure that your bluetooth is turned on", preferredStyle: UIAlertController.Style.alert)
             let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) -> Void in
@@ -179,7 +179,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("*****************************")
         print("Connection complete")
         print("Peripheral info: \(blePeripheral)")
-        
+        print(blePeripheral?.readRSSI())
         //Stop Scan- We don't need to scan once we've connected to a peripheral. We got what we came for.
         centralManager?.stopScan()
         print("Scan Stopped")
@@ -192,8 +192,10 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //Only look for services that matches transmit uuid
         peripheral.discoverServices([CBUUID(string: "48B3ED5E-7D68-4871-907B-B91D3B52952A")])
         print("do beacons work?! asking for a friend...")
-        print(peripheral.readRSSI())
-    }
+        //print(peripheral.readRSSI())
+        
+        
+        }
     
     func connectToDevice () {
         centralManager?.connect(blePeripheral!, options: nil)
@@ -204,6 +206,13 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print("Failed to connect to peripheral")
             return
         }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+        print("What if the RSSI worked?!")
+        peripheral.readRSSI()
+        print(RSSI.intValue)
+        
     }
     
     func disconnectAllConnection() {
@@ -375,10 +384,10 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print(BeaconSet.beacon.values.count)
         for index in BeaconSet.beacon.indices{
             print("there are definitely seven values, you're just stupid")
-            for key in BeaconSet.beacon.values{
-                print("hey, what if you just worked? Asking for a friend...")
-                print(key)
-            }
+//            for key in BeaconSet.beacon.values{
+//                print("hey, what if you just worked? Asking for a friend...")
+//                print(key)
+//            }
             
             print("am I in this loop?!")
             
@@ -463,7 +472,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print(centralManager.isScanning)
         print(centralManager.state)
         
-        Timer.scheduledTimer(timeInterval: 170, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 17000, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)
         
     
 //        let uuid = UUID.init(uuidString: "48b3ed5e-7d68-4871-907b-b91d3b52952a")
@@ -493,9 +502,12 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("cool cool")
         print(peripheral.name)
         
+        
         if (((peripheral.name?.localizedCaseInsensitiveContains("Adafruit")) ?? false)){
             print(peripheral.name)
             centralManager.connect(peripheral, options: nil)
+            print("new beacon, who dis?")
+           // print(peripheral.readRSSI())
             navTo = peripheral
             beaconLoc = peripheral
             cancelScan()

@@ -409,7 +409,7 @@ extension TransitNavigation: CBCentralManagerDelegate{
         print(centralManager.isScanning)
         print(centralManager.state)
         
-        Timer.scheduledTimer(timeInterval: 170, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)}
+        Timer.scheduledTimer(timeInterval: 1700, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)}
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
