@@ -29,8 +29,16 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         print("where flippin to?!")
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
+        print(beaconLoc == whereTo)
         print(beaconLoc?.identifier)
+        print(whereTo?.identifier)
+        print(whereTo?.name)
+        centralManager.connect(beaconLoc!, options: nil)
+        
         print(BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName())
+        beaconLoc?.readRSSI()
+        print(centralManager.isScanning)
+        print(centralManager)
         destination.text = BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName()
        
         // destination.text
@@ -118,8 +126,8 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("*****************************")
         print("Connection complete")
-        print("Peripheral info: \(whereTo)")
-        print(whereTo?.readRSSI())
+        print("Peripheral info: \(beaconLoc)")
+        print(beaconLoc?.readRSSI())
         
         //Stop Scan- We don't need to scan once we've connected to a peripheral. We got what we came for.
         centralManager?.stopScan()
@@ -133,19 +141,11 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         //Only look for services that matches transmit uuid
         
         print("do beacons work?! asking for a friend...")
-        //print(peripheral.readRSSI())
-        
-        
-    }
-    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
-        print("What if the RSSI worked?!")
-        peripheral.readRSSI()
-        print(RSSI.intValue)
-        currentRSSI = RSSI.intValue
         print(peripheral.readRSSI())
         
-        determineVib()
+        
     }
+
     /*
     // MARK: - Navigation
 
@@ -158,21 +158,30 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     func determineVib(){
         if(oldVal1 == 0){
             oldVal1 = currentRSSI
+            print("hey dude, at the oldVal1")
+            print(oldVal1)
         }
         else if(oldVal2 == 0){
             oldVal2 = currentRSSI
+            print("hey dude, at the oldVal2")
+            print(oldVal2)
         }
         else if(oldVal3 == 0){
             oldVal3 = currentRSSI
+            print("hey dude, at the oldVal3")
+            print(oldVal3)
         }
         if(oldVal1 != 0 && oldVal2 != 0 && oldVal3 != 0){
             avgVal = (oldVal1 + oldVal2 + oldVal3)/3
+            print("hey dude, at the avgVal")
+            print(avgVal)
 
             oldVal3 = oldVal2
             oldVal2 = oldVal1
             oldVal1 = currentRSSI
         }
-        if(avgVal>currentRSSI){
+        
+        if(avgVal > currentRSSI){
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         }
         
@@ -199,6 +208,15 @@ extension BeaconNavigation: CBCentralManagerDelegate{
         @unknown default:
             print("central.state is .default")
         }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+        print("What if the RSSI worked?!")
+        peripheral.readRSSI()
+        print(RSSI.intValue)
+        currentRSSI = RSSI.intValue
+        print(peripheral.readRSSI())
+        determineVib()
     }
     
     @objc func cancelScan() {

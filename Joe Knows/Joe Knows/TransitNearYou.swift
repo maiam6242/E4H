@@ -423,7 +423,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 }
                 
                 print(distanceOrder[i])
-                var next = distanceOrder.index(after: i)
+                let next = distanceOrder.index(after: i)
                 print(i)
                 print(distanceOrder.index(after: i))
                 print(distanceOrder[next])

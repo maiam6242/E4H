@@ -430,6 +430,13 @@ extension TransitNavigation: CBCentralManagerDelegate{
         }
     }
     
+    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+        print("What if the RSSI worked?!")
+        peripheral.readRSSI()
+        print(RSSI.intValue)
+        
+    }
+    
     @objc func cancelScan() {
         centralManager?.stopScan()
         print("Scan Stopped")
