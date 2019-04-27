@@ -153,7 +153,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Joe Knows/BeaconNavigation.swift"
-            timestampString = "577557571.368239"
+            timestampString = "578101352.078203"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "8"
@@ -169,12 +169,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Joe Knows/TransitNearYou.swift"
-            timestampString = "577664005.81072"
+            timestampString = "578101352.079784"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "326"
             endingLineNumber = "326"
-            landmarkName = "determineCurrentLocation()"
+            landmarkName = "restoreCentralManager()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -185,7 +185,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Joe Knows/TransitNavigation.swift"
-            timestampString = "577664114.453735"
+            timestampString = "578101352.094633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "120"
