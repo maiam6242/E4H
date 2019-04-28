@@ -11,18 +11,13 @@ import MapKit
 import CoreBluetooth
 import CoreLocation
 
-
 var beaconLoc:CBPeripheral?
-
-//var centralManager:CBCentralManager!
-
 
 class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate, CBCentralManagerDelegate{
     var mapView: MKMapView! = MKMapView.init()
     var locationManager : CLLocationManager! = CLLocationManager.init()
     var annotations = [MKPointAnnotation]()
     var centralManager:CBCentralManager!
-//    var sensorTag:CBPeripheral?
     var RSSIs = [NSNumber]()
     var data = NSMutableData()
     var writeData: String = ""
@@ -32,12 +27,8 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var characteristics = [String : CBCharacteristic]()
     var blePeripheral : CBPeripheral?
     var navTo : CBPeripheral?
-    
-    
-
     var distanceOrder = [(name: String, value: Double)]()
-    
-    var clicked = 10
+    var clicked = 0
     
    
 //    init(proximityUUID: uuid, identifier: "First Beacon")

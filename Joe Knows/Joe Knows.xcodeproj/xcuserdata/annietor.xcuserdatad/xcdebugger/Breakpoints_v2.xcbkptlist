@@ -169,11 +169,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Joe Knows/TransitNearYou.swift"
-            timestampString = "578125066.786353"
+            timestampString = "578178623.864982"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
             landmarkName = "restoreCentralManager()"
             landmarkType = "7">
          </BreakpointContent>

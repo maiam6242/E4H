@@ -10,45 +10,37 @@ import UIKit
 import MapKit
 
 class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-
-    @IBOutlet weak var currentLocationLabel: UILabel!
-    var userLocationOld:CLLocation? = nil
+    
+    //Setting up
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
 
-        // Do any additional setup after loading the view.
-    }
+    @IBOutlet weak var currentLocationLabel: UILabel!
     
-    @IBAction func AddAStop(_ sender: Any) {
-        print("hello")
-        performSegue(withIdentifier: "AddStop", sender: self)
-    }
+    var userLocationOld:CLLocation? = nil
+    var mapView: MKMapView!
+    var locationManager : CLLocationManager!
     
     @IBAction func Navigate(_ sender: Any) {
         performSegue(withIdentifier: "Navigate", sender: self)
     }
     
-    @IBAction func NextPage(_ sender: Any) {
-        performSegue(withIdentifier: "Test", sender: self)
-    }
-    
-    @IBOutlet var mapView: MKMapView!
-    var locationManager : CLLocationManager!
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         createMapView()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         determineCurrentLocation()
-        
     }
     
+    //Creating the background map
     func createMapView(){
         mapView = MKMapView()
         mapView.isAccessibilityElement = false
@@ -80,6 +72,7 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
         view.sendSubviewToBack(mapView)
     }
     
+    //Determining the user's current location
     func determineCurrentLocation(){
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -105,7 +98,6 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
         
         getAddress(userLocation: userLocation)
         
-        
         myAnnotation.title = "Current location"
         mapView.addAnnotation(myAnnotation)
     }
@@ -120,11 +112,11 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
             userLocationOld = userLocation
         geocoder.reverseGeocodeLocation(userLocation) {(placemarks, error) in
             self.processResponse(withPlacemarks: placemarks, error: error, userLocation: userLocation)
-            
             }
         }
     }
     
+    //Setting currentLocationLabel to user's current location
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?, userLocation:CLLocation){
         
             if let placemarks = placemarks, let placemark = placemarks.first {
@@ -134,7 +126,6 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
                 currentLocationLabel.text = "No matching Addresses Found"
             }
         }
-    //}
     
     
     private func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
