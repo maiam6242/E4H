@@ -76,18 +76,18 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         determineCurrentLocation()
         
         if (currentRSSI > -40 && currentRSSI != 0){
-            self.performSegue(withIdentifier: "arrives", sender: self)
+            self.performSegue(withIdentifier: "SecretArrival", sender: self)
         }
         
     
         //determineVib()
         
     }
-    @IBAction func SecretArrival(_ sender: Any) {
-        performSegue(withIdentifier: "SecretArrival", sender: self)
-        
-    }
-   
+//    @IBAction func SecretArrival(_ sender: Any) {
+//        performSegue(withIdentifier: "SecretArrival", sender: self)
+//        
+//    }
+//   
 
     func createMapView(){
         mapView = MKMapView()

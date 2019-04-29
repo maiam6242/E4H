@@ -10,8 +10,10 @@ import UIKit
 import MapKit
 import CoreBluetooth
 import CoreLocation
+import AudioToolbox
 
 var beaconLoc:CBPeripheral?
+var currentRSSI: Int = 0
 
 class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate, CBCentralManagerDelegate{
     var mapView: MKMapView! = MKMapView.init()
@@ -35,6 +37,9 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //    var bRegion = CLBeaconRegion
 //    self.locMan.startMonitoringForRegion(beaconRegion)
 //
+    var oldRSSI:Int = 0
+    let RSSITHRESHOLD:Int = 2
+    
     @IBOutlet weak var ClosestTransit: UIButton!
     @IBOutlet weak var SecondClosestTransit: UIButton!
     @IBOutlet weak var ThirdClosestTransit: UIButton!
@@ -172,7 +177,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("Peripheral info: \(blePeripheral)")
         print(blePeripheral?.readRSSI())
         //Stop Scan- We don't need to scan once we've connected to a peripheral. We got what we came for.
-        centralManager?.stopScan()
+        //centralManager?.stopScan()
         print("Scan Stopped")
         
         //Erase data that we might have
@@ -203,6 +208,33 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("What if the RSSI worked?!")
         peripheral.readRSSI()
         print(RSSI.intValue)
+        
+        print("wild, is this where it is being read from?")
+        currentRSSI = RSSI.intValue
+        
+        
+        if(RSSI.intValue < oldRSSI)
+            //RSSI.intValue.distance(to: oldRSSI) > RSSITHRESHOLD &&
+            
+        {
+            print("ok, we're closer. This should really be a &&, but here we are, thanks swift")
+            
+            if(currentRSSI.magnitude - oldRSSI.magnitude < RSSITHRESHOLD){
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                //            oldRSSI = currentRSSI
+            }
+            //            if (currentRSSI > -40){
+            //                let ArrCon = storyboard!.instantiateViewController(withIdentifier: "ArrivalConfirmation") as! ArrivalConfirmation
+            //                self.present(ArrCon, animated: true, completion: nil)
+            //            }
+        }
+        
+        print(oldRSSI)
+        print(oldRSSI.magnitude)
+        print(currentRSSI)
+        print(currentRSSI.magnitude)
+        oldRSSI = currentRSSI
+        
         
     }
     
