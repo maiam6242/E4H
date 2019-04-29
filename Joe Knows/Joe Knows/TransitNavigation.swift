@@ -383,10 +383,10 @@ extension TransitNavigation: CBCentralManagerDelegate{
         self.RSSIs.append(RSSI)
         peripheral.delegate = self
         print("cool cool")
-        print(peripheral.name)
+        print(peripheral.name as Any)
         
         if (((peripheral.name?.localizedCaseInsensitiveContains("Adafruit")) ?? false)){
-            print(peripheral.name)
+            print(peripheral.name as Any)
             centralManager.connect(peripheral, options: nil)
             navTo = peripheral
             beaconLoc = peripheral
@@ -434,7 +434,7 @@ extension TransitNavigation: CBCentralManagerDelegate{
         print("What if the RSSI worked?!")
         peripheral.readRSSI()
         print(RSSI.intValue)
-        
+        print("is this what is being read?")
     }
     
     @objc func cancelScan() {

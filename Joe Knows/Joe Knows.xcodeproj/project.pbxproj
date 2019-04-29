@@ -10,7 +10,6 @@
 		1E23CB6822552977006203E7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E23CB6722552977006203E7 /* MapKit.framework */; };
 		1E451837225E67E0005E1A77 /* Beacon Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E451836225E67E0005E1A77 /* Beacon Set.swift */; };
 		1E451839225E695A005E1A77 /* BeaconData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E451838225E695A005E1A77 /* BeaconData.swift */; };
-		FC0B0D8F22751D5000FFE7B9 /* JKLogo40.png in Resources */ = {isa = PBXBuildFile; fileRef = FC0B0D8E22751D5000FFE7B9 /* JKLogo40.png */; };
 		FC0EEABF225A7F0E009D8562 /* AddStopNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0EEABE225A7F0E009D8562 /* AddStopNew.swift */; };
 		FC8CA00D225524C100C5BB97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA00C225524C100C5BB97 /* AppDelegate.swift */; };
 		FC8CA00F225524C100C5BB97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8CA00E225524C100C5BB97 /* ViewController.swift */; };
@@ -54,7 +53,6 @@
 		1E451836225E67E0005E1A77 /* Beacon Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Beacon Set.swift"; sourceTree = "<group>"; };
 		1E451838225E695A005E1A77 /* BeaconData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconData.swift; sourceTree = "<group>"; };
 		1E6CB82922595BCD00356D7F /* whiteRectangle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = whiteRectangle.jpg; path = "../../../../../../../annietor/Documents/GitHub/E4H/Joe Knows/Joe Knows/whiteRectangle.jpg"; sourceTree = "<group>"; };
-		FC0B0D8E22751D5000FFE7B9 /* JKLogo40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = JKLogo40.png; path = ../../../../../../Downloads/JKLogo40.png; sourceTree = "<group>"; };
 		FC0B0DA622751F4800FFE7B9 /* JKLogo167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JKLogo167.png; sourceTree = "<group>"; };
 		FC0B0DA922751F5B00FFE7B9 /* JKLogo58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JKLogo58.png; sourceTree = "<group>"; };
 		FC0B0DAA22751F6000FFE7B9 /* JKLogo60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JKLogo60.png; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				FC0B0DAA22751F6000FFE7B9 /* JKLogo60.png */,
 				FC0B0DA922751F5B00FFE7B9 /* JKLogo58.png */,
 				FC0B0DA622751F4800FFE7B9 /* JKLogo167.png */,
-				FC0B0D8E22751D5000FFE7B9 /* JKLogo40.png */,
 				FCC46F762259369E008B0248 /* ic_place_24px@3x.png */,
 				FCC46F8022593DA1008B0248 /* Ellipse 187@3x.png */,
 				FCC46F7222593687008B0248 /* ic_directions_run_24px@3x.png */,
@@ -344,7 +341,6 @@
 				FC8CA017225524C200C5BB97 /* LaunchScreen.storyboard in Resources */,
 				FC8CA014225524C200C5BB97 /* Assets.xcassets in Resources */,
 				FC8CA03B225535EE00C5BB97 /* olinMap.png in Resources */,
-				FC0B0D8F22751D5000FFE7B9 /* JKLogo40.png in Resources */,
 				FCC46F8222593E58008B0248 /* ic_arrow_back_24px@3x.png in Resources */,
 				FC8CA012225524C100C5BB97 /* Main.storyboard in Resources */,
 			);
@@ -568,7 +564,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 787TUDMR8Q;
+				DEVELOPMENT_TEAM = 6FF86SZGQ9;
 				INFOPLIST_FILE = "Joe Knows/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -588,7 +584,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 787TUDMR8Q;
+				DEVELOPMENT_TEAM = 6FF86SZGQ9;
 				INFOPLIST_FILE = "Joe Knows/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

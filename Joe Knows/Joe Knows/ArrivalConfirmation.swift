@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+
 class ArrivalConfirmation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     override func viewDidLoad() {

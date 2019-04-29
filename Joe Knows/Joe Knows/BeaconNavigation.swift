@@ -17,11 +17,12 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     
     var whereTo:CBPeripheral?
     var centralManager:CBCentralManager!
-    var currentRSSI:Int = 0
+   // var currentRSSI:Int = 0
     var oldVal1:Int = 0
     var oldVal2:Int = 0
     var oldVal3:Int = 0
     var avgVal:Int = 0
+    var oldRSSI:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,16 +31,21 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
         print(beaconLoc == whereTo)
-        print(beaconLoc?.identifier)
-        print(whereTo?.identifier)
-        print(whereTo?.name)
+        print(beaconLoc?.identifier as Any)
+        print(whereTo?.identifier as Any)
+        print(whereTo?.name as Any)
         centralManager.connect(beaconLoc!, options: nil)
+        print(beaconLoc?.state as Any)
         
-        print(BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName())
+        
+        print(BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName() as Any)
         beaconLoc?.readRSSI()
         print(centralManager.isScanning)
-        print(centralManager)
+        print(centralManager as Any)
+        print(beaconLoc as Any)
+        print(beaconLoc?.readRSSI() as Any)
         destination.text = BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName()
+        
        
         // destination.text
         // Do any additional setup after loading the view.
@@ -49,6 +55,8 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
 
     
     @IBOutlet weak var destination: UILabel!
+    
+    
     
     @IBAction func BeaconNavBack(_ sender: Any) {
         performSegue(withIdentifier: "BeaconNavBack", sender: self)
@@ -67,11 +75,19 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         super.viewDidAppear(!animated)
         determineCurrentLocation()
         
+        if (currentRSSI > -40 && currentRSSI != 0){
+            self.performSegue(withIdentifier: "arrives", sender: self)
+        }
+        
+    
+        //determineVib()
+        
     }
     @IBAction func SecretArrival(_ sender: Any) {
         performSegue(withIdentifier: "SecretArrival", sender: self)
         
     }
+   
 
     func createMapView(){
         mapView = MKMapView()
@@ -126,12 +142,12 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("*****************************")
         print("Connection complete")
-        print("Peripheral info: \(beaconLoc)")
-        print(beaconLoc?.readRSSI())
+        print("Peripheral info: \(beaconLoc ?? <#default value#>)")
+        print(beaconLoc?.readRSSI() as Any)
         
         //Stop Scan- We don't need to scan once we've connected to a peripheral. We got what we came for.
-        centralManager?.stopScan()
-        print("Scan Stopped")
+       centralManager?.stopScan()
+       print("Scan Stopped")
         
         //Erase data that we might have
         
@@ -155,8 +171,51 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         // Pass the selected object to the new view controller.
     }
     */
+//    func determineVib(){
+//        if(oldVal1 == 0){
+//            oldVal1 = currentRSSI
+//            print("hey dude, at the oldVal1")
+//            print(oldVal1)
+//        }
+//        else if(oldVal2 == 0){
+//            oldVal2 = currentRSSI
+//            print("hey dude, at the oldVal2")
+//            print(oldVal2)
+//        }
+//        else if(oldVal3 == 0){
+//            oldVal3 = currentRSSI
+//            print("hey dude, at the oldVal3")
+//            print(oldVal3)
+//        }
+//        if(oldVal1 != 0 && oldVal2 != 0 && oldVal3 != 0){
+//            avgVal = (oldVal1 + oldVal2 + oldVal3)/3
+//            print("hey dude, at the avgVal")
+//            print(avgVal)
+//
+//            oldVal3 = oldVal2
+//            oldVal2 = oldVal1
+//            oldVal1 = currentRSSI
+//        }
+//
+//        if(avgVal > currentRSSI){
+//            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+//        }
+//
+//    }
+    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+        print("What if the RSSI worked?!")
+        peripheral.readRSSI()
+        print(RSSI.intValue)
+        print("aghh beacons!!!")
+        currentRSSI = RSSI.intValue
+        print(peripheral.readRSSI())
+        print("or here")
+        determineVib()
+        print("Is it stopping here?")
+    }
     func determineVib(){
-        if(oldVal1 == 0){
+        print("k, vib")
+        if (oldVal1 == 0){
             oldVal1 = currentRSSI
             print("hey dude, at the oldVal1")
             print(oldVal1)
@@ -175,7 +234,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
             avgVal = (oldVal1 + oldVal2 + oldVal3)/3
             print("hey dude, at the avgVal")
             print(avgVal)
-
+            
             oldVal3 = oldVal2
             oldVal2 = oldVal1
             oldVal1 = currentRSSI
@@ -186,7 +245,27 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         }
         
     }
-
+    
+    @objc func cancelScan() {
+        centralManager?.stopScan()
+        print("Scan Stopped")
+        
+    }
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        
+        peripheral.delegate = self
+        print("cool cool")
+        print(peripheral.name as Any)
+        
+    }
+    func startScan() {
+        print("Now Scanning...")
+        centralManager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
+        print("what if thiS worked?!")
+        print(centralManager.isScanning)
+        print(centralManager.state)
+        
+        Timer.scheduledTimer(timeInterval: 1700, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)}
 
 }
 
@@ -210,33 +289,68 @@ extension BeaconNavigation: CBCentralManagerDelegate{
         }
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
-        print("What if the RSSI worked?!")
-        peripheral.readRSSI()
-        print(RSSI.intValue)
-        currentRSSI = RSSI.intValue
-        print(peripheral.readRSSI())
-        determineVib()
-    }
-    
-    @objc func cancelScan() {
-        centralManager?.stopScan()
-        print("Scan Stopped")
-        
-    }
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,advertisementData: [String : Any], rssi RSSI: NSNumber) {
-    
-        peripheral.delegate = self
-        print("cool cool")
-        print(peripheral.name)
-        
-    }
-    func startScan() {
-        print("Now Scanning...")
-        centralManager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
-        print("what if thiS worked?!")
-        print(centralManager.isScanning)
-        print(centralManager.state)
-        
-        Timer.scheduledTimer(timeInterval: 1700, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)}
+//    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+//        print("What if the RSSI worked?!")
+//        peripheral.readRSSI()
+//        print(RSSI.intValue)
+//        print("aghh beacons!!!")
+//        currentRSSI = RSSI.intValue
+//        print(peripheral.readRSSI())
+//        print("or here")
+//        determineVib()
+//        print("Is it stopping here?")
+//    }
+//    func determineVib(){
+//        print("k, vib")
+//        if(oldVal1 == 0){
+//            oldVal1 = currentRSSI
+//            print("hey dude, at the oldVal1")
+//            print(oldVal1)
+//        }
+//        else if(oldVal2 == 0){
+//            oldVal2 = currentRSSI
+//            print("hey dude, at the oldVal2")
+//            print(oldVal2)
+//        }
+//        else if(oldVal3 == 0){
+//            oldVal3 = currentRSSI
+//            print("hey dude, at the oldVal3")
+//            print(oldVal3)
+//        }
+//        if(oldVal1 != 0 && oldVal2 != 0 && oldVal3 != 0){
+//            avgVal = (oldVal1 + oldVal2 + oldVal3)/3
+//            print("hey dude, at the avgVal")
+//            print(avgVal)
+//
+//            oldVal3 = oldVal2
+//            oldVal2 = oldVal1
+//            oldVal1 = currentRSSI
+//        }
+//
+//        if(avgVal > currentRSSI){
+//            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+//        }
+//
+//    }
+//
+//    @objc func cancelScan() {
+//        centralManager?.stopScan()
+//        print("Scan Stopped")
+//
+//    }
+//    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,advertisementData: [String : Any], rssi RSSI: NSNumber) {
+//
+//        peripheral.delegate = self
+//        print("cool cool")
+//        print(peripheral.name)
+//
+//    }
+//    func startScan() {
+//        print("Now Scanning...")
+//        centralManager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
+//        print("what if thiS worked?!")
+//        print(centralManager.isScanning)
+//        print(centralManager.state)
+//
+//        Timer.scheduledTimer(timeInterval: 1700, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)}
 }
