@@ -184,7 +184,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //                self.present(ArrNav, animated: true, completion: nil)
 //            }
             if(switchScreen){
-            self.performSegue(withIdentifier: "Arrival", sender: self)
+            self.performSegue(withIdentifier: "FinalArrival", sender: self)
             print("hey so did I get in here?!")
                 
 
@@ -201,7 +201,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
         }
         
-        if(currentRSSI.magnitude < 45 && currentRSSI != 0){
+        if(currentRSSI.magnitude < 71 && currentRSSI != 0){
             switchScreen = true
             //self.performSegue(withIdentifier: "Arrival", sender: self)
            centralManager1?.stopScan()
@@ -215,6 +215,14 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         oldRSSI = currentRSSI
         
         
+    }
+    
+    func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if(identifier == "FinalArrival"){
+            // segue_identifier is the viewController and storyBoard Reference segue identifier.
+            print("hello")
+        }
+        return true;
     }
     
     func disconnectAllConnection() {
@@ -585,6 +593,16 @@ FarthestTransit.setTitle(n3, for: .normal)
             print("clicked")
             print(clicked)
             print(VC.buttonIndex)
+        }
+        
+        if(segue.identifier == "FinalArrival"){
+            print("hey so what isn't working?!")
+            print("yo what if this janky way worked?")
+            let ArrNav = storyboard!.instantiateViewController(withIdentifier: "ArrivalConfirmation") as! ArrivalConfirmation
+            self.present(ArrNav, animated: true, completion: nil)
+            centralManager1.stopScan()
+            centralManager1.cancelPeripheralConnection(blePeripheral!)
+            
         }
         
         // Get the new view controller using segue.destination.
