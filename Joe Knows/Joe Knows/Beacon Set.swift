@@ -9,25 +9,22 @@
 import Foundation
 import CoreLocation
 
+//Creating a data structure of beacons
 struct BeaconSet{
     var ID:String = ""
-    var uuid:UUID = UUID(uuidString: "NO UUID HERE")!
+    var uuid:UUID = UUID(uuidString: "")!
     static var beacon = Dictionary<String,beaconData>()
     static var distanceOrder = [(name: String, value :Double)]()
-    
-    
     static func beaconSet() -> Dictionary<String,beaconData>{
-        
         fillMap()
         return beacon
     }
     
     static func setDistanceOrder(dO: [(name: String, value : Double)] ){
         distanceOrder = dO;
-        print("hey this is a fucntion")
     }
     
-       
+    //Populating the beacon data structure with public transportation stops near Joe's House
     static func fillMap(){
         BeaconSet.beacon["Adafruit Bluefruit LE 3A6A"] = beaconData(n: "Kansas Street and Route 27 Bus Stop", a: "3A6A", c: -71.356469, f: 42.292805)
         BeaconSet.beacon["Adafruit Bluefruit LE 3A92"] = beaconData(n: "Natick Center Commuter Rail", a: "3A92", c: -71.347075, f: 42.285806)
