@@ -491,6 +491,8 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("Now Scanning...")
         self.timer.invalidate()
         centralManager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
+        blePeripheral?.discoverServices(nil)
+       
         print("what if thiS worked?!")
         print(centralManager.isScanning)
         print(centralManager.state)
@@ -514,7 +516,9 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //
         
     }
-    
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        connectToDevice()
+    }
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         blePeripheral = peripheral

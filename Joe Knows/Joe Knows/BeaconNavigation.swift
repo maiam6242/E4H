@@ -56,8 +56,6 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     
     @IBOutlet weak var destination: UILabel!
     
-    
-    
     @IBAction func BeaconNavBack(_ sender: Any) {
         performSegue(withIdentifier: "BeaconNavBack", sender: self)
     }
@@ -85,9 +83,9 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     }
 //    @IBAction func SecretArrival(_ sender: Any) {
 //        performSegue(withIdentifier: "SecretArrival", sender: self)
-//        
+//
 //    }
-//   
+//
 
     func createMapView(){
         mapView = MKMapView()
@@ -142,7 +140,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("*****************************")
         print("Connection complete")
-        print("Peripheral info: \(beaconLoc ?? <#default value#>)")
+        print("Peripheral info: \(String(describing: beaconLoc))")
         print(beaconLoc?.readRSSI() as Any)
         
         //Stop Scan- We don't need to scan once we've connected to a peripheral. We got what we came for.

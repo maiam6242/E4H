@@ -13,17 +13,23 @@ class beaconData {
     var name:String?
     var coordLat:Double?
     var coordLon:Double?
+    var adafruitNum:String?
     
     
     
-init(n:String,c:Double,f:Double){
+    init(n:String, a: String, c:Double,f:Double){
         self.name = n
         self.coordLon = c
         self.coordLat = f
+        self.adafruitNum = a
         }
 
     func getName() -> String? {
         return name
+    }
+    
+    func getNum() -> String? {
+        return adafruitNum
     }
     
     func getCoordLat() -> Double? {

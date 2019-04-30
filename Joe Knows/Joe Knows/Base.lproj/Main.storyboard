@@ -760,6 +760,7 @@
                         <viewLayoutGuide key="safeArea" id="yge-a8-gvC"/>
                     </view>
                     <connections>
+                        <outlet property="destination" destination="ECf-ee-Riu" id="nvj-XP-WcG"/>
                         <segue destination="MoA-gP-I0c" kind="showDetail" identifier="ArrivalBack" id="1yf-bV-jQR"/>
                     </connections>
                 </viewController>
@@ -778,7 +779,7 @@
         <image name="ic_place_24px.png" width="46.333332061767578" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5gA-hz-odJ"/>
+        <segue reference="1yf-bV-jQR"/>
         <segue reference="iQK-oq-GKy"/>
     </inferredMetricsTieBreakers>
 </document>
