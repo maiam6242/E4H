@@ -17,7 +17,7 @@ struct BeaconSet{
     
     
     static func beaconSet() -> Dictionary<String,beaconData>{
-        //print(ID.count)
+        
         fillMap()
         return beacon
     }
@@ -41,13 +41,5 @@ struct BeaconSet{
     
 }
     
-    
-    
-//    let majorValue: CLBeaconMajorValue
-//    let minorValut: CLBeaconMinorValue
-//    init(name:String, icon: Int, uuid: UUID, majorValue: Int, minorValue: Int){
-//
-    
-  //  }
-    
+
 

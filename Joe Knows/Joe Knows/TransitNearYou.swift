@@ -33,10 +33,6 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var clicked = 0
     
    
-//    init(proximityUUID: uuid, identifier: "First Beacon")
-//    var bRegion = CLBeaconRegion
-//    self.locMan.startMonitoringForRegion(beaconRegion)
-//
     var oldRSSI:Int = 0
     let RSSITHRESHOLD:Int = 2
     
@@ -52,21 +48,12 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        //navTo?.addObserver(self, forKeyPath: "test", options: [.new,.old], context: nil)
-//        centralManager.scanForPeripherals(withServices: nil, options: nil)
+
         // Do any additional setup after loading the view.
     
     }
     
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        if keyPath == "test" {
-//            if navTo?.name == "Adafruit Bluefruit LE"{
-//                let AV = BeaconNavigation()
-//                navigationController?.pushViewController(AV, animated: true)
-//            }
-//        }
-//    }
-    
+
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == CBManagerState.poweredOn {
             // We will just handle it the easy way here: if Bluetooth is on, proceed...start scan!
@@ -86,40 +73,11 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
     
-//    func centralManager(central: CBCentralManager,
-//                        didDiscoverPeripheral peripheral: CBPeripheral,
-//                        advertisementData: [String : AnyObject],
-//                        RSSI: NSNumber!)
-//    {
-//        print(“peripheral: \(peripheral)”)
-//    }
-//    func centralManagerDidUpdateState(central: CBCentralManager){
-//        switch central.state{
-//        case .poweredOn:
-//            keepScanning = true
-//            _ = Timer(timeInterval: timerScanInterval, targe: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
-//            centralManager.scanForPeripherals(withServices: nil, options: nil)
-//        case .poweredOff:
-//            state = "Bluetooth on this device is currently powered off."
-//        case .unsupported:
-//            state = "This device does not support BLE."
-//        case .unauthorized:
-//            state = "This app is not authorized to use BLE."
-//        case .resetting:
-//            state = "The BLE manager is resetting; a state update is pending"
-//        case .unknown:
-//            state = "The state of the BLE Manager is unknown."
-//        @unknown default:
-//
-//        }
-//   }
-    
     func moveScreens(){
         print("is this going to move?!")
         let BeNav = storyboard!.instantiateViewController(withIdentifier: "BeaconNavigation") as! BeaconNavigation
         self.present(BeNav, animated: true, completion: nil)
-       // navigationController?.pushViewController(BeaconNavigation(), animated: true)
-       // navigationController?.popToViewController(BeaconNavigation(), animated: true)
+
     }
     
     
@@ -186,7 +144,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //Discovery callback
         peripheral.delegate = self
         //Only look for services that matches transmit uuid
-        peripheral.discoverServices([CBUUID(string: "48B3ED5E-7D68-4871-907B-B91D3B52952A")])
+//        peripheral.discoverServices([CBUUID(string: "48B3ED5E-7D68-4871-907B-B91D3B52952A")])
         print("do beacons work?! asking for a friend...")
         //print(peripheral.readRSSI())
         
@@ -223,10 +181,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                 //            oldRSSI = currentRSSI
             }
-            //            if (currentRSSI > -40){
-            //                let ArrCon = storyboard!.instantiateViewController(withIdentifier: "ArrivalConfirmation") as! ArrivalConfirmation
-            //                self.present(ArrCon, animated: true, completion: nil)
-            //            }
+
         }
         
         print(oldRSSI)
@@ -398,7 +353,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //TODO: put in the right uuid string for this beacon!
         
         var count = 0
-//        let UUIDs : [String] = ["488D15E5-8EAC-062F-72K5-B0D5EA08AF49","11B037E9-88CE-46D1-FABB-4D5CA2881B27","29F35B05-084A-4AF4-9F64-A92F411CEA41","73EEB531-EBF8-4495-A9E0-1E5316D2E6CF","FA33023B-E968-43FB-8E79-A2B9E3CA01A9","11B037E9-88CE-46D1-FABB-4D5CA2881B27","488D15E5-8EAC-062F-72F5-B0D5EA08AF49"]
+
         print("yoooo")
 //        print(UUIDs)
         BeaconSet.beaconSet()
@@ -429,9 +384,6 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print(distanceOrder)
             print(item)
             print(distanceOrder.count)
-//            distanceOrder[count] = (u,                   userLocation.distance(from: loc))
-           // print(distanceOrder)
-            //at this point, distance order is unordered (in same order as was inputted into list)
             
             count += 1
         }
@@ -473,12 +425,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
     BeaconSet.setDistanceOrder(dO: distanceOrder)
-//        let uuid = UUID(uuidString: "CB01A845-55DC-4551-8FDB-D0318752CC1D")!
-//        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "First Beacon")
-//        locationManager.startMonitoring(for: beaconRegion)
-//        locationManager.startRangingBeacons(in: beaconRegion)
-//
-//
+
     }
     
     @objc func cancelScan() {
@@ -498,22 +445,6 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print(centralManager.state)
         
         Timer.scheduledTimer(timeInterval: 17000, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)
-        
-    
-//        let uuid = UUID.init(uuidString: "48b3ed5e-7d68-4871-907b-b91d3b52952a")
-//      //  let uuid = NSUUID.init(uuidString: "48b3ed5e-7d68-4871-907b-b91d3b52952a")
-//        print("wya")
-//        print(uuid!.uuidString)
-//        print(uuid)
-//
-//        let beaconRegion = CLBeaconRegion(proximityUUID: uuid! as UUID, identifier: "testing things")
-//        locationManager.startMonitoring(for: beaconRegion)
-//        locationManager.startRangingBeacons(in: beaconRegion)
-//        print("fun factoid")
-//        print(beaconRegion)
-//        print(locationManager.rangedRegions)
-//        print(locationManager.monitoredRegions)
-//
         
     }
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
@@ -617,7 +548,7 @@ FarthestTransit.setTitle(n3, for: .normal)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "TransitDirections" && navTo == nil){
             
-//            let (sender as? UIButton)?.segue.
+
             let VC = segue.destination as! TransitNavigation
             VC.buttonIndex = clicked
             print("clicked")
@@ -632,12 +563,4 @@ FarthestTransit.setTitle(n3, for: .normal)
 
 }
 
-//extension BeaconSet{
-//   func getBeaconID() -> String{
-//    return ID
-//    }
-//    mutating func setBeaconID(id: String){
-//        ID = id
-//        uuid = UUID(uuidString:ID) ?? uuid
-//    }
-//}
+

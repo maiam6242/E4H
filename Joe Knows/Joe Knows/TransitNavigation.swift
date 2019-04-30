@@ -140,39 +140,16 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 self.whereToLabel.text = "\(address) The estimated time to get there is: \(Int((route.expectedTravelTime/60).rounded())) minutes"
                 
-                var directionsString = ""
+                
                 var n = 0
 //                var labelName: UILabel
                 n = steps.count
                 
-//                for step in steps{
-//                    step.instructions
-//
-//                    n += 1
-//
-//                    directionsString += step.instructions + "\n" + "In \(Int((step.distance*3.281).rounded())) feet" + "\n"
-//                }
-//
+
+
                 var i = 1
                 
-//                while i < n{
-//                    print(i)
-//                    print(steps[i].instructions)
-//                    self.Dir1.text = steps[i].instructions
-//                    i += 1
-//                    print(i)
-//                    print(steps[i].instructions)
-//                    self.Dir2.text = steps[i].instructions
-//                    i += 1
-//                    print(i)
-//                    print(steps[i].instructions)
-//                    self.Dir3.text = steps[i].instructions
-//                    i += 10
-//                    print (i)
-//                    //print(steps[i].instructions)
-//                    print (n)
-//                    self.Dir4.text = steps[i].instructions
-//                }
+
                 
                 if i < n{
                     self.Dir1.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
@@ -253,14 +230,7 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 if i < n{
                     self.Dir20.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
                 }
-                
-                
-               // if != nil{
-               //     self.Dir3.text = steps[20].instructions
-              //  }
-                
-                
-               // self.Directions.text = directionsString
+
             }
         }
     }

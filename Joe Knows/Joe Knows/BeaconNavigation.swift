@@ -44,7 +44,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         print(centralManager as Any)
         print(beaconLoc as Any)
         print(beaconLoc?.readRSSI() as Any)
-        destination.text = BeaconSet.beacon[beaconLoc!.identifier.uuidString]?.getName()
+        destination.text = BeaconSet.beacon[beaconLoc!.name!]?.getName()
         
        
         // destination.text
