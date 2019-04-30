@@ -194,18 +194,19 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             print("ok, we're closer. This should really be a &&, but here we are, thanks swift")
             
-            if(currentRSSI.magnitude - oldRSSI.magnitude < RSSITHRESHOLD){
-                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                //            oldRSSI = currentRSSI
-            }
+            applyStats()
+            
+//            if(currentRSSI.magnitude - oldRSSI.magnitude < RSSITHRESHOLD){
+//                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+//                //            oldRSSI = currentRSSI
+//            }
             
         }
         
-        if(currentRSSI.magnitude < 71 && currentRSSI != 0){
+        if(currentRSSI.magnitude < 40 && currentRSSI != 0){
             switchScreen = true
             //self.performSegue(withIdentifier: "Arrival", sender: self)
            centralManager1?.stopScan()
-            
         }
         
         print(oldRSSI)
@@ -216,7 +217,55 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
     }
-    
+    var oldVal1:Int = 0
+    var oldVal2:Int = 0
+    var oldVal3:Int = 0
+    var avgVal:Int = 0
+    var avgValNoOutliers:Int = 0
+    func applyStats(){
+        if (oldVal1 == 0){
+            oldVal1 = currentRSSI
+            print("hey dude, at the oldVal1")
+            print(oldVal1)
+        }
+        else if(oldVal2 == 0){
+            oldVal2 = currentRSSI
+            print("hey dude, at the oldVal2")
+            print(oldVal2)
+        }
+        else if(oldVal3 == 0){
+            oldVal3 = currentRSSI
+            print("hey dude, at the oldVal3")
+            print(oldVal3)
+        }
+        if(oldVal1 != 0 && oldVal2 != 0 && oldVal3 != 0){
+            avgVal = (oldVal1 + oldVal2 + oldVal3)/3
+            print("hey dude, at the avgVal")
+            if((oldVal1 - avgVal).magnitude > 10){
+                avgValNoOutliers = (oldVal2 + oldVal3)/2
+            }
+            else if((oldVal2 - avgVal).magnitude > 10){
+                avgValNoOutliers = (oldVal1 + oldVal3)/2
+            }
+            else if((oldVal3 - avgVal).magnitude > 10){
+                avgValNoOutliers = (oldVal1 + oldVal2)/2
+            }
+            else{
+                avgValNoOutliers = avgVal
+            }
+            print(avgVal)
+            print(avgValNoOutliers)
+            print("I want to go to bed")
+            
+            oldVal3 = oldVal2
+            oldVal2 = oldVal1
+            oldVal1 = currentRSSI
+        }
+        
+        if(avgValNoOutliers < currentRSSI){
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        }
+    }
     func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if(identifier == "FinalArrival"){
             // segue_identifier is the viewController and storyBoard Reference segue identifier.

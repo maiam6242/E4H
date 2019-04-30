@@ -22,6 +22,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     var oldVal2:Int = 0
     var oldVal3:Int = 0
     var avgVal:Int = 0
+    var avgValNoOutliers:Int = 0
     var oldRSSI:Int = 0
     
 
@@ -234,6 +235,15 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         if(oldVal1 != 0 && oldVal2 != 0 && oldVal3 != 0){
             avgVal = (oldVal1 + oldVal2 + oldVal3)/3
             print("hey dude, at the avgVal")
+            if((oldVal1 - avgVal).magnitude > 10){
+                avgValNoOutliers = (oldVal2 + oldVal3)/2
+            }
+            if((oldVal2 - avgVal).magnitude > 10){
+                avgValNoOutliers = (oldVal1 + oldVal3)/2
+            }
+            if((oldVal3 - avgVal).magnitude > 10){
+                avgValNoOutliers = (oldVal1 + oldVal2)/2
+            }
             print(avgVal)
 
             oldVal3 = oldVal2
@@ -241,7 +251,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
             oldVal1 = currentRSSI
         }
 
-        if(avgVal > currentRSSI){
+        if(avgValNoOutliers > currentRSSI){
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         }
 
