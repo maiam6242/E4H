@@ -174,8 +174,8 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("*****************************")
         print("Connection complete")
-        print("Peripheral info: \(blePeripheral)")
-        print(blePeripheral?.readRSSI())
+        print("Peripheral info: \(String(describing: blePeripheral))")
+        print(blePeripheral?.readRSSI() as Any)
         //Stop Scan- We don't need to scan once we've connected to a peripheral. We got what we came for.
         //centralManager?.stopScan()
         print("Scan Stopped")
@@ -267,7 +267,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         startScan()
         showLocations()
         print("just kiddin'")
-        print(blePeripheral?.name)
+        print(blePeripheral?.name as Any)
         print(peripherals.count)
         //showTransit()
         
@@ -283,7 +283,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let search = MKLocalSearch(request: request2)
         search.start{(response, error) in guard let response = response else{
-            print("Search error: \(error)")
+            print("Search error: \(String(describing: error))")
             return
             }
             for item in response.mapItems{
@@ -523,11 +523,11 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.RSSIs.append(RSSI)
         peripheral.delegate = self
         print("cool cool")
-        print(peripheral.name)
+        print(peripheral.name as Any)
         
         
         if (((peripheral.name?.localizedCaseInsensitiveContains("Adafruit")) ?? false)){
-            print(peripheral.name)
+            print(peripheral.name as Any)
             centralManager.connect(peripheral, options: nil)
             print("new beacon, who dis?")
            // print(peripheral.readRSSI())
@@ -594,7 +594,7 @@ FarthestTransit.setTitle(n3, for: .normal)
             let val = BeaconSet.beacon[key]
             let lon = val?.getCoordLon()
             let lat = val?.getCoordLat()
-            print(val?.getName())
+            print(val?.getName() as Any)
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = self.getCoordinate(latitude: lat!, longitude: lon!)
         myAnnotation.title = val?.getName()
