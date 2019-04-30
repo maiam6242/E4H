@@ -275,6 +275,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ri-PU-7yD">
+                                <rect key="frame" x="0.0" y="-3" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="jx5-gb-MqN"/>
@@ -670,7 +677,7 @@
                     </view>
                     <connections>
                         <outlet property="destination" destination="9lk-n3-Jja" id="A8u-bI-Xly"/>
-                        <segue destination="JtE-ko-nGi" kind="showDetail" identifier="SecretArrival" id="Htb-74-uLj"/>
+                        <segue destination="JtE-ko-nGi" kind="showDetail" identifier="Arrival" id="S6V-RW-J29"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LuG-OZ-mEr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -680,7 +687,7 @@
         <!--Arrival Confirmation-->
         <scene sceneID="NtM-Oe-ivW">
             <objects>
-                <viewController id="JtE-ko-nGi" customClass="ArrivalConfirmation" customModule="Joe_Knows" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ArrivalConfirmation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JtE-ko-nGi" customClass="ArrivalConfirmation" customModule="Joe_Knows" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iq8-LJ-Ju0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -731,8 +738,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IN CODE PER BD.value" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECf-ee-Riu">
-                                <rect key="frame" x="46" y="406" width="225" height="49"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECf-ee-Riu">
+                                <rect key="frame" x="47" y="406" width="224" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="21"/>
                                 <nil key="textColor"/>
@@ -780,6 +787,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1yf-bV-jQR"/>
-        <segue reference="iQK-oq-GKy"/>
+        <segue reference="yZN-Qw-P74"/>
     </inferredMetricsTieBreakers>
 </document>

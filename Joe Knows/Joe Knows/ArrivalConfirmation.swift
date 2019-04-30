@@ -13,9 +13,8 @@ class ArrivalConfirmation: UIViewController, MKMapViewDelegate, CLLocationManage
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let n = beaconLoc!.name
-        let na = n?.replacingOccurrences(of: "Adafruit Bluefruit LE ", with: "")
-        destination.text = BeaconSet.beacon[na!]?.getName()
+        
+        destination.text = BeaconSet.beacon[beaconLoc!.name!]?.getName()
 
         // Do any additional setup after loading the view.
     }

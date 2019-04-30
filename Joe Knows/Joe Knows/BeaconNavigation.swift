@@ -12,7 +12,7 @@ import CoreBluetooth
 import CoreLocation
 import AudioToolbox
 
-
+var switchScreen:Bool = false
 class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate {
     
     var whereTo:CBPeripheral?
@@ -23,6 +23,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     var oldVal3:Int = 0
     var avgVal:Int = 0
     var oldRSSI:Int = 0
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,19 +74,20 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         super.viewDidAppear(!animated)
         determineCurrentLocation()
         
-        if (currentRSSI > -40 && currentRSSI != 0){
-            self.performSegue(withIdentifier: "SecretArrival", sender: self)
+        if (switchScreen && currentRSSI != 0){
+            if(switchScreen){
+                print("yo what if this janky way worked?")
+                let ArrNav = storyboard!.instantiateViewController(withIdentifier: "ArrivalConfirmation") as! ArrivalConfirmation
+                self.present(ArrNav, animated: true, completion: nil)
+            }
+            centralManager.cancelPeripheralConnection(beaconLoc!)
         }
         
     
         //determineVib()
         
     }
-//    @IBAction func SecretArrival(_ sender: Any) {
-//        performSegue(withIdentifier: "SecretArrival", sender: self)
-//
-//    }
-//
+
 
     func createMapView(){
         mapView = MKMapView()

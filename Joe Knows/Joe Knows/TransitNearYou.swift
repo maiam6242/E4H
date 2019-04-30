@@ -175,13 +175,36 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             //RSSI.intValue.distance(to: oldRSSI) > RSSITHRESHOLD &&
             
         {
+            print("hey, could you just work? thanks")
+            print(switchScreen)
+//            if(switchScreen){
+//                print("yo what if this janky way worked?")
+//                let ArrNav = storyboard!.instantiateViewController(withIdentifier: "ArrivalConfirmation") as! ArrivalConfirmation
+//                self.present(ArrNav, animated: true, completion: nil)
+//            }
+            if(switchScreen){
+            self.performSegue(withIdentifier: "Arrival", sender: self)
+            print("hey so did I get in here?!")
+                
+
+                print("yo can you please just move?! No one likes you!!")
+                centralManager?.stopScan()
+            }
+            
             print("ok, we're closer. This should really be a &&, but here we are, thanks swift")
             
             if(currentRSSI.magnitude - oldRSSI.magnitude < RSSITHRESHOLD){
                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                 //            oldRSSI = currentRSSI
             }
-
+            
+        }
+        
+        if(currentRSSI.magnitude < 45 && currentRSSI != 0){
+            switchScreen = true
+            //self.performSegue(withIdentifier: "Arrival", sender: self)
+           centralManager?.stopScan()
+            
         }
         
         print(oldRSSI)
@@ -222,8 +245,15 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         startScan()
         showLocations()
         print("just kiddin'")
+    
+        if(switchScreen){
+            print("yo what if this janky way worked?")
+            let ArrNav = storyboard!.instantiateViewController(withIdentifier: "ArrivalConfirmation") as! ArrivalConfirmation
+            self.present(ArrNav, animated: true, completion: nil)
+        }
         print(blePeripheral?.name as Any)
         print(peripherals.count)
+        
         //showTransit()
         
     }
