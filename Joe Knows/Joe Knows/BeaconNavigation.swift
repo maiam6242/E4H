@@ -76,6 +76,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         determineCurrentLocation()
         
         if (switchScreen && currentRSSI != 0){
+            setLabels()
 //            if(switchScreen){
 //                print("yo what if this janky way worked?")
 //                let ArrNav = storyboard!.instantiateViewController(withIdentifier: "ArrivalConfirmation") as! ArrivalConfirmation
@@ -90,7 +91,11 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         
     }
 
-
+    func setLabels(){
+        navToLabel.text = "HEY YO, WORK PLEASE"
+        followVibLabel.text = "What if this just worked?"
+        print("did I get here?!")
+    }
     func createMapView(){
         mapView = MKMapView()
         
@@ -256,7 +261,9 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         }
 
     }
-//
+    @IBOutlet weak var navToLabel: UILabel!
+    @IBOutlet weak var followVibLabel: UILabel!
+    //
 //    @objc func cancelScan() {
 //        centralManager?.stopScan()
 //        print("Scan Stopped")

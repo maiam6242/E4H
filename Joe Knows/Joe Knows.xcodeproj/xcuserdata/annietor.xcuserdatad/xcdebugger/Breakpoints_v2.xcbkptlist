@@ -153,7 +153,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Joe Knows/BeaconNavigation.swift"
-            timestampString = "578305662.483924"
+            timestampString = "578359697.150872"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "8"
@@ -169,11 +169,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Joe Knows/TransitNearYou.swift"
-            timestampString = "578305662.484508"
+            timestampString = "578359697.151346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "createMapView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -192,6 +192,130 @@
             endingLineNumber = "120"
             landmarkName = "findDirection()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Joe Knows/BeaconNavigation.swift"
+            timestampString = "578359697.152293"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "BeaconNavigation"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Joe_Knows.BeaconNavigation.locationManager.getter : Swift.Optional&lt;__C.CLLocationManager&gt;"
+                  moduleName = "Joe Knows"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annietor/Documents/GitHub/E4H/Joe%20Knows/Joe%20Knows/BeaconNavigation.swift"
+                  timestampString = "578359347.669181"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Joe_Knows.BeaconNavigation.locationManager.setter : Swift.Optional&lt;__C.CLLocationManager&gt;"
+                  moduleName = "Joe Knows"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annietor/Documents/GitHub/E4H/Joe%20Knows/Joe%20Knows/BeaconNavigation.swift"
+                  timestampString = "578359347.671109"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Joe_Knows.BeaconNavigation.locationManager.modify : Swift.Optional&lt;__C.CLLocationManager&gt;"
+                  moduleName = "Joe Knows"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annietor/Documents/GitHub/E4H/Joe%20Knows/Joe%20Knows/BeaconNavigation.swift"
+                  timestampString = "578359347.672954"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Joe_Knows.BeaconNavigation.locationManager.modify : Swift.Optional&lt;__C.CLLocationManager&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Joe Knows"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annietor/Documents/GitHub/E4H/Joe%20Knows/Joe%20Knows/BeaconNavigation.swift"
+                  timestampString = "578359347.674796"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Joe_Knows.BeaconNavigation.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Joe_Knows.BeaconNavigation"
+                  moduleName = "Joe Knows"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annietor/Documents/GitHub/E4H/Joe%20Knows/Joe%20Knows/BeaconNavigation.swift"
+                  timestampString = "578359347.676644"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "985">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Joe_Knows.BeaconNavigation.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Joe_Knows.BeaconNavigation&gt;"
+                  moduleName = "Joe Knows"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annietor/Documents/GitHub/E4H/Joe%20Knows/Joe%20Knows/BeaconNavigation.swift"
+                  timestampString = "578359347.678676"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "899">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Joe Knows/BeaconNavigation.swift"
+            timestampString = "578359697.152892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "BeaconNavigation"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

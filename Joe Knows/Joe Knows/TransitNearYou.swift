@@ -183,14 +183,14 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //                let ArrNav = storyboard!.instantiateViewController(withIdentifier: "ArrivalConfirmation") as! ArrivalConfirmation
 //                self.present(ArrNav, animated: true, completion: nil)
 //            }
-            if(switchScreen){
-            self.performSegue(withIdentifier: "FinalArrival", sender: self)
-            print("hey so did I get in here?!")
-                
-
-                print("yo can you please just move?! No one likes you!!")
-                centralManager1?.stopScan()
-            }
+//            if(switchScreen){
+//            self.performSegue(withIdentifier: "FinalArrival", sender: self)
+//            print("hey so did I get in here?!")
+//
+//
+//                print("yo can you please just move?! No one likes you!!")
+//                centralManager1?.stopScan()
+//            }
             
             print("ok, we're closer. This should really be a &&, but here we are, thanks swift")
             
@@ -205,6 +205,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         if(currentRSSI.magnitude < 40 && currentRSSI != 0){
             switchScreen = true
+            AudioServicesPlayAlertSound(SystemSoundID(1202))
             //self.performSegue(withIdentifier: "Arrival", sender: self)
            centralManager1?.stopScan()
         }
