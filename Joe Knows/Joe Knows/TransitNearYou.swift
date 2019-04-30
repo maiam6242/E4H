@@ -14,12 +14,13 @@ import AudioToolbox
 
 var beaconLoc:CBPeripheral?
 var currentRSSI: Int = 0
+var centralManager1:CBCentralManager!
 
 class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate, CBCentralManagerDelegate{
     var mapView: MKMapView! = MKMapView.init()
     var locationManager : CLLocationManager! = CLLocationManager.init()
     var annotations = [MKPointAnnotation]()
-    var centralManager:CBCentralManager!
+   // var centralManager:CBCentralManager!
     var RSSIs = [NSNumber]()
     var data = NSMutableData()
     var writeData: String = ""
@@ -47,7 +48,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        centralManager = CBCentralManager(delegate: self, queue: nil)
+        centralManager1 = CBCentralManager(delegate: self, queue: nil)
 
         // Do any additional setup after loading the view.
     
@@ -118,14 +119,14 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("Stop Scanning")
-        centralManager?.stopScan()
+        centralManager1?.stopScan()
     }
     
     func disconnectFromDevice () {
         if blePeripheral != nil {
             // We have a connection to the device but we are not subscribed to the Transfer Characteristic for some reason.
             // Therefore, we will just disconnect from the peripheral
-            centralManager?.cancelPeripheralConnection(blePeripheral!)
+            centralManager1?.cancelPeripheralConnection(blePeripheral!)
         }
     }
     
@@ -152,7 +153,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     
     func connectToDevice () {
-        centralManager?.connect(blePeripheral!, options: nil)
+        centralManager1?.connect(blePeripheral!, options: nil)
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
@@ -188,7 +189,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 
 
                 print("yo can you please just move?! No one likes you!!")
-                centralManager?.stopScan()
+                centralManager1?.stopScan()
             }
             
             print("ok, we're closer. This should really be a &&, but here we are, thanks swift")
@@ -203,7 +204,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if(currentRSSI.magnitude < 45 && currentRSSI != 0){
             switchScreen = true
             //self.performSegue(withIdentifier: "Arrival", sender: self)
-           centralManager?.stopScan()
+           centralManager1?.stopScan()
             
         }
         
@@ -217,7 +218,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func disconnectAllConnection() {
-        centralManager.cancelPeripheralConnection(blePeripheral!)
+        centralManager1.cancelPeripheralConnection(blePeripheral!)
     }
     
     func centralManager(central: CBCentralManager,
@@ -333,7 +334,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func restoreCentralManager() {
         //Restores Central Manager delegate if something went wrong
-        centralManager?.delegate = self
+        centralManager1?.delegate = self
     }
     
     
@@ -459,7 +460,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     @objc func cancelScan() {
-        centralManager?.stopScan()
+        centralManager1?.stopScan()
         print("Scan Stopped")
         print("Number of Peripherals Found: \(peripherals.count)")
     }
@@ -467,12 +468,12 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func startScan() {
         print("Now Scanning...")
         self.timer.invalidate()
-        centralManager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
+        centralManager1?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
         blePeripheral?.discoverServices(nil)
        
         print("what if thiS worked?!")
-        print(centralManager.isScanning)
-        print(centralManager.state)
+        print(centralManager1.isScanning)
+        print(centralManager1.state)
         
         Timer.scheduledTimer(timeInterval: 17000, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)
         
@@ -493,7 +494,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         if (((peripheral.name?.localizedCaseInsensitiveContains("Adafruit")) ?? false)){
             print(peripheral.name as Any)
-            centralManager.connect(peripheral, options: nil)
+            centralManager1.connect(peripheral, options: nil)
             print("new beacon, who dis?")
            // print(peripheral.readRSSI())
             navTo = peripheral

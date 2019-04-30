@@ -41,7 +41,7 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var Dir19: UILabel!
     @IBOutlet weak var Dir20: UILabel!
     
-    var centralManager:CBCentralManager!
+    //var centralManager:CBCentralManager!
     var RSSIs = [NSNumber]()
     var data = NSMutableData()
     var writeData: String = ""
@@ -54,7 +54,7 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        centralManager = CBCentralManager(delegate: self, queue: nil)
+        //centralManager1 = CBCentralManager(delegate: self, queue: nil)
     }
     
     @IBAction func TransitDirectionsBack(_ sender: Any) {
@@ -357,7 +357,7 @@ extension TransitNavigation: CBCentralManagerDelegate{
         
         if (((peripheral.name?.localizedCaseInsensitiveContains("Adafruit")) ?? false)){
             print(peripheral.name as Any)
-            centralManager.connect(peripheral, options: nil)
+            centralManager1.connect(peripheral, options: nil)
             navTo = peripheral
             beaconLoc = peripheral
             cancelScan()
@@ -374,10 +374,10 @@ extension TransitNavigation: CBCentralManagerDelegate{
     func startScan() {
         print("Now Scanning...")
         self.timer.invalidate()
-        centralManager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
+        centralManager1?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
         print("what if thiS worked?!")
-        print(centralManager.isScanning)
-        print(centralManager.state)
+        print(centralManager1.isScanning)
+        print(centralManager1.state)
         
         Timer.scheduledTimer(timeInterval: 1700, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)}
     
@@ -408,7 +408,7 @@ extension TransitNavigation: CBCentralManagerDelegate{
     }
     
     @objc func cancelScan() {
-        centralManager?.stopScan()
+        centralManager1?.stopScan()
         print("Scan Stopped")
         print("Number of Peripherals Found: \(peripherals.count)")
     }
