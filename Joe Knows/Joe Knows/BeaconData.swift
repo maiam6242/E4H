@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Setting up a class for setting up beacons
 class beaconData {
     
     var name:String?
