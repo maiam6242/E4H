@@ -13,36 +13,39 @@ import CoreBluetooth
 
 class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate {
 
-   var mapV: MKMapView!
-    
+    @IBOutlet var mapView: MKMapView!
     var locationManager : CLLocationManager!
     @IBOutlet weak var whereToLabel: UILabel!
     @IBOutlet weak var Directions: UILabel!
     var buttonIndex = 10
     
-   @IBOutlet var labels = (0 ..< 19).map{_ in UILabel(frame: CGRect()}
+    var labels : [UILabel?] = []
     
-//    @IBOutlet weak var Dir1: UILabel!
-//    @IBOutlet weak var Dir2: UILabel!
-//    @IBOutlet weak var Dir3: UILabel!
-//    @IBOutlet weak var Dir4: UILabel!
-//    @IBOutlet weak var Dir5: UILabel!
-//    @IBOutlet weak var Dir6: UILabel!
-//    @IBOutlet weak var Dir7: UILabel!
-//    @IBOutlet weak var Dir8: UILabel!
-//    @IBOutlet weak var Dir9: UILabel!
-//    @IBOutlet weak var Dir10: UILabel!
-//    @IBOutlet weak var Dir11: UILabel!
-//    @IBOutlet weak var Dir12: UILabel!
-//    @IBOutlet weak var Dir13: UILabel!
-//    @IBOutlet weak var Dir14: UILabel!
-//    @IBOutlet weak var Dir15: UILabel!
-//    @IBOutlet weak var Dir16: UILabel!
-//    @IBOutlet weak var Dir17: UILabel!
-//    @IBOutlet weak var Dir18: UILabel!
-//    @IBOutlet weak var Dir19: UILabel!
-//    @IBOutlet weak var Dir20: UILabel!
-//
+    func fillLabelsArray(){
+        labels.append(Dir1)
+        
+    }
+    @IBOutlet weak var Dir1: UILabel!
+    @IBOutlet weak var Dir2: UILabel!
+    @IBOutlet weak var Dir3: UILabel!
+    @IBOutlet weak var Dir4: UILabel!
+    @IBOutlet weak var Dir5: UILabel!
+    @IBOutlet weak var Dir6: UILabel!
+    @IBOutlet weak var Dir7: UILabel!
+    @IBOutlet weak var Dir8: UILabel!
+    @IBOutlet weak var Dir9: UILabel!
+    @IBOutlet weak var Dir10: UILabel!
+    @IBOutlet weak var Dir11: UILabel!
+    @IBOutlet weak var Dir12: UILabel!
+    @IBOutlet weak var Dir13: UILabel!
+    @IBOutlet weak var Dir14: UILabel!
+    @IBOutlet weak var Dir15: UILabel!
+    @IBOutlet weak var Dir16: UILabel!
+    @IBOutlet weak var Dir17: UILabel!
+    @IBOutlet weak var Dir18: UILabel!
+    @IBOutlet weak var Dir19: UILabel!
+    @IBOutlet weak var Dir20: UILabel!
+    
     //var centralManager:CBCentralManager!
     var RSSIs = [NSNumber]()
     var data = NSMutableData()
@@ -143,98 +146,91 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 self.whereToLabel.text = "\(address) The estimated time to get there is: \(Int((route.expectedTravelTime/60).rounded())) minutes"
                 
-               // var n = 0
-                let n = steps.count
-//                var i = 1
                 
-               // n = steps.count
-                print("is this where the error is?!")
-                for i in 0...(n-1) {
-                    
-                    self.labels[i].text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                var n = 0
+                n = steps.count
+                var i = 1
+                if i < n{
+                    self.Dir1.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
                 }
-                print("probably?")
-//                if i < n{
-//                    self.Dir1.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir2.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir3.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir4.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir5.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir6.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir7.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir8.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir9.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir10.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir11.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir12.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir13.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir14.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir15.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir16.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir17.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir18.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir19.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//                i += 1
-//                if i < n{
-//                    self.Dir20.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
-//                }
-//
-         }
+                i += 1
+                if i < n{
+                    self.Dir2.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir3.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir4.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir5.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir6.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir7.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir8.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir9.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir10.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir11.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir12.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir13.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir14.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir15.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir16.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir17.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir18.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir19.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+                i += 1
+                if i < n{
+                    self.Dir20.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
+                }
+
+            }
         }
     }
     
@@ -247,8 +243,32 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func createMapView(){
-        let mapObject = map.init(actualScreenView: view)
-        mapV = mapObject.mapView
+        mapView = MKMapView()
+        
+        let leftMargin:CGFloat = 1
+        let topMargin:CGFloat = 1
+        let mapWidth:CGFloat = view.frame.size.width-6
+        let mapHeight:CGFloat = view.frame.size.height-10
+        
+        mapView.frame = CGRect(x: leftMargin, y: topMargin, width: mapWidth, height: mapHeight)
+        
+        mapView.mapType = MKMapType.standard
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
+        mapView.showsCompass = false
+        //creating and placing a compass
+        let compassButton = MKCompassButton(mapView: mapView)
+        compassButton.compassVisibility = .visible
+        mapView.addSubview(compassButton)
+        view.bringSubviewToFront(compassButton)
+        compassButton.translatesAutoresizingMaskIntoConstraints = false
+        compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
+        compassButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 12).isActive = true
+        
+        mapView.center = view.center
+        
+        view.addSubview(mapView)
+        view.sendSubviewToBack(mapView)
     }
     
     
@@ -259,14 +279,14 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
-        mapV.setRegion(region, animated: true)
+        mapView.setRegion(region, animated: true)
         
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
         
         myAnnotation.title = "Current location"
-        mapV.addAnnotation(myAnnotation)
+        mapView.addAnnotation(myAnnotation)
     }
     
     func getAddress(userLocation:MKMapItem) -> String{
