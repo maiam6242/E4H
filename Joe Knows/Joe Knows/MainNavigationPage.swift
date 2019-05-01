@@ -9,18 +9,24 @@
 import UIKit
 import MapKit
 
+//Global Variable:
+var locationManagerWrapped = locationManagerWrapper()
+
 class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    //Setting up
+    //Setting up view
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManagerWrapped.setDelegate(currentClass: self)
     }
 
+    
     @IBOutlet weak var currentLocationLabel: UILabel!
     
     var userLocationOld:CLLocation? = nil
-    var mapView: MKMapView!
+    var mapV: MKMapView!
     var locationManager : CLLocationManager!
+    let geocoder = CLGeocoder()
     
     @IBAction func Navigate(_ sender: Any) {
         performSegue(withIdentifier: "Navigate", sender: self)
@@ -37,52 +43,17 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        determineCurrentLocation()
+        locationManagerWrapped.determineCurrentLocation()
     }
     
     //Creating the background map
     func createMapView(){
-        mapView = MKMapView()
-        mapView.isAccessibilityElement = false
-        
-        let leftMargin:CGFloat = 1
-        let topMargin:CGFloat = 1
-        let mapWidth:CGFloat = view.frame.size.width-6
-        let mapHeight:CGFloat = view.frame.size.height-10
-        
-        mapView.frame = CGRect(x: leftMargin, y: topMargin, width: mapWidth, height: mapHeight)
-        
-        mapView.mapType = MKMapType.standard
-        mapView.isZoomEnabled = true
-        mapView.isScrollEnabled = true
-        mapView.showsCompass = false
-        
-        //creating and placing a compass
-        let compassButton = MKCompassButton(mapView: mapView)
-        compassButton.compassVisibility = .visible
-        mapView.addSubview(compassButton)
-        view.bringSubviewToFront(compassButton)
-        compassButton.translatesAutoresizingMaskIntoConstraints = false
-        compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
-        compassButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 12).isActive = true
-        
-        mapView.center = view.center
-        
-        view.addSubview(mapView)
-        view.sendSubviewToBack(mapView)
+        let mapObject = map.init(actualScreenView: view)
+        mapV = mapObject.mapView
     }
     
     //Determining the user's current location
-    func determineCurrentLocation(){
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled(){
-            locationManager.startUpdatingLocation()
-        }
-    }
+   
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
@@ -90,7 +61,7 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
-        mapView.setRegion(region, animated: true)
+        mapV.setRegion(region, animated: true)
         
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
@@ -99,11 +70,10 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
         getAddress(userLocation: userLocation)
         
         myAnnotation.title = "Current location"
-        mapView.addAnnotation(myAnnotation)
+        mapV.addAnnotation(myAnnotation)
     }
     
     func getAddress(userLocation:CLLocation){
-        let geocoder = CLGeocoder()
         
         if(userLocation == userLocationOld){
             return
@@ -132,17 +102,6 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
     {
         print("Error \(error)")
     }
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

@@ -19,7 +19,12 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var Directions: UILabel!
     var buttonIndex = 10
     
-   
+    var labels : [UILabel?] = []
+    
+    func fillLabelsArray(){
+        labels.append(Dir1)
+        
+    }
     @IBOutlet weak var Dir1: UILabel!
     @IBOutlet weak var Dir2: UILabel!
     @IBOutlet weak var Dir3: UILabel!
@@ -54,6 +59,7 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManagerWrapped.setDelegate(currentClass: self)
         //centralManager1 = CBCentralManager(delegate: self, queue: nil)
     }
     
@@ -75,7 +81,7 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        determineCurrentLocation()
+        locationManagerWrapped.determineCurrentLocation()
         readButton()
         findDirection()
         startScan()
@@ -142,15 +148,8 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 
                 var n = 0
-//                var labelName: UILabel
                 n = steps.count
-                
-
-
                 var i = 1
-                
-
-                
                 if i < n{
                     self.Dir1.text = steps[i].instructions + " in \(Int((steps[i].distance*3.281).rounded())) feet"
                 }
@@ -272,16 +271,7 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
         view.sendSubviewToBack(mapView)
     }
     
-    func determineCurrentLocation(){
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled(){
-            locationManager.startUpdatingLocation()
-        }
-    }
+    
     var userLocation: CLLocation = CLLocation.init()
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         userLocation = locations[0] as CLLocation

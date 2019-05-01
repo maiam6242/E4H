@@ -17,7 +17,7 @@ var currentRSSI: Int = 0
 var centralManager1:CBCentralManager!
 
 class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate, CBCentralManagerDelegate{
-    var mapView: MKMapView! = MKMapView.init()
+    var mapV: MKMapView!
     var locationManager : CLLocationManager! = CLLocationManager.init()
     var annotations = [MKPointAnnotation]()
    // var centralManager:CBCentralManager!
@@ -322,7 +322,7 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let request2 = MKLocalSearch.Request()
         
         request2.naturalLanguageQuery = "Metro West Transit Authority"
-        request2.region = mapView.region
+        request2.region = mapV.region
         
         
         let search = MKLocalSearch(request: request2)
@@ -335,11 +335,11 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 let myAnnotation: MKPointAnnotation = MKPointAnnotation()
                 myAnnotation.coordinate = self.getCoordinate(item: item)
                 myAnnotation.title = item.name
-                self.mapView.addAnnotation(myAnnotation)
+                self.mapV.addAnnotation(myAnnotation)
                 self.annotations.append(myAnnotation)
             }
             
-            self.mapView.showAnnotations(self.annotations, animated: false)
+            self.mapV.showAnnotations(self.annotations, animated: false)
         }
         
     }
@@ -358,36 +358,10 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
     }
     
+  
     func createMapView(){
-        mapView = MKMapView()
-        
-        let leftMargin:CGFloat = 1
-        let topMargin:CGFloat = 1
-        let mapWidth:CGFloat = view.frame.size.width-6
-        let mapHeight:CGFloat = view.frame.size.height-10
-        
-        mapView.frame = CGRect(x: leftMargin, y: topMargin, width: mapWidth, height: mapHeight)
-        
-        mapView.mapType = MKMapType.standard
-        mapView.isZoomEnabled = true
-        mapView.isScrollEnabled = true
-        mapView.showsCompass = false
-        
-        //creating and placing a compass
-        let compassButton = MKCompassButton(mapView: mapView)
-        compassButton.compassVisibility = .visible
-        mapView.addSubview(compassButton)
-        view.bringSubviewToFront(compassButton)
-        compassButton.translatesAutoresizingMaskIntoConstraints = false
-        compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
-        compassButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 12).isActive = true
-        
-        mapView.center = view.center
-        
-//        mapView.addOverlay(transit)
-        
-        view.addSubview(mapView)
-        view.sendSubviewToBack(mapView)
+        let mapObject = map.init(actualScreenView: view)
+        mapV = mapObject.mapView
     }
     
     func restoreCentralManager() {
@@ -426,14 +400,14 @@ class TransitNearYou: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
-        mapView.setRegion(region, animated: true)
+        mapV.setRegion(region, animated: true)
         
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
         
         myAnnotation.title = "Current location"
-        mapView.addAnnotation(myAnnotation)
+        mapV.addAnnotation(myAnnotation)
         
         update(distance: beacons[0].proximity)
     }
@@ -622,11 +596,11 @@ FarthestTransit.setTitle(n3, for: .normal)
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = self.getCoordinate(latitude: lat!, longitude: lon!)
         myAnnotation.title = val?.getName()
-        self.mapView.addAnnotation(myAnnotation)
+        self.mapV.addAnnotation(myAnnotation)
         self.annotations.append(myAnnotation)
     }
-        self.mapView.showAnnotations(self.annotations, animated: false)
-        self.mapView.sizeToFit()
+        self.mapV.showAnnotations(self.annotations, animated: false)
+        self.mapV.sizeToFit()
        
     }
     
