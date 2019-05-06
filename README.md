@@ -25,7 +25,9 @@ The MWRTA currently lacks a tool to empower its community members who are blind 
 - Determine a user's current location and visualize it on a map  
 - Display closest transit stops to a user  
 - Navigate to given location to within a foot of actual transit stop destination (as opposed to the typical 30 foot radius from GPS navigation)  
-- Navigate to the user's home to within a foot of intended destination  
+- Navigate to the user's home to within a foot of intended destination 
+
+![screenshots](https://github.com/maiam6242/Joe-Knows/blob/master/READMEResources/JoeKnowsMockup.png "Screenshots of Joe Knows app")
 
 ## Requirements
 - iOS 8.0+
