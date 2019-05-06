@@ -35,7 +35,9 @@ The MWRTA currently lacks a tool to empower its community members who are blind 
 
 ## Installation
 1. Clone this repository to your local machine using `https://github.com/maiam6242/Joe-Knows.git`
-2. Install the MapKit framework 
+2. Open the project in XCode and install the MapKit framework
+
+**Since Joe Knows is an app for iOS, this process must be done on a Mac computer**
 
 ## Deployment
 This system is built to be used with Adafruit Feather 32u4 Bluefruit LE beacons, although with a very small amount of modification can be adapted to be used with any BLE emitting devices. Any devices must be added to the fillMap method of the Beacon Set class (shown below) with a location name, unique identifier and longitude and latitude coordinates.
