@@ -1,13 +1,14 @@
 # Joe Knows
+![logo](https://github.com/maiam6242/E4H/blob/master/Joe%20Knows/Joe%20Knows/Images/JKLogo180.png "Logo for Joe Knows")
 
 ### Joe Knows is a beacon-driven app and sensor system which enables visually impaired individuals to navigate public transit safely and effectively.
 
 ## Table of Contents
-- [Introduction](#Introduction)  
-- [Motivation](#Motivation)  
-- [Features](#Features)  
-- [Installation](#Installation)  
-- [Team](#Team)  
+- [Introduction](#Introduction "Introduction")  
+- [Motivation](#Motivation "Motivation")  
+- [Features](#Features "Features")  
+- [Installation](#Installation "Installation")  
+- [Team](#Team "Team")  
 
 ## Introduction
 This is a beacon and iOS app system for users of the Metro West Regional Transit Authority (MWRTA) who are visually impaired. The system guides users to various stations which are closest to them, first using audio direction feedback, then upon getting closer to the desired destination, vibration feedback based on proximity. The app is screen reader accessible and high contrast to make it easy to use for users who are visually impaired. 
