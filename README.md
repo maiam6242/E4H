@@ -1,5 +1,5 @@
 # Joe Knows
-![logo](https://github.com/maiam6242/E4H/blob/master/Joe%20Knows/Joe%20Knows/Images/JKLogo180.png "Logo for Joe Knows")
+![logo](https://github.com/maiam6242/E4H/blob/master/Joe%20Knows/Joe%20Knows/Images/JKLogo167.png "Logo for Joe Knows")
 
 ### Joe Knows is a beacon-driven app and sensor system which enables visually impaired individuals to navigate public transit safely and effectively.
 
@@ -24,12 +24,14 @@ The MWRTA currently lacks a tool to empower its community members who are blind 
 - Navigate to the user's home to within a foot of intended destination  
 
 
-
 ## Requirements
 - iOS 8.0+
 - XCode 10.2.1
 
 ## Installation
+
+## Feedback
+We would love to hear feedback on this project! Feel free to [email us](mailto:mmaterman@olin.edu "mmaterman@olin.edu") or [submit an issue](https://github.com/maiam6242/Joe-Knows/issues/new "New Issue Request"). If you are interested in contributing to this project or chatting about it in general, please don't hesitate to [email us](mailto:mmaterman@olin.edu "mmaterman@olin.edu")!
 
 ## Team
 Maia Materman [@maiam6242](https://github.com/maiam6242 "Maia's GitHub")    
