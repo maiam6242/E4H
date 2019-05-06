@@ -8,9 +8,9 @@
 - [Motivation](#Motivation "Motivation")  
 - [Features](#Features "Features") 
 - [Requirements](#Requirements "Requirements") 
-- [Feedback](#Feedback "Feedback") 
 - [Installation](#Installation "Installation")  
 - [Deployment](#Deployment "Deployment")
+- [Feedback](#Feedback "Feedback") 
 - [Team](#Team "Team")  
 - [Acknowledgments](#Acknowledgments "Acknowledgments") 
 
@@ -34,7 +34,8 @@ The MWRTA currently lacks a tool to empower its community members who are blind 
 - XCode 10.2.1
 
 ## Installation
-
+1. Clone this repository to your local machine using `https://github.com/maiam6242/Joe-Knows.git`
+2. Install the MapKit framework 
 
 ## Deployment
 This system is built to be used with Adafruit Feather 32u4 Bluefruit LE beacons, although with a very small amount of modification can be adapted to be used with any BLE emitting devices. Any devices must be added to the fillMap method of the Beacon Set class (shown below) with a location name, unique identifier and longitude and latitude coordinates.
