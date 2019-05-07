@@ -31,11 +31,11 @@ The MWRTA currently lacks a tool to empower its community members who are blind 
 
 ## Requirements
 - iOS 8.0+
-- XCode 10.2.1
+- XCode 10.2.1+
 
 ## Installation
 1. Clone this repository to your local machine using `https://github.com/maiam6242/Joe-Knows.git`
-2. Open the project in XCode and install the MapKit framework
+2. Open the project in XCode and install the MapKit framework (if it not already installed)
 
 **Since Joe Knows is an app for iOS, this process must be done on a Mac computer**
 
@@ -71,5 +71,5 @@ Annie Tor [@ator1](https://github.com/ator1 "Annie's GitHub")
 Corey Cochran-Lepiz [@coreyacl](https://github.com/coreyacl "Corey's GitHub")  
 
 ## Acknowledgments
-Thanks to Caitrin Lynch and Ela Ben-Ur for their support throughout this process. Also thank you to Paul Ruvolo for helping us navigate Swift. Most importantly, thank you to Joe Weisse for co-designing this system with us and giving us feedback throughout this project.
+Thanks to Caitrin Lynch and Ela Ben-Ur for their support throughout this process. Also, thank you to Paul Ruvolo for helping us navigate Swift. Most importantly, thank you to Joe Weisse for co-designing this system with us and giving us feedback throughout this project.
 
