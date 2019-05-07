@@ -13,7 +13,7 @@ import CoreBluetooth
 
 class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate {
 
-    @IBOutlet var mapView: MKMapView!
+    var mapV: MKMapView!
     var locationManager : CLLocationManager!
     @IBOutlet weak var whereToLabel: UILabel!
     @IBOutlet weak var Directions: UILabel!
@@ -60,7 +60,7 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManagerWrapped.setDelegate(currentClass: self)
-        //centralManager1 = CBCentralManager(delegate: self, queue: nil)
+        
     }
     
     @IBAction func TransitDirectionsBack(_ sender: Any) {
@@ -121,7 +121,6 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
         request.destination = MKMapItem.init(placemark: dest)
         request.requestsAlternateRoutes = true
         request.transportType = MKDirectionsTransportType.walking
-        //request.accessibilityActivate()
         
         print(request)
         let directions = MKDirections(request: request)
@@ -145,7 +144,6 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 print(address)
                 
                 self.whereToLabel.text = "\(address) The estimated time to get there is: \(Int((route.expectedTravelTime/60).rounded())) minutes"
-                
                 
                 var n = 0
                 n = steps.count
@@ -243,34 +241,9 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func createMapView(){
-        mapView = MKMapView()
-        
-        let leftMargin:CGFloat = 1
-        let topMargin:CGFloat = 1
-        let mapWidth:CGFloat = view.frame.size.width-6
-        let mapHeight:CGFloat = view.frame.size.height-10
-        
-        mapView.frame = CGRect(x: leftMargin, y: topMargin, width: mapWidth, height: mapHeight)
-        
-        mapView.mapType = MKMapType.standard
-        mapView.isZoomEnabled = true
-        mapView.isScrollEnabled = true
-        mapView.showsCompass = false
-        //creating and placing a compass
-        let compassButton = MKCompassButton(mapView: mapView)
-        compassButton.compassVisibility = .visible
-        mapView.addSubview(compassButton)
-        view.bringSubviewToFront(compassButton)
-        compassButton.translatesAutoresizingMaskIntoConstraints = false
-        compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
-        compassButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 12).isActive = true
-        
-        mapView.center = view.center
-        
-        view.addSubview(mapView)
-        view.sendSubviewToBack(mapView)
+        let mapObject = map.init(actualScreenView: view)
+        mapV = mapObject.mapView
     }
-    
     
     var userLocation: CLLocation = CLLocation.init()
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -279,14 +252,14 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
-        mapView.setRegion(region, animated: true)
+        mapV.setRegion(region, animated: true)
         
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
         
         myAnnotation.title = "Current location"
-        mapView.addAnnotation(myAnnotation)
+        mapV.addAnnotation(myAnnotation)
     }
     
     func getAddress(userLocation:MKMapItem) -> String{
@@ -313,25 +286,7 @@ class TransitNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerD
             return "No matching Addresses Found"
         }
     }
-    
-    
-    
-    private func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
-    {
-        print("Error \(error)")
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+  
 }
 
 extension TransitNavigation: CBCentralManagerDelegate{

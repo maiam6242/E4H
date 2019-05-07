@@ -12,7 +12,8 @@ import CoreBluetooth
 import CoreLocation
 import AudioToolbox
 
-var switchScreen:Bool = false
+var switchScreen : Bool = false
+
 class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, CBPeripheralDelegate {
     
     var whereTo:CBPeripheral?
@@ -61,7 +62,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     @IBAction func BeaconNavBack(_ sender: Any) {
         performSegue(withIdentifier: "BeaconNavBack", sender: self)
     }
-    var mapView: MKMapView!
+    var mapV: MKMapView!
     var locationManager : CLLocationManager!
     
     override func didReceiveMemoryWarning() {
@@ -73,7 +74,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(!animated)
-        determineCurrentLocation()
+        locationManagerWrapped.determineCurrentLocation()
         
         if (switchScreen && currentRSSI != 0){
             setLabels()
@@ -97,23 +98,8 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         print("did I get here?!")
     }
     func createMapView(){
-        mapView = MKMapView()
-        
-        let leftMargin:CGFloat = 1
-        let topMargin:CGFloat = 1
-        let mapWidth:CGFloat = view.frame.size.width-6
-        let mapHeight:CGFloat = view.frame.size.height-10
-        
-        mapView.frame = CGRect(x: leftMargin, y: topMargin, width: mapWidth, height: mapHeight)
-        
-        mapView.mapType = MKMapType.standard
-        mapView.isZoomEnabled = true
-        mapView.isScrollEnabled = true
-        
-        mapView.center = view.center
-        
-        view.addSubview(mapView)
-        view.sendSubviewToBack(mapView)
+        let mapObject = map.init(actualScreenView: view)
+        mapV = mapObject.mapView
     }
     
     func determineCurrentLocation(){
@@ -133,7 +119,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
-        mapView.setRegion(region, animated: false)
+        mapV.setRegion(region, animated: false)
         
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
@@ -141,7 +127,7 @@ class BeaconNavigation: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         
         
         myAnnotation.title = "Current location"
-        mapView.addAnnotation(myAnnotation)
+        mapV.addAnnotation(myAnnotation)
         
 
     }

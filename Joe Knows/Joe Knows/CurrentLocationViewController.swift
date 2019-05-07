@@ -11,7 +11,7 @@ import MapKit
 
 class CurrentLocationViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet var mapView: MKMapView!
+    var mapV: MKMapView!
     var locationManager : CLLocationManager!
     
     override func viewDidLoad() {
@@ -27,75 +27,32 @@ class CurrentLocationViewController: UIViewController, MKMapViewDelegate, CLLoca
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        determineCurrentLocation()
+        locationManagerWrapped.determineCurrentLocation()
+     
         
     }
     
     func createMapView(){
-        mapView = MKMapView()
-        
-        let leftMargin:CGFloat = 1
-        let topMargin:CGFloat = 1
-        let mapWidth:CGFloat = view.frame.size.width-6
-        let mapHeight:CGFloat = view.frame.size.height-10
-        
-        mapView.frame = CGRect(x: leftMargin, y: topMargin, width: mapWidth, height: mapHeight)
-        
-        mapView.mapType = MKMapType.standard
-        mapView.isZoomEnabled = true
-        mapView.isScrollEnabled = true
-        
-        mapView.center = view.center
-       
-        view.addSubview(mapView)
-        view.sendSubviewToBack(mapView)
-    }
-    
-    func determineCurrentLocation(){
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled(){
-            locationManager.startUpdatingLocation()
-        }
+        let mapObject = map.init(actualScreenView: view)
+        mapV = mapObject.mapView
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
-//        var currentLocationLabel: UILabel!
-//        currentLocationLabel.text = "coordinates: \(userLocation.coordinate.longitude)"
-        
-        // Call stopUpdatingLocation() to stop listening for location updates,
-        // other wise this function will be called every time when user location changes.
-        //manager.stopUpdatingLocation()
-        
+
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
-        mapView.setRegion(region, animated: true)
+        mapV.setRegion(region, animated: true)
         
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
     
-        
         myAnnotation.title = "Current location"
-        mapView.addAnnotation(myAnnotation)
+        mapV.addAnnotation(myAnnotation)
     }
     
-    
-    private func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
-    {
-        print("Error \(error)")
-    }
 }
 
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-
-
-
-
+  

@@ -96,13 +96,6 @@ class MainNavigationPage: UIViewController, MKMapViewDelegate, CLLocationManager
                 currentLocationLabel.text = "No matching Addresses Found"
             }
         }
-    
-    
-    private func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
-    {
-        print("Error \(error)")
-    }
-
 }
 
 extension CLPlacemark{

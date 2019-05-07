@@ -30,4 +30,8 @@ struct locationManagerWrapper {
             locationManager.startUpdatingLocation()
         }
     }
+    private func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
+    {
+        print("Error \(error)")
+    }
 }
