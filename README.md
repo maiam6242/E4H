@@ -73,5 +73,5 @@ Annie Tor [@ator1](https://github.com/ator1 "Annie's GitHub")
 Corey Cochran-Lepiz [@coreyacl](https://github.com/coreyacl "Corey's GitHub")  
 
 ## Acknowledgments
-Thanks to Caitrin Lynch and Ela Ben-Ur for their support throughout this process. Also, thank you to Paul Ruvolo for helping us navigate Swift. Most importantly, thank you to Joe Weisse for co-designing this system with us and giving us feedback throughout this project. 
+Thanks to Caitrin Lynch and Ela Ben-Ur for their support throughout this process. Also, thank you to Paul Ruvolo for helping us navigate Swift. Most importantly, thank you to Joe and Fran Weisse for co-designing this system with us and giving us feedback throughout this project. 
 
