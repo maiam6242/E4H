@@ -61,7 +61,7 @@ It is also important to note that we powered the beacons with 500 mAh Li-Polymer
 
 Said beacons and batteries can be placed in [these enclosures](https://github.com/maiam6242/Joe-Knows/blob/master/READMEResources/SensorEnclosureAssembly.SLDASM "Enclosure Assembly file"). These enclosures serve to provide a friendly and fairly weatherproof exterior. They are 3D printed from black PLA filament. For extra protection, we also placed the beacons and batteries in small plastic bags inside of these enclosures.
 
-![enclosure](https://github.com/maiam6242/Joe-Knows/blob/master/READMEResources/FullEnclosureRendering.JPG "Beacon enclosure")
+![enclosure](https://github.com/maiam6242/Joe-Knows/blob/master/READMEResources/FullEnclosureRendering.JPG | width = 100 "Beacon enclosure")
 
 
 ## Feedback
