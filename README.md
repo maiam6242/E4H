@@ -59,9 +59,9 @@ Once these values are changed or values are added, the software will change to p
 
 It is also important to note that we powered the beacons with 500 mAh Li-Polymer Batteries. These batteries are durable and can operate within a temperature range of -20 degrees Celcius to 60 degrees Celcius. Each battery can also power a beacon for a few years.
 
-Said beacons and batteries can be placed in [these enclosures](https://github.com/maiam6242/Joe-Knows/blob/master/READMEResources/SensorEnclosureAssembly.SLDASM "Enclosure Assembly file"). These enclosures serve to provide a friendly and fairly weatherproof exterior. They are 3D printed from black PLA filament. For extra protection, we also placed the beacons and batteries in small plastic bags inside of these enclosures.
+Said beacons and batteries can be placed in [these enclosures](https://github.com/maiam6242/Joe-Knows/blob/master/READMEResources/SensorEnclosureAssembly.SLDASM "Enclosure Assembly File"). These enclosures serve to provide a friendly and fairly weatherproof exterior. They are 3D printed from black PLA filament. For extra protection, we also placed the beacons and batteries in small plastic bags inside of these enclosures.
 
-<img src="https://github.com/maiam6242/Joe-Knows/blob/master/READMEResources/FullEnclosureRendering.JPG" alt="Beacon Enclosure" width="300" height="250" />
+<img alt= "Beacon Enclosure" src="https://github.com/maiam6242/Joe-Knows/blob/master/READMEResources/FullEnclosureRendering.JPG" width="300" height="250" />
 
 
 ## Feedback
@@ -73,5 +73,5 @@ Annie Tor [@ator1](https://github.com/ator1 "Annie's GitHub")
 Corey Cochran-Lepiz [@coreyacl](https://github.com/coreyacl "Corey's GitHub")  
 
 ## Acknowledgments
-Thanks to Caitrin Lynch and Ela Ben-Ur for their support throughout this process. Also, thank you to Paul Ruvolo for helping us navigate Swift. Most importantly, thank you to Joe Weisse for co-designing this system with us and giving us feedback throughout this project.
+Thanks to Caitrin Lynch and Ela Ben-Ur for their support throughout this process. Also, thank you to Paul Ruvolo for helping us navigate Swift. Most importantly, thank you to Joe Weisse for co-designing this system with us and giving us feedback throughout this project. 
 
