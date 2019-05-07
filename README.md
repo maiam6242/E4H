@@ -59,7 +59,9 @@ Once these values are changed or values are added, the software will change to p
 
 It is also important to note that we powered the beacons with 500 mAh Li-Polymer Batteries. These batteries are durable and can operate within a temperature range of -20 degrees Celcius to 60 degrees Celcius. Each battery can also power a beacon for a few years.
 
-Said beacons and batteries can be placed in [these enclosures](**INSERT ENCLOSURE LINK HERE**). These enclosures serve to provide a friendly and fairly weatherproof exterior. They are 3D printed from black PLA filament. For extra protection, we also placed the beacons and batteries in small plastic bags inside of these enclosures.
+Said beacons and batteries can be placed in [these enclosures](https://github.com/maiam6242/Joe-Knows/blob/master/READMEResources/SensorEnclosureAssembly.SLDASM "Enclosure Assembly file"). These enclosures serve to provide a friendly and fairly weatherproof exterior. They are 3D printed from black PLA filament. For extra protection, we also placed the beacons and batteries in small plastic bags inside of these enclosures.
+
+![enclosure](https://github.com/maiam6242/Joe-Knows/blob/master/READMEResources/FullEnclosureRendering.JPG "Beacon enclosure")
 
 
 ## Feedback
